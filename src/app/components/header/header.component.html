@@ -3,7 +3,13 @@
     <img src="../../../assets/images/logo.png" alt="Logo">
     <p>RACE<span>HUB</span></p>
   </a>
-  <div id="header-menu"></div>
+  <div id="header-menu" [ngClass]="{'active': active}">
+    <ul>
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/campionati">Campionati</a></li>
+      <li><a routerLink="/segnala-un-problema">Segnala un problema</a></li>
+    </ul>
+  </div>
   <div id="header-toggler" (click)="toggleActive()" [ngClass]="{'active': active}">
     <span></span>
     <span></span>

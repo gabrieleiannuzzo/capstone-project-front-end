@@ -9,13 +9,13 @@ header{
     align-items: center;
     text-decoration: none;
     img{
-      height: 150px;
-      margin-left: -20px;
+      height: 50px;
+      margin-left: 20px;
     }
     p{
       color: #ffc500;
       font-size: 1.5rem;
-      margin-left: -20px;
+      margin-left: 10px;
       span{
         color: #fff;
       }
@@ -25,6 +25,23 @@ header{
   #header-menu{
     position: absolute;
     top: 80px;
+    width: 100%;
+    height: 0;
+    padding: 0 20px;
+    overflow: hidden;
+    transition: all 0.5s;
+    ul{
+      display: flex;
+      flex-direction: column;
+      row-gap: 25px;
+      a{
+        color: #fff;
+      }
+    }
+    &.active{
+      padding: 25px 20px;
+      height: 138px;
+    }
     @media screen and (min-width: 768px) {
       position: static;
     }
@@ -38,7 +55,7 @@ header{
     justify-content: space-between;
     position: relative;
     cursor: pointer;
-    margin-right: 25px;
+    margin-right: 20px;
     span{
       display: block;
       width: 100%;
