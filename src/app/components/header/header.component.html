@@ -3,16 +3,23 @@
     <img src="../../../assets/images/logo.png" alt="Logo">
     <p>RACE<span>HUB</span></p>
   </a>
-  <div id="header-menu" [ngClass]="{'active': active}">
+
+  <div id="header-menu" [ngClass]="{'active': active, 'right': !isLogged}">
     <ul>
-      <li><a routerLink="/">Home</a></li>
-      <li><a routerLink="/campionati">Campionati</a></li>
-      <li><a routerLink="/segnala-un-problema">Segnala un problema</a></li>
+      <li><a routerLink="/" (click)="toggleActive()">Home</a></li>
+      <li><a routerLink="/campionati" (click)="toggleActive()">Campionati</a></li>
+      <li><a routerLink="/segnala-un-problema" (click)="toggleActive()">Segnala un problema</a></li>
+      <li><button><p>{{isLogged ? "LOGOUT" : "LOGIN"}}</p></button></li>
     </ul>
   </div>
-  <div id="header-toggler" (click)="toggleActive()" [ngClass]="{'active': active}">
-    <span></span>
-    <span></span>
-    <span></span>
+
+  <i class="fa-bell" [ngClass]="{'fa-solid': notifications, 'fa-regular': !notifications}" *ngIf="isLogged"></i>
+
+  <div id="header-toggler-div">
+    <div id="header-toggler" (click)="toggleActive()" [ngClass]="{'active': active}">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 </header>

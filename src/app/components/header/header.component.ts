@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   isLogged:boolean = false;
   active:boolean = false;
+  notifications:boolean = false;
 
   auth(){}
 

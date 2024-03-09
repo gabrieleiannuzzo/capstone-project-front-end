@@ -1,7 +1,6 @@
 header{
   height: 80px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   position: relative;
   a{
@@ -36,54 +35,98 @@ header{
       row-gap: 25px;
       a{
         color: #fff;
+        &:hover{
+          color: #ffc500;
+        }
+      }
+      button{
+        background-color: #ffc500;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        p{
+          color: #fff;
+        }
       }
     }
     &.active{
       padding: 25px 20px;
-      height: 138px;
+      height: 203px;
     }
     @media screen and (min-width: 768px) {
-      position: static;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 49px;
+      width: auto;
+      height: auto;
+      padding: 0;
+      transition: all 0s;
+      overflow: visible;
+      &.right{
+        right: 20px;
+      }
+      ul{
+        flex-direction: row;
+        align-items: center;
+        column-gap: 15px;
+      }
     }
   }
 
-  #header-toggler{
-    width: 28px;
-    height: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
+  i{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-6px);
+    right: 70px;
+    font-size: 1rem;
+    color: #fff;
     cursor: pointer;
-    margin-right: 20px;
-    span{
-      display: block;
-      width: 100%;
-      height: 3px;
-      background-color: #fff;
-      border-radius: 50px;
-      transition: all 0.5s;
-      &:nth-child(1){
-        height: 3.2px;
-      }
-    }
     @media screen and (min-width: 768px) {
-      display: none;
+      right: 20px;
     }
-    &.active{
+  }
+
+  #header-toggler-div{
+    position: absolute;
+    right: 20px;
+    #header-toggler{
+      width: 28px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      cursor: pointer;
       span{
-        &:nth-child(2){
-          display: none;
-        }
-        &:nth-child(1), &:nth-child(3){
-          position: absolute;
-          top: 50%;
-        }
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: #fff;
+        border-radius: 50px;
+        transition: all 0.5s;
         &:nth-child(1){
-          transform: translateY(-50%) rotate(-45deg);
+          height: 3.2px;
         }
-        &:nth-child(3){
-          transform: translateY(-50%) rotate(45deg);
+      }
+      @media screen and (min-width: 768px) {
+        display: none;
+      }
+      &.active{
+        span{
+          &:nth-child(2){
+            display: none;
+          }
+          &:nth-child(1), &:nth-child(3){
+            position: absolute;
+            top: 50%;
+          }
+          &:nth-child(1){
+            transform: translateY(-50%) rotate(-45deg);
+          }
+          &:nth-child(3){
+            transform: translateY(-50%) rotate(45deg);
+          }
         }
       }
     }
