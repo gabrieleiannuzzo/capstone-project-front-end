@@ -53,5 +53,22 @@ header{
     @media screen and (min-width: 768px) {
       display: none;
     }
+    &.active{
+      span{
+        &:nth-child(2){
+          display: none;
+        }
+        &:nth-child(1), &:nth-child(3){
+          position: absolute;
+          top: 50%;
+        }
+        &:nth-child(1){
+          transform: translateY(-50%) rotate(-45deg);
+        }
+        &:nth-child(3){
+          transform: translateY(-50%) rotate(45deg);
+        }
+      }
+    }
   }
 }

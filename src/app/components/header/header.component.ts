@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  isLogged:boolean = false;
+  active:boolean = false;
 
+  auth(){}
+
+  toggleActive():void{
+    this.active = !this.active;
+  }
 }

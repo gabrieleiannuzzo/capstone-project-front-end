@@ -4,7 +4,7 @@
     <p>RACE<span>HUB</span></p>
   </a>
   <div id="header-menu"></div>
-  <div id="header-toggler">
+  <div id="header-toggler" (click)="toggleActive()" [ngClass]="{'active': active}">
     <span></span>
     <span></span>
     <span></span>
