@@ -1,0 +1,134 @@
+header{
+  height: 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    img{
+      height: 50px;
+      margin-left: 20px;
+    }
+    p{
+      color: #ffc500;
+      font-size: 1.5rem;
+      margin-left: 10px;
+      span{
+        color: #fff;
+      }
+    }
+  }
+
+  #header-menu{
+    position: absolute;
+    top: 80px;
+    width: 100%;
+    height: 0;
+    padding: 0 20px;
+    overflow: hidden;
+    transition: all 0.5s;
+    ul{
+      display: flex;
+      flex-direction: column;
+      row-gap: 25px;
+      a{
+        color: #fff;
+        &:hover{
+          color: #ffc500;
+        }
+      }
+      button{
+        background-color: #ffc500;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        p{
+          color: #fff;
+        }
+      }
+    }
+    &.active{
+      padding: 25px 20px;
+      height: 203px;
+    }
+    @media screen and (min-width: 768px) {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 49px;
+      width: auto;
+      height: auto;
+      padding: 0;
+      transition: all 0s;
+      overflow: visible;
+      &.right{
+        right: 20px;
+      }
+      ul{
+        flex-direction: row;
+        align-items: center;
+        column-gap: 15px;
+      }
+    }
+  }
+
+  i{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-6px);
+    right: 70px;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    @media screen and (min-width: 768px) {
+      right: 20px;
+    }
+  }
+
+  #header-toggler-div{
+    position: absolute;
+    right: 20px;
+    #header-toggler{
+      width: 28px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      cursor: pointer;
+      span{
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: #fff;
+        border-radius: 50px;
+        transition: all 0.5s;
+        &:nth-child(1){
+          height: 3.2px;
+        }
+      }
+      @media screen and (min-width: 768px) {
+        display: none;
+      }
+      &.active{
+        span{
+          &:nth-child(2){
+            display: none;
+          }
+          &:nth-child(1), &:nth-child(3){
+            position: absolute;
+            top: 50%;
+          }
+          &:nth-child(1){
+            transform: translateY(-50%) rotate(-45deg);
+          }
+          &:nth-child(3){
+            transform: translateY(-50%) rotate(45deg);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import './reset';
+
+body{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  background-color: #181818;
+}
+
+h1, button{
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+}
