@@ -35,6 +35,7 @@ header{
       row-gap: 25px;
       a{
         color: #fff;
+        display: inline;
         &:hover{
           color: #ffc500;
         }
@@ -44,6 +45,10 @@ header{
         border: none;
         padding: 5px 10px;
         border-radius: 5px;
+        cursor: pointer;
+        &:hover{
+          background-color: lighten(#ffc500, 10);
+        }
         p{
           color: #fff;
         }
