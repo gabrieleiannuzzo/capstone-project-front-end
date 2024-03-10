@@ -9,7 +9,11 @@ header{
     text-decoration: none;
     img{
       height: 50px;
-      margin-left: 20px;
+      display: none;
+      @media screen and (min-width: 360px){
+        margin-left: 20px;
+        display: inline;
+      }
     }
     p{
       color: #ffc500;
@@ -62,7 +66,7 @@ header{
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      right: 49px;
+      right: 79px;
       width: auto;
       height: auto;
       padding: 0;
@@ -82,13 +86,29 @@ header{
   i{
     position: absolute;
     top: 50%;
-    transform: translateY(-6px);
-    right: 70px;
-    font-size: 1rem;
     color: #fff;
+    transform: translateY(-6px);
     cursor: pointer;
-    @media screen and (min-width: 768px) {
-      right: 20px;
+    &#profile{
+      right: 92px;
+      @media screen and (min-width: 768px){
+        right: 49px;
+      }
+    }
+    &#bell{
+      right: 63px;
+      @media screen and (min-width: 768px){
+        right: 20px;
+      }
+    }
+    &#circle{
+      color: red;
+      right: 63px;
+      font-size: 0.4rem;
+      transform: translateY(4px);
+      @media screen and (min-width: 768px){
+        right: 20px;
+      }
     }
   }
 

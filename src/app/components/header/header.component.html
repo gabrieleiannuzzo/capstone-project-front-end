@@ -13,7 +13,10 @@
     </ul>
   </div>
 
-  <i class="fa-bell" [ngClass]="{'fa-solid': notifications, 'fa-regular': !notifications}" *ngIf="isLogged"></i>
+  <i class="fa-solid fa-user" id="profile" *ngIf="isLogged"></i>
+
+  <i class="fa-solid fa-bell" id="bell" *ngIf="isLogged"></i>
+  <i class="fa-solid fa-circle" id="circle" *ngIf="isLogged"></i>
 
   <div id="header-toggler-div">
     <div id="header-toggler" (click)="toggleActive()" [ngClass]="{'active': active}">

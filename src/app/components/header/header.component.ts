@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  isLogged:boolean = false;
+  isLogged:boolean = !false;
   active:boolean = false;
   notifications:boolean = false;
 
