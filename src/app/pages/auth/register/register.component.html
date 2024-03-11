@@ -2,12 +2,17 @@
   <h1>Registrati</h1>
   <form [formGroup]="form">
     <div id="inputs-div">
-      <input type="text" formControlName="username" name="username" placeholder="Username">
-      <input type="text" formControlName="email" name="email" placeholder="Email">
+      <input type="text" formControlName="username" [ngClass]="{'error': inputErrors[0]}" (click)="onInputClick(0)" (blur)="onInputBlur('username', 0)" name="username" placeholder="Username">
+      <p class="error-p" *ngIf="errorMessages[0]">{{errorMessages[0]}}</p>
+
+      <input type="text" formControlName="email" [ngClass]="{'error': inputErrors[1]}" (click)="onInputClick(1)" (blur)="onInputBlur('email', 1)" name="email" placeholder="Email">
+      <p class="error-p" *ngIf="errorMessages[1]">{{errorMessages[1]}}</p>
+
       <div id="password-div">
-        <input [type]="passwordInputType" formControlName="password" placeholder="Password">
+        <input [type]="passwordInputType" formControlName="password" [ngClass]="{'error': inputErrors[2]}" (click)="onInputClick(2)" (blur)="onInputBlur('password', 2)"  placeholder="Password">
         <i class="fa-solid" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}" (click)="toggleShowPassword()"></i>
       </div>
+      <p class="error-p" *ngIf="errorMessages[2]">{{errorMessages[2]}}</p>
     </div>
     <button (click)="register()">Registrati</button>
     <p>Hai già un account? <a routerLink="/auth/login">Accedi</a></p>

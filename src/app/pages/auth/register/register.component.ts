@@ -12,6 +12,9 @@ export class RegisterComponent {
   form!:FormGroup;
   showPassword:boolean = false;
   passwordInputType:string = "password";
+  inputErrors:boolean[] = [false, false, false];
+  showErrorMessages:boolean[] = [false, false, false];
+  errorMessages:string[] = ["", "", ""]
 
   constructor(
     private fb:FormBuilder,
@@ -30,6 +33,15 @@ export class RegisterComponent {
   toggleShowPassword(){
     this.showPassword = !this.showPassword;
     this.passwordInputType = this.showPassword ? "text" : "password";
+  }
+
+  onInputClick(index:number){
+    this.inputErrors[index] = false;
+    this.errorMessages[index] = "";
+  }
+
+  onInputBlur(name:string, index:number){
+    if (!this.form.get(name)?.value) this.inputErrors[index] = true;
   }
 
   register(){}
