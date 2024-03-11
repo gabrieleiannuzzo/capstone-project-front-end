@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div id="form-div" formGroupName="form">
+  <h1>Login</h1>
+  <form>
+    <div id="inputs-div">
+      <input type="text" formControlName="user" placeholder="Username/email">
+      <div id="password-div">
+        <input [type]="passwordInputType" formControlName="password" placeholder="Password">
+        <i class="fa-solid" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}" (click)="toggleShowPassword()"></i>
+      </div>
+    </div>
+    <!-- AGGIUNGERE TASTO RESTA COLLEGATO -->
+    <a routerLink="password-dimenticata">Password dimenticata?</a>
+    <button>Login</button>
+    <p>Non hai un account? <a routerLink="/auth/register">Registrati</a></p>
+  </form>
+</div>

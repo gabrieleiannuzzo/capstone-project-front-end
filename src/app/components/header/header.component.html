@@ -9,7 +9,7 @@
       <li><a routerLink="/" (click)="toggleActive()">Home</a></li>
       <li><a routerLink="/campionati" (click)="toggleActive()">Campionati</a></li>
       <li><a routerLink="/segnala-un-problema" (click)="toggleActive()">Segnala un problema</a></li>
-      <li><button><p>{{isLogged ? "LOGOUT" : "LOGIN"}}</p></button></li>
+      <li><button (click)="auth()"><p>{{isLogged ? "LOGOUT" : "LOGIN"}}</p></button></li>
     </ul>
   </div>
 

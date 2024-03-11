@@ -39,7 +39,7 @@ export class HeaderComponent {
     if (this.isLogged) {
       this.authService.logout();
     } else {
-      this.router.navigate(["/login"]);
+      this.router.navigate(["/auth/login"]);
     }
     this.toggleActive();
   }
