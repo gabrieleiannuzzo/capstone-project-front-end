@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { LoaderService } from '../../../components/loader/loader.service';
+import { IRegisterRequest } from '../../../models/iregister-request';
 
 @Component({
   selector: 'app-register',
@@ -44,5 +45,31 @@ export class RegisterComponent {
     if (!this.form.get(name)?.value) this.inputErrors[index] = true;
   }
 
-  register(){}
+  register(){
+    const registerObj:IRegisterRequest = this.form.value;
+
+    if (!/^.{4,}$/.test(registerObj.username)) {
+      this.inputErrors[0] = true;
+      this.errorMessages[0] = "Lo username deve contenere almeno 4 caratteri";
+      return;
+    }
+
+    if (!/^.{1,20}$/.test(registerObj.username)) {
+      this.inputErrors[0] = true;
+      this.errorMessages[0] = "Lo username può contenere al massimo 20 caratteri";
+      return;
+    }
+
+    if (!/^\S*$/.test(registerObj.username)) {
+      this.inputErrors[0] = true;
+      this.errorMessages[0] = "Lo username non può contenere spazi";
+      return;
+    }
+
+    if (!/^[a-zA-ZÀ-ÿ0-9_.,(){}\[\]&*#$%';"|\+\=\!\?-]*$/.test(registerObj.username)) {
+      this.inputErrors[0] = true;
+      this.errorMessages[0] = "I simboli accettati sono _.,()[]{}&*#$%';\"|+=!?-";
+      return;
+    }
+  }
 }
