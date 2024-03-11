@@ -1,0 +1,18 @@
+#loader{
+  width: 100vw;
+  height: 5px;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  background: linear-gradient(90deg, #fb0094, #0000ff, #00ff00, #ffff00, #fb0094, #0000ff, #00ff00, #ffff00, #fb0094);
+  background-size: 500%;
+  animation: animate 20s linear infinite;
+  @keyframes animate {
+    0%{
+      background-position: 500% 0;
+    };
+    100%{
+      background-position: 0 0;
+    }
+  }
+}

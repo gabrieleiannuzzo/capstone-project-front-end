@@ -1,1 +1,15 @@
-<p>register works!</p>
+<div id="form-div">
+  <h1>Registrati</h1>
+  <form [formGroup]="form">
+    <div id="inputs-div">
+      <input type="text" formControlName="username" name="username" placeholder="Username">
+      <input type="text" formControlName="email" name="email" placeholder="Email">
+      <div id="password-div">
+        <input [type]="passwordInputType" formControlName="password" placeholder="Password">
+        <i class="fa-solid" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}" (click)="toggleShowPassword()"></i>
+      </div>
+    </div>
+    <button (click)="register()">Registrati</button>
+    <p>Hai già un account? <a routerLink="/auth/login">Accedi</a></p>
+  </form>
+</div>

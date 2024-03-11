@@ -26,14 +26,14 @@ export class AuthService {
   }
 
   apiUrl:string = environment.apiUrl;
-  loginUrl:string = this.apiUrl + "login";
-  registerUrl:string = this.apiUrl + "register";
+  loginUrl:string = this.apiUrl + "auth/login";
+  registerUrl:string = this.apiUrl + "auth/register";
 
   login(loginObj:ILoginRequest):Observable<ILoginResponse>{
     return this.http.post<ILoginResponse>(this.loginUrl, loginObj).pipe(tap(data => {
       this.authSubject.next(data);
       localStorage.setItem("accessData", JSON.stringify(data));
-      this.autoLogout(data.accessToken);
+      this.autoLogout(data.response.accessToken);
     }));
   }
 
@@ -61,9 +61,9 @@ export class AuthService {
     if (!userJson) return;
 
     const accessData:ILoginResponse = JSON.parse(userJson);
-    if (this.jwtHelper.isTokenExpired(accessData.accessToken)) return;
+    if (this.jwtHelper.isTokenExpired(accessData.response.accessToken)) return;
 
-    this.autoLogout(accessData.accessToken);
+    this.autoLogout(accessData.response.accessToken);
     this.authSubject.next(accessData);
   }
 }

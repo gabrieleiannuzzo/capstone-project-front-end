@@ -1,16 +1,20 @@
-<div id="form-div" formGroupName="form">
+<div id="form-div">
   <h1>Login</h1>
-  <form>
+  <form [formGroup]="form">
     <div id="inputs-div">
-      <input type="text" formControlName="user" placeholder="Username/email">
+      <input type="text" formControlName="user" name="user" placeholder="Username/email">
       <div id="password-div">
         <input [type]="passwordInputType" formControlName="password" placeholder="Password">
         <i class="fa-solid" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}" (click)="toggleShowPassword()"></i>
       </div>
     </div>
-    <!-- AGGIUNGERE TASTO RESTA COLLEGATO -->
-    <a routerLink="password-dimenticata">Password dimenticata?</a>
-    <button>Login</button>
+    <div id="resta-collegato-div">
+      <label>
+        <input type="checkbox" formControlName="restaCollegato"> Resta collegato
+      </label>
+      <a routerLink="/auth/password-dimenticata">Password dimenticata?</a>
+    </div>
+    <button (click)="login()">Login</button>
     <p>Non hai un account? <a routerLink="/auth/register">Registrati</a></p>
   </form>
 </div>

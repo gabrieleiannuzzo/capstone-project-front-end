@@ -1,6 +1,9 @@
 import { IUserResponse } from "./iuser-response";
 
 export interface ILoginResponse {
-  accessToken:string,
-  user:IUserResponse
+  status:number,
+  response:{
+    accessToken:string,
+    user:IUserResponse
+  }
 }

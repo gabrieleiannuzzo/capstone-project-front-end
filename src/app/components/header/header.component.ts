@@ -13,9 +13,9 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  isLogged!:boolean;
+  isLogged:boolean = true;
   user!:ILoginResponse|null;
-  inviti!:IInvitoResponse[];
+  inviti:IInvitoResponse[]|null[] = [null];
   active:boolean = false;
 
   constructor(
@@ -50,7 +50,7 @@ export class HeaderComponent {
 
   getPendingNotifications():void{
     if (!this.isLogged) return;
-    const username:string|undefined = this.user?.user.username;
+    const username:string|undefined = this.user?.response.user.username;
     const invitiUrl = environment.apiUrl + username + "/inviti";
     this.http.get<IInvitoResponse[]>(invitiUrl).subscribe(data => this.inviti = data);
   }

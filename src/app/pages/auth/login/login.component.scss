@@ -1,11 +1,12 @@
 
 #form-div{
   background-color: white;
+  box-sizing: border-box;
   width: 90%;
   max-width: 500px;
   border-radius: 5px;
   padding: 50px 20px;
-  margin: 100px auto 0 auto;
+  margin: 50px auto 0 auto;
   h1{
     text-align: center;
     font-size: 1.5rem;
@@ -13,7 +14,7 @@
     color: #181818;
   }
   #inputs-div{
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     margin-bottom: 20px;
     input{
@@ -27,6 +28,9 @@
       &:focus{
         outline: none;
       }
+    }
+    @media screen and (min-width: 450px) {
+      width: 90%;
     }
   }
   #password-div{
@@ -44,19 +48,41 @@
     }
   }
 
+  #resta-collegato-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    label{
+      font-size: 0.8rem;
+      color: darken(grey, 20);
+      display: flex;
+      align-items: center;
+      input{
+        cursor: pointer;
+      }
+    }
+    a{
+      display: block;
+      font-size: 0.8rem;
+      text-align: end;
+    }
+    @media screen and (min-width: 450px) {
+      width: 90%;
+    }
+  }
+
   a{
-    display: block;
-    text-align: center;
-    font-size: 0.8rem;
-    color: #ffc500;
     text-decoration: none;
+    color: #ffc500;
     &:hover{
       text-decoration: underline;
     }
   }
 
   button{
-    width: 90%;
+    width: 100%;
     display: block;
     margin: 20px auto;
     border: none;
@@ -68,14 +94,14 @@
     &:hover{
       background-color: lighten(#ffc500, 10);
     }
+    @media screen and (min-width: 450px) {
+      width: 90%;
+    }
   }
 
   p{
     font-size: 0.8rem;
     text-align: center;
-    color: darken(grey, 10);
-    a{
-      display: inline;
-    }
+    color: darken(grey, 20);
   }
 }
