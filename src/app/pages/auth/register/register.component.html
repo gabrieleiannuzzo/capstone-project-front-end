@@ -9,7 +9,7 @@
       <p class="error-p" *ngIf="errorMessages[1]">{{errorMessages[1]}}</p>
 
       <div id="password-div">
-        <input [type]="passwordInputType" formControlName="password" [ngClass]="{'error': inputErrors[2]}" (click)="onInputClick(2)" (blur)="onInputBlur('password', 2)"  placeholder="Password">
+        <input [type]="passwordInputType" formControlName="password" [ngClass]="{'error': inputErrors[2]}" (click)="onInputClick(2)" (blur)="onInputBlur('password', 2)"  placeholder="Password" id="password-input">
         <i class="fa-solid" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}" (click)="toggleShowPassword()"></i>
       </div>
       <p class="error-p" *ngIf="errorMessages[2]">{{errorMessages[2]}}</p>
