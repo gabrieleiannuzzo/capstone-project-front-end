@@ -1,11 +1,10 @@
 .outer-div{
-  background-color: rgba(red, 0.3);
   color: white;
   position: fixed;
   right: -100vw;
+  left: auto;
   bottom: 20px;
   padding: 20px 30px 20px 20px;
-  border: 2px solid red;
   border-radius: 5px;
   transition: all 0.5s;
   .inner-div{
@@ -23,5 +22,14 @@
   }
   &.show{
     right: 20px;
+    margin-left: 20px;
+  }
+  &#error-message{
+    background-color: rgba(red, 0.3);
+    border: 2px solid red;
+  }
+  &#success-message{
+    background-color: rgba(#00ff00, 0.3);
+    border: 2px solid #00ff00;
   }
 }

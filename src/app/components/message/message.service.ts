@@ -34,6 +34,7 @@ export class MessageService {
   }
 
   showErrorMessage(message:string):void{
+    this.hideSuccessMessage();
     this.setErrorMessage(message);
     this.showErrorMessageSubject.next(true);
     setTimeout(() => {
@@ -42,6 +43,7 @@ export class MessageService {
   }
 
   showSuccessMessage(message:string):void{
+    this.hideErrorMessage();
     this.setSuccessMessage(message);
     this.showSuccessMessageSubject.next(true);
     setTimeout(() => {

@@ -5,6 +5,7 @@ import { LoaderService } from '../../../components/loader/loader.service';
 import { IRegisterRequest } from '../../../models/iregister-request';
 import { catchError, throwError } from 'rxjs';
 import { MessageService } from '../../../components/message/message.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,8 @@ export class RegisterComponent {
     private fb:FormBuilder,
     private authService:AuthService,
     private loaderService:LoaderService,
-    private messageService:MessageService
+    private messageService:MessageService,
+    private router:Router
   ){}
 
   ngOnInit(){
@@ -148,7 +150,7 @@ export class RegisterComponent {
             this.errorMessages[1] = "Email già in uso";
         }
       } else {
-        this.messageService.showErrorMessage("Si è verificato un errore");
+        this.messageService.showErrorMessage(errorMessage);
       }
 
       this.stopLoading()
@@ -157,6 +159,8 @@ export class RegisterComponent {
     .subscribe(data => {
       console.log(data);
       this.stopLoading();
+      this.messageService.showSuccessMessage("Utente registrato con successo");
+      this.router.navigate(["/auth/login"]);
     });
   }
 
