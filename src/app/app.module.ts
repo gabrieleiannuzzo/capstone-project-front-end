@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { MessageComponent } from './components/message/message.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     HeaderComponent,
     HomeComponent,
     LoaderComponent,
-    Page404Component
+    Page404Component,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

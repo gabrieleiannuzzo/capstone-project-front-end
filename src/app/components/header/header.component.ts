@@ -50,7 +50,7 @@ export class HeaderComponent {
 
   getPendingNotifications():void{
     if (!this.isLogged) return;
-    const username:string|undefined = this.user?.response.user.username;
+    const username:string|undefined = this.user?.response.utente.username;
     const invitiUrl = environment.apiUrl + username + "/inviti";
     this.http.get<IInvitoResponse[]>(invitiUrl).subscribe(data => this.inviti = data);
   }

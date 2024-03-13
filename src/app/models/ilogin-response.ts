@@ -4,6 +4,6 @@ export interface ILoginResponse {
   status:number,
   response:{
     accessToken:string,
-    user:IUserResponse
+    utente:IUserResponse
   }
 }
