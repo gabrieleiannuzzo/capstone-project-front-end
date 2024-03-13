@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { LoaderService } from '../../../components/loader/loader.service';
 import { IRegisterRequest } from '../../../models/iregister-request';
 import { catchError, throwError } from 'rxjs';
+import { MessageService } from '../../../components/message/message.service';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,8 @@ export class RegisterComponent {
   constructor(
     private fb:FormBuilder,
     private authService:AuthService,
-    private loaderService:LoaderService
+    private loaderService:LoaderService,
+    private messageService:MessageService
   ){}
 
   ngOnInit(){
@@ -145,6 +147,8 @@ export class RegisterComponent {
             this.errorMessages[0] = "Username già in uso";
             this.errorMessages[1] = "Email già in uso";
         }
+      } else {
+        this.messageService.showErrorMessage("Si è verificato un errore");
       }
 
       this.stopLoading()

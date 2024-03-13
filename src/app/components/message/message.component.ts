@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { MessageService } from './message.service';
 
 @Component({
   selector: 'app-message',
@@ -7,16 +9,32 @@ import { Component } from '@angular/core';
 })
 export class MessageComponent {
   showErrorMessage:boolean = false;
-  errorMessage:string = "";
-
   showSuccessMessage:boolean = false;
+  errorMessage:string = "";
   successMessage:string = "";
 
-  closeErrorMessage():void{
-    this.showErrorMessage = false;
+  constructor(private messageService:MessageService){}
+
+  showErrorMessageSubscription!:Subscription;
+  showSuccessMessageSubscription!:Subscription;
+  errorMessageSubscription!:Subscription;
+  successMessageSubscription!:Subscription;
+
+  ngOnInit(){
+    this.showErrorMessageSubscription = this.messageService.showErrorMessage$.subscribe(data => this.showErrorMessage = data);
+
+    this.showSuccessMessageSubscription = this.messageService.showSuccessMessage$.subscribe(data => this.showSuccessMessage = data);
+
+    this.errorMessageSubscription = this.messageService.errorMessage$.subscribe(data => this.errorMessage = data);
+
+    this.successMessageSubscription = this.messageService.successMessage$.subscribe(data => this.successMessage = data);
   }
 
-  closeSuccessMessage():void{
-    this.showSuccessMessage = false;
+  hideErrorMessage():void{
+    this.messageService.hideErrorMessage();
+  }
+
+  hideSuccessMessage():void{
+    this.messageService.hideSuccessMessage();
   }
 }

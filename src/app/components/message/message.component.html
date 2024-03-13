@@ -1,7 +1,7 @@
 <div class="outer-div" [ngClass]="{'show': showErrorMessage}">
   <div class="inner-div" id="error-message">
-    <p>Si è verificato un errore</p>
-    <i class="fa-solid fa-xmark"></i>
+    <p>{{errorMessage}}</p>
+    <i class="fa-solid fa-xmark" (click)="hideErrorMessage()"></i>
   </div>
 </div>
 
