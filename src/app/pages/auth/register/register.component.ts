@@ -150,11 +150,11 @@ export class RegisterComponent {
             this.errorMessages[1] = "Email già in uso";
         }
       } else {
-        this.messageService.showErrorMessage(errorMessage);
+        this.messageService.showErrorMessage();
       }
 
       this.stopLoading()
-      return throwError(error);
+      return throwError(() => new Error("Register error"));
     }))
     .subscribe(data => {
       console.log(data);

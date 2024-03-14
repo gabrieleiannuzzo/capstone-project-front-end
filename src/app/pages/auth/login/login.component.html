@@ -2,11 +2,13 @@
   <h1>Login</h1>
   <form [formGroup]="form">
     <div id="inputs-div">
-      <input type="text" formControlName="user" name="user" placeholder="Username/email">
+      <input type="text" [ngClass]="{'error': errorMessages[0]}" formControlName="user" name="user" placeholder="Username/email" (focus)="onInputFocus(0)">
+      <p class="error-p" *ngIf="errorMessages[0]">{{errorMessages[0]}}</p>
       <div id="password-div">
-        <input [type]="passwordInputType" formControlName="password" placeholder="Password">
+        <input [type]="passwordInputType" [ngClass]="{'error': errorMessages[1]}" id="password-input" formControlName="password" placeholder="Password" (focus)="onInputFocus(1)">
         <i class="fa-solid" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}" (click)="toggleShowPassword()"></i>
       </div>
+      <p class="error-p" *ngIf="errorMessages[1]">{{errorMessages[1]}}</p>
     </div>
     <div id="resta-collegato-div">
       <label>

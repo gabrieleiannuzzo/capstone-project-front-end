@@ -33,7 +33,7 @@ export class MessageService {
     this.successMessageSubject.next(message);
   }
 
-  showErrorMessage(message:string):void{
+  showErrorMessage(message:string = "Si è verificato un errore"):void{
     this.hideSuccessMessage();
     this.setErrorMessage(message);
     this.showErrorMessageSubject.next(true);
