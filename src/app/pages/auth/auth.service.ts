@@ -8,6 +8,8 @@ import { environment } from '../../../environments/environment.development';
 import { ILoginRequest } from '../../models/ilogin-request';
 import { IRegisterRequest } from '../../models/iregister-request';
 import { IUserResponse } from '../../models/iuser-response';
+import { IPasswordDimenticataResponse } from '../../models/ipassword-dimenticata-response';
+import { IPasswordDimenticataRequest } from '../../models/ipassword-dimenticata-request';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +30,7 @@ export class AuthService {
   apiUrl:string = environment.apiUrl;
   loginUrl:string = this.apiUrl + "auth/login";
   registerUrl:string = this.apiUrl + "auth/register";
+  passwordDimenticataUrl:string = this.apiUrl + "auth/recupera-password";
 
   login(loginObj:ILoginRequest):Observable<ILoginResponse>{
     return this.http.post<ILoginResponse>(this.loginUrl, loginObj).pipe(tap(data => {
@@ -65,5 +68,9 @@ export class AuthService {
 
     this.autoLogout(accessData.response.accessToken);
     this.authSubject.next(accessData);
+  }
+
+  recuperaPassword(passwordDimenticataRequest:IPasswordDimenticataRequest):Observable<IPasswordDimenticataResponse>{
+    return this.http.post<IPasswordDimenticataResponse>(this.passwordDimenticataUrl, passwordDimenticataRequest);
   }
 }
