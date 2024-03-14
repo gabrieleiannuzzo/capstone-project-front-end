@@ -9,11 +9,14 @@
       <li><a routerLink="/" (click)="toggleActive()">Home</a></li>
       <li><a routerLink="/campionati" (click)="toggleActive()">Campionati</a></li>
       <li><a routerLink="/segnala-un-problema" (click)="toggleActive()">Segnala un problema</a></li>
-      <li><button><p>{{isLogged ? "LOGOUT" : "LOGIN"}}</p></button></li>
+      <li><button (click)="auth()"><p>{{isLogged ? "LOGOUT" : "LOGIN"}}</p></button></li>
     </ul>
   </div>
 
-  <i class="fa-bell" [ngClass]="{'fa-solid': notifications, 'fa-regular': !notifications}" *ngIf="isLogged"></i>
+  <i class="fa-solid fa-user" id="profile" *ngIf="isLogged"></i>
+
+  <i class="fa-solid fa-bell" id="bell" *ngIf="isLogged"></i>
+  <i class="fa-solid fa-circle" id="circle" *ngIf="pendingNotifications() && isLogged"></i>
 
   <div id="header-toggler-div">
     <div id="header-toggler" (click)="toggleActive()" [ngClass]="{'active': active}">
