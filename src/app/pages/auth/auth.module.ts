@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordDimenticataComponent } from './password-dimenticata/password-dimenticata.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { PasswordDimenticataComponent } from './password-dimenticata/password-di
     AuthComponent,
     RegisterComponent,
     LoginComponent,
-    PasswordDimenticataComponent
+    PasswordDimenticataComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
