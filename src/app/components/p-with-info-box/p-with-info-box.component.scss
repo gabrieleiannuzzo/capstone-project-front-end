@@ -1,0 +1,15 @@
+.outer-div{
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  .info-box-div{
+    background-color: #ffc500;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+}
