@@ -7,7 +7,20 @@ form{
     font-size: 2rem;
     text-align: center;
   }
-  .app-p-with-info-box{
-    margin-top: 100px;
+  input{
+    &:focus{
+      outline: none;
+    }
+    &#nome{
+      background-color: white;
+      border: 0;
+      border-radius: 5px;
+      height: 25px;
+      width: 300px;
+      display: block;
+      margin: 0 auto;
+      box-sizing: border-box;
+      padding: 0 5px;
+    }
   }
 }

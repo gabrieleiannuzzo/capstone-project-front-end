@@ -1,0 +1,31 @@
+div{
+  display: flex;
+  justify-content: center;
+  column-gap: 20px;
+  label{
+    input{
+      display: none;
+      &:checked{
+        &+div{
+          background-color: #ffc500;
+          border: none;
+        }
+      }
+    }
+    div{
+      background-color: #181818;
+      border: 1px solid white;
+      height: 40px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover{
+        background-color: #ffc500;
+        border: none;
+      }
+    }
+  }
+}

@@ -1,5 +1,12 @@
-<form>
+<form [formGroup]="form">
   <h1>NUOVO CAMPIONATO</h1>
-  <app-p-with-info-box name="Nome del campionato" description="Il nome deve contenere 3 lettere" infoBox="true"></app-p-with-info-box>
-  <input type="text">
+  <!-- NOME CAMPIONATO -->
+  <app-p-with-info-box name="Nome del campionato" description="" infoBox="true"></app-p-with-info-box>
+  <input type="text" formControlName="nome" name="nome" id="nome">
+
+  <!-- TIPOLOGIA CAMPIONATO -->
+  <app-p-with-info-box name="Tipologia calendario" description="" infoBox="true"></app-p-with-info-box>
+  <app-form-choice choice1="PERSONALIZZATO" choice2="UFFICIALE F1 2023" widthValue="200px"></app-form-choice>
+
+  <!-- NUMERO DI GARE -->
 </form>
