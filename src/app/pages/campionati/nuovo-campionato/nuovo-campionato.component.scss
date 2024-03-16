@@ -23,4 +23,37 @@ form{
       padding: 0 5px;
     }
   }
+  #numero-di-gare-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    column-gap: 5px;
+    button{
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  }
+
+  #genera-calendario-btn{
+    height: 40px;
+    width: 240px;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    background-color: transparent;
+    color: #ffc500;
+    border: 1px solid #ffc500;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    &:hover{
+      background-color: #ffc500;
+      color: white;
+      border: none;
+    }
+  }
 }

@@ -5,8 +5,17 @@
   <input type="text" formControlName="nome" name="nome" id="nome">
 
   <!-- TIPOLOGIA CAMPIONATO -->
-  <app-p-with-info-box name="Tipologia calendario" description="" infoBox="true"></app-p-with-info-box>
-  <app-form-choice choice1="PERSONALIZZATO" choice2="UFFICIALE F1 2023" widthValue="200px"></app-form-choice>
+  <app-p-with-info-box name="Tipologia calendario" description="Scegli se utilizzare un calendario personalizzato oppure il calendario ufficiale F1. Se scegli di utilizzare il secondo, potrai comunque cambiare il numero di gare, il nome e le sprint race" infoBox="true"></app-p-with-info-box>
+  <app-form-choice choice1="PERSONALIZZATO" choice2="UFFICIALE F1 2023" widthValue="200px" (emitSelectedValue)="onEmitValue($event)"></app-form-choice>
 
   <!-- NUMERO DI GARE -->
+  <app-p-with-info-box name="Numero di gare" description="Il numero di gare deve essere compreso tra 2 e 24" infoBox="true"></app-p-with-info-box>
+  <div id="numero-di-gare-div">
+    <button>-</button>
+    <p>24</p>
+    <button>+</button>
+  </div>
+
+  <!-- GENERA CALENDARIO -->
+  <button id="genera-calendario-btn">GENERA CALENDARIO</button>
 </form>

@@ -26,4 +26,8 @@ export class NuovoCampionatoComponent {
       numeroGare: this.fb.control(null),
     });
   }
+
+  onEmitValue(value:boolean){
+    console.log(value);
+  }
 }
