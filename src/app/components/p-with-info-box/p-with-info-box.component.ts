@@ -9,8 +9,13 @@ export class PWithInfoBoxComponent {
   @Input() name!:string;
   @Input() description!:string;
   @Input() infoBox!:string;
+  showInfoBox:boolean = false;
 
   isInfoBox():boolean{
     if (this.infoBox == "true") return true;return false;
+  }
+
+  toggleShowInfoBox():void{
+    this.showInfoBox = !this.showInfoBox;
   }
 }

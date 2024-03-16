@@ -2,6 +2,9 @@
   display: flex;
   align-items: center;
   column-gap: 10px;
+  width: fit-content;
+  margin: 10px auto 0 auto;
+  position: relative;
   .info-box-div{
     background-color: #ffc500;
     width: 20px;
@@ -11,5 +14,23 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    &.active{
+      width: 18px;
+      height: 18px;
+      color: #ffc500;
+      background-color: #181818;
+      border: 1px solid #ffc500;
+    }
+  }
+  .info-box{
+    position: absolute;
+    top: calc(100% + 10px);
+    right: -10px;
+    margin-right: 10px;
+    background-color: #ffc500;
+    font-size: 0.8rem;
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px;
   }
 }
