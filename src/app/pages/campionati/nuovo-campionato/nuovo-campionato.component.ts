@@ -112,6 +112,10 @@ export class NuovoCampionatoComponent {
     return (this.form.get("gare") as FormArray).controls;
   }
 
+  moreThan2Races():boolean{
+    return this.gare.length > 2;
+  }
+
   toggleSprint(index:number):void{
     this.sprints[index] = !this.sprints[index];
   }

@@ -15,7 +15,7 @@ form {
     background-color: white;
     border: 0;
     border-radius: 5px;
-    width: 300px;
+    width: 280px;
     display: block;
     margin: 0 auto;
     box-sizing: border-box;
@@ -76,8 +76,13 @@ form {
     width: fit-content;
     margin: 0 auto;
     input {
-      margin: 10px auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
       padding-left: 30px;
+      width: 255px;
+      &.closer-to-left{
+        padding-left: 5px;
+      }
     }
     button {
       height: 25px;
@@ -109,6 +114,15 @@ form {
           background-color: #ff0000;
           color: white;
         }
+      }
+      &.add-race-btn{
+        top: 50%;
+        transform: translateY(-50%);
+        right: -25px;
+        color: white;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
       }
     }
   }
