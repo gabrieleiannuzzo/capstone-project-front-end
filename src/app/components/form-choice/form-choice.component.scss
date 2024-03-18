@@ -1,7 +1,14 @@
-div{
+.outer-div{
   display: flex;
   justify-content: center;
   column-gap: 20px;
+  &.stack{
+    @media screen and (max-width: 450px) {
+      flex-direction: column;
+      row-gap: 10px;
+      align-items: center;
+    }
+  }
   label{
     input{
       display: none;
@@ -25,6 +32,11 @@ div{
       &:hover{
         background-color: #ffc500;
         border: none;
+      }
+    }
+    &.smaller{
+      @media screen and (max-width: 400px) {
+        width: 120px !important;
       }
     }
   }

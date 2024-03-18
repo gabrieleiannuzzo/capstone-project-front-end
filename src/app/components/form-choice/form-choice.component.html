@@ -1,14 +1,14 @@
-<div class="outer-div">
+<div class="outer-div" [ngClass]="{'stack': isStack()}">
   <label>
     <input type="radio" name="radio" value="true" [(ngModel)]="selectedValue" (change)="emitValue()">
-    <div class="inner-div" [ngStyle]="{'width': widthValue}">
+    <div class="inner-div" [ngStyle]="{'width': widthValue}" [ngClass]="{'smaller': !isStack()}">
       <p>{{choice1}}</p>
     </div>
   </label>
 
   <label>
     <input type="radio" name="radio" value="false" [(ngModel)]="selectedValue" (change)="emitValue()">
-    <div class="inner-div" [ngStyle]="{'width': widthValue}">
+    <div class="inner-div" [ngStyle]="{'width': widthValue}" [ngClass]="{'smaller': !isStack()}">
       <p>{{choice2}}</p>
     </div>
   </label>

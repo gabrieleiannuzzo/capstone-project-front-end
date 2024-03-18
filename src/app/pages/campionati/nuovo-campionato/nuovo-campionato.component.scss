@@ -1,44 +1,57 @@
-form{
+form {
   width: 90%;
   max-width: 500px;
   margin: 0 auto;
   color: white;
-  h1{
+  padding-bottom: 50px;
+
+  h1 {
     font-size: 2rem;
     text-align: center;
   }
-  input{
-    &:focus{
+
+  input {
+    height: 25px;
+    background-color: white;
+    border: 0;
+    border-radius: 5px;
+    width: 300px;
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 5px;
+
+    &:focus {
       outline: none;
     }
-    &#nome{
-      background-color: white;
-      border: 0;
-      border-radius: 5px;
-      height: 25px;
-      width: 300px;
-      display: block;
-      margin: 0 auto;
-      box-sizing: border-box;
-      padding: 0 5px;
-    }
   }
-  #numero-di-gare-div{
+
+  #numero-di-gare-div {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2rem;
     column-gap: 5px;
-    button{
+
+    p {
+      cursor: default;
+    }
+
+    button {
       background-color: transparent;
       border: none;
       color: white;
       font-size: 2rem;
       cursor: pointer;
+
+      &.disabled {
+        color: grey;
+        cursor: default;
+      }
     }
   }
 
-  #genera-calendario-btn{
+  #genera-calendario-btn {
     height: 40px;
     width: 240px;
     display: block;
@@ -50,10 +63,53 @@ form{
     border-radius: 50px;
     font-size: 1.1rem;
     margin-top: 20px;
-    &:hover{
+
+    &:hover {
       background-color: #ffc500;
       color: white;
       border: none;
+    }
+  }
+
+  .gara-div {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    input {
+      margin: 10px auto;
+      padding-left: 30px;
+    }
+    button {
+      height: 25px;
+      width: 25px;
+      border: none !important;
+      border-radius: 5px;
+      background-color: transparent;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      &.sprint-btn {
+        border: 1px solid #0000ff;
+        color: #0000ff;
+        right: 0;
+        &:hover,
+        &.active {
+          border: none;
+          background-color: #0000ff;
+          color: white;
+        }
+      }
+      &.delete-btn {
+        border: 1px solid #ff0000;
+        color: #ff0000;
+        left: 0;
+        &:hover,
+        &.active {
+          border: none;
+          background-color: #ff0000;
+          color: white;
+        }
+      }
     }
   }
 }

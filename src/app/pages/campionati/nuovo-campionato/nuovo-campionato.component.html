@@ -2,20 +2,64 @@
   <h1>NUOVO CAMPIONATO</h1>
   <!-- NOME CAMPIONATO -->
   <app-p-with-info-box name="Nome del campionato" description="" infoBox="true"></app-p-with-info-box>
-  <input type="text" formControlName="nome" name="nome" id="nome">
+  <input type="text" formControlName="nome" name="nome" id="nome" maxlength="50">
 
   <!-- TIPOLOGIA CAMPIONATO -->
-  <app-p-with-info-box name="Tipologia calendario" description="Scegli se utilizzare un calendario personalizzato oppure il calendario ufficiale F1. Se scegli di utilizzare il secondo, potrai comunque cambiare il numero di gare, il nome e le sprint race" infoBox="true"></app-p-with-info-box>
-  <app-form-choice choice1="PERSONALIZZATO" choice2="UFFICIALE F1 2023" widthValue="200px" (emitSelectedValue)="onEmitValue($event)"></app-form-choice>
+  <app-p-with-info-box name="Tipologia calendario"
+    description="Scegli se utilizzare un calendario personalizzato oppure il calendario ufficiale F1. Se scegli di utilizzare il secondo, potrai comunque cambiare il numero di gare, il nome e le sprint race"
+    infoBox="true"></app-p-with-info-box>
+  <app-form-choice choice1="UFFICIALE F1 2023" choice2="PERSONALIZZATO" widthValue="200px" stack="true"
+    (emitSelectedValue)="onEmitValue($event, 'calendarioUfficiale')"></app-form-choice>
 
   <!-- NUMERO DI GARE -->
-  <app-p-with-info-box name="Numero di gare" description="Il numero di gare deve essere compreso tra 2 e 24" infoBox="true"></app-p-with-info-box>
+  <app-p-with-info-box name="Numero di gare" description="Il numero di gare deve essere compreso tra 2 e 24"
+    infoBox="true"></app-p-with-info-box>
   <div id="numero-di-gare-div">
-    <button>-</button>
-    <p>24</p>
-    <button>+</button>
+    <button (click)="subtractRaceNumber()" [ngClass]="{'disabled': isCampionatoUfficiale()}">-</button>
+    <p>{{form.get("numeroGare")?.value}}</p>
+    <button (click)="addRaceNumber()" [ngClass]="{'disabled': isCampionatoUfficiale()}">+</button>
   </div>
 
   <!-- GENERA CALENDARIO -->
-  <button id="genera-calendario-btn">GENERA CALENDARIO</button>
+  <button id="genera-calendario-btn" (click)="generaCalendario()">GENERA CALENDARIO</button>
+
+  <div *ngIf="calendarioGenerato">
+    <!-- LISTA GARE -->
+    <app-p-with-info-box name="Lista gare" description="" infoBox="true"></app-p-with-info-box>
+    <div formArrayName="gare">
+      <div class="gara-div" *ngFor="let gara of gare, let i = index">
+        <input type="text" class="gara-input" [placeholder]="'Gara ' + (i + 1)" [formControlName]="i" maxlength="50">
+        <button class="delete-btn" (click)="deleteRace(i)">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+        <button class="sprint-btn" [ngClass]="{'active': sprints[i]}" (click)="toggleSprint(i)">S</button>
+      </div>
+    </div>
+
+    <!-- QUALIFICHE SPRINT -->
+    <app-p-with-info-box name="Qualifiche sprint" description="Scegliendo SI, il formato delle sprint sarà quello utilizzato ufficialmente in F1 (qualifiche sprint, gara sprint, qualifiche gara, gara)" infoBox="true"></app-p-with-info-box>
+    <app-form-choice widthValue="150px"></app-form-choice>
+
+    <!-- PUNTO POLE POSITION -->
+    <app-p-with-info-box name="Punto addizionale pole position" infoBox="false"></app-p-with-info-box>
+    <app-form-choice widthValue="150px"></app-form-choice>
+
+    <!-- SALVARE QUALIFICHE -->
+    <app-p-with-info-box name="Salvare le qualifiche" description="" infoBox="true"></app-p-with-info-box>
+    <app-form-choice widthValue="150px"></app-form-choice>
+
+    <!-- PUNTEGGIO PERSONALIZZATO SPRINT -->
+    <app-p-with-info-box name="Punteggio personalizzato sprint" description="" infoBox="true"></app-p-with-info-box>
+    <app-form-choice widthValue="150px"></app-form-choice>
+
+    <!-- PUNTEGGIO PERSONALIZZATO GARE -->
+    <app-p-with-info-box name="Punteggio personalizzato gare" description="" infoBox="true"></app-p-with-info-box>
+    <app-form-choice widthValue="150px"></app-form-choice>
+
+    <!-- TIPOLOGIA PILOTI -->
+    <app-p-with-info-box name="Tipologia piloti" description="" infoBox="true"></app-p-with-info-box>
+    <app-form-choice choice1="REALI" choice2="CUSTOM" widthValue="150px"></app-form-choice>
+
+    <!-- SCUDERIE -->
+  </div>
 </form>
