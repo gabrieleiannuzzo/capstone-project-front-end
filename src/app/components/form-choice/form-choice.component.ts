@@ -6,6 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './form-choice.component.scss'
 })
 export class FormChoiceComponent {
+  @Input() name!:string;
   @Input() choice1!:string;
   @Input() choice2!:string;
   @Input() widthValue!:string;

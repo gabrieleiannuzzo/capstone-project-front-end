@@ -26,32 +26,32 @@ form {
     }
   }
 
-  #numero-di-gare-div {
+  .number-div {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2rem;
     column-gap: 5px;
-
     p {
       cursor: default;
     }
-
     button {
       background-color: transparent;
       border: none;
       color: white;
       font-size: 2rem;
       cursor: pointer;
-
       &.disabled {
         color: grey;
         cursor: default;
       }
     }
+    &#posizione-minima-giro-veloce-div{
+      margin-bottom: 0px;
+    }
   }
 
-  #genera-calendario-btn {
+  .create-btn {
     height: 40px;
     width: 240px;
     display: block;

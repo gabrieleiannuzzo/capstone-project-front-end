@@ -8,20 +8,20 @@
   <app-p-with-info-box name="Tipologia calendario"
     description="Scegli se utilizzare un calendario personalizzato oppure il calendario ufficiale F1. Se scegli di utilizzare il secondo, potrai comunque cambiare il numero di gare, il nome e le sprint race"
     infoBox="true"></app-p-with-info-box>
-  <app-form-choice choice1="UFFICIALE F1 2023" choice2="PERSONALIZZATO" widthValue="200px" stack="true"
+  <app-form-choice name="calendarioUfficiale" choice1="UFFICIALE F1 2023" choice2="PERSONALIZZATO" widthValue="200px" stack="true"
     (emitSelectedValue)="onEmitValue($event, 'calendarioUfficiale')"></app-form-choice>
 
   <!-- NUMERO DI GARE -->
   <app-p-with-info-box name="Numero di gare" description="Il numero di gare deve essere compreso tra 2 e 24"
     infoBox="true"></app-p-with-info-box>
-  <div id="numero-di-gare-div">
+  <div class="number-div" id="numero-di-gare-div">
     <button (click)="subtractRaceNumber()" [ngClass]="{'disabled': isCampionatoUfficiale()}">-</button>
     <p>{{form.get("numeroGare")?.value}}</p>
     <button (click)="addRaceNumber()" [ngClass]="{'disabled': isCampionatoUfficiale()}">+</button>
   </div>
 
   <!-- GENERA CALENDARIO -->
-  <button id="genera-calendario-btn" (click)="generaCalendario()">GENERA CALENDARIO</button>
+  <button class="create-btn" (click)="generaCalendario()">GENERA CALENDARIO</button>
 
   <div *ngIf="calendarioGenerato">
     <!-- LISTA GARE -->
@@ -33,34 +33,49 @@
           <i class="fa-solid fa-trash"></i>
         </button>
         <button class="sprint-btn" [ngClass]="{'active': sprints[i]}" (click)="toggleSprint(i)">S</button>
-        <button class="add-race-btn" *ngIf="gare.length != 24">+</button>
+        <button class="add-race-btn" *ngIf="gare.length != 24" (click)="addRaceAtIndex(i)">+</button>
       </div>
     </div>
 
     <!-- QUALIFICHE SPRINT -->
-    <app-p-with-info-box name="Qualifiche sprint" description="Scegliendo SI, il formato delle sprint sarà quello utilizzato ufficialmente in F1 (qualifiche sprint, gara sprint, qualifiche gara, gara)" infoBox="true"></app-p-with-info-box>
-    <app-form-choice widthValue="150px"></app-form-choice>
+    <app-p-with-info-box name="Qualifiche sprint" description="Scegliendo SI, il formato del weekend sprint sarà quello utilizzato ufficialmente in F1 (qualifiche sprint, gara sprint, qualifiche, gara). Selezionando NO, il formato del weekend sprint sarà quello vecchio (qualifiche, gara sprint, gara)" infoBox="true"></app-p-with-info-box>
+    <app-form-choice name="independentSprint" widthValue="150px" (emitSelectedValue)="onEmitValue($event, 'independentSprint')"></app-form-choice>
 
     <!-- PUNTO POLE POSITION -->
     <app-p-with-info-box name="Punto addizionale pole position" infoBox="false"></app-p-with-info-box>
-    <app-form-choice widthValue="150px"></app-form-choice>
+    <app-form-choice name="polePoint" (emitSelectedValue)="onEmitValue($event, 'polePoint')" widthValue="150px"></app-form-choice>
+
+    <!-- PUNTO GIRO VELOCE -->
+    <app-p-with-info-box name="Punto addizionale giro veloce" infoBox="false"></app-p-with-info-box>
+    <app-form-choice name="fastestLapPoint" (emitSelectedValue)="onEmitValue($event, 'fastestLapPoint')" widthValue="150px"></app-form-choice>
+
+    <!-- POSIZIONE MINIMA GIRO VELOCE -->
+    <app-p-with-info-box name="Posizione minima giro veloce" description="" infoBox="true"></app-p-with-info-box>
+    <div class="number-div" id="posizione-minima-giro-veloce-div">
+      <button (click)="subtractMinFastestLapPosition()">-</button>
+      <p>{{form.get("minFastestLapPosition")?.value}}</p>
+      <button (click)="addMinFastestLapPosition()">+</button>
+    </div>
 
     <!-- SALVARE QUALIFICHE -->
-    <app-p-with-info-box name="Salvare le qualifiche" description="" infoBox="true"></app-p-with-info-box>
-    <app-form-choice widthValue="150px"></app-form-choice>
+    <app-p-with-info-box name="Salvare le qualifiche" description="Selezionando SI, dovranno essere registrati anche i risultati delle qualifiche. Selezionando NO, non dovranno essere registrati (fatta eccezione per la pole position, nel caso in cui valga il punto addizionale)" infoBox="true" closerToTop="true"></app-p-with-info-box>
+    <app-form-choice name="saveQuali" (emitSelectedValue)="onEmitValue($event, 'saveQuali')" widthValue="150px"></app-form-choice>
 
     <!-- PUNTEGGIO PERSONALIZZATO SPRINT -->
-    <app-p-with-info-box name="Punteggio custom sprint" description="" infoBox="true"></app-p-with-info-box>
-    <app-form-choice widthValue="150px"></app-form-choice>
+    <app-p-with-info-box name="Punteggio custom sprint" description="Selezionando NO verrà utilizzato il sistema di punteggio ufficiale F1 (8, 7, 6, 5, 4, 3, 2, 1). Selezionando SI potrai decidere i punteggi per ciascuno dei 20 piloti" infoBox="true"></app-p-with-info-box>
+    <app-form-choice name="customSprintPoints" (emitSelectedValue)="onEmitValue($event, 'customSprintPoints')" widthValue="150px"></app-form-choice>
 
     <!-- PUNTEGGIO PERSONALIZZATO GARE -->
-    <app-p-with-info-box name="Punteggio custom gare" description="" infoBox="true"></app-p-with-info-box>
-    <app-form-choice widthValue="150px"></app-form-choice>
+    <app-p-with-info-box name="Punteggio custom gare" description="Selezionando NO verrà utilizzato il sistema di punteggio ufficiale F1 (25, 18, 15, 12, 10, 8, 6, 4, 2, 1). Selezionando SI potrai decidere i punteggi per ciascuno dei 20 piloti" infoBox="true"></app-p-with-info-box>
+    <app-form-choice name="customRacePoints" (emitSelectedValue)="onEmitValue($event, 'customRacePoints')" widthValue="150px"></app-form-choice>
 
     <!-- TIPOLOGIA PILOTI -->
-    <app-p-with-info-box name="Tipologia piloti" description="" infoBox="true"></app-p-with-info-box>
-    <app-form-choice choice1="REALI" choice2="CUSTOM" widthValue="150px"></app-form-choice>
+    <app-p-with-info-box name="Tipologia piloti" description="Selezionando PILOTI REALI, i partecipanti al campionato dovranno essere utenti registrati sul sito, che dovranno accettare un invito. Selezionando PILOTI CUSTOM dovrai creare dei piloti inserendo manualmente il loro nome" infoBox="true"></app-p-with-info-box>
+    <app-form-choice name="realDrivers" (emitSelectedValue)="onEmitValue($event, 'realDrivers')" choice1="REALI" choice2="CUSTOM" widthValue="150px"></app-form-choice>
 
     <!-- SCUDERIE -->
+
+    <!-- CREA CAMPIONATO -->
+    <button class="create-btn" (click)="creaCampionato()">CREA CAMPIONATO</button>
   </div>
 </form>

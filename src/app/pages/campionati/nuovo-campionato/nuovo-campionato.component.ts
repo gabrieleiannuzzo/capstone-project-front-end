@@ -29,6 +29,14 @@ export class NuovoCampionatoComponent {
       calendarioUfficiale: this.fb.control(null),
       numeroGare: this.fb.control(23),
       gare: this.fb.array([]),
+      independentSprint: this.fb.control(null),
+      polePoint: this.fb.control(null),
+      fastestLapPoint: this.fb.control(null),
+      minFastestLapPosition: this.fb.control(10),
+      saveQuali: this.fb.control(null),
+      customSprintPoints: this.fb.control(null),
+      customRacePoints: this.fb.control(null),
+      realDrivers: this.fb.control(null),
     });
   }
 
@@ -54,6 +62,17 @@ export class NuovoCampionatoComponent {
   subtractRaceNumber():void{
     let oldValue:number = this.form.get("numeroGare")?.value;
     if (oldValue > 2) this.form.get("numeroGare")?.setValue(--oldValue);
+
+  }
+
+  addMinFastestLapPosition():void{
+    let oldValue:number = this.form.get("minFastestLapPosition")?.value;
+    if (oldValue < 20) this.form.get("minFastestLapPosition")?.setValue(++oldValue);
+  }
+
+  subtractMinFastestLapPosition():void{
+    let oldValue:number = this.form.get("minFastestLapPosition")?.value;
+    if (oldValue > 1) this.form.get("minFastestLapPosition")?.setValue(--oldValue);
   }
 
   generaCalendario(){
@@ -64,6 +83,7 @@ export class NuovoCampionatoComponent {
     }
 
     this.calendarioGenerato = true;
+    this.sprints = [];
     if (this.form.get("calendarioUfficiale")?.value) {
       this.gare = [...this.gareUfficiali];
       for (let i = 0; i < this.gare.length; i++) {
@@ -102,6 +122,15 @@ export class NuovoCampionatoComponent {
     this.sprints.push(false);
   }
 
+  addRaceAtIndex(index:number):void{
+    index++
+    const control = new FormControl(null);
+    (this.form.get("gare") as FormArray).insert(index, control);
+    this.gare.splice(index, 0, "");
+    this.sprints.splice(index, 0, false);
+    console.log((this.form.get("gare") as FormArray).controls)
+  }
+
   deleteRace(index:number):void{
     (this.form.get("gare") as FormArray).removeAt(index);
     this.gare.splice(index, 1);
@@ -118,5 +147,9 @@ export class NuovoCampionatoComponent {
 
   toggleSprint(index:number):void{
     this.sprints[index] = !this.sprints[index];
+  }
+
+  creaCampionato():void{
+    console.log(this.form);
   }
 }

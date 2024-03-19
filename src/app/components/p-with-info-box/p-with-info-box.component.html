@@ -1,4 +1,4 @@
-<div class="outer-div">
+<div class="outer-div" [ngClass]="{'closer-to-top': isCloserToTop()}">
   <p>{{name}}</p>
   <div class="info-box-div" *ngIf="isInfoBox()" (click)="toggleShowInfoBox()" [ngClass]="{'active': showInfoBox}">
     <p>?</p>
