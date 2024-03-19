@@ -75,6 +75,10 @@ export class NuovoCampionatoComponent {
     if (oldValue > 1) this.form.get("minFastestLapPosition")?.setValue(--oldValue);
   }
 
+  isFastestLapPoint():boolean{
+    return this.form.get("fastestLapPoint")?.value;
+  }
+
   generaCalendario(){
     const calendarioUfficiale = this.form.get("calendarioUfficiale")?.value;
     if (calendarioUfficiale != true && calendarioUfficiale != false) {

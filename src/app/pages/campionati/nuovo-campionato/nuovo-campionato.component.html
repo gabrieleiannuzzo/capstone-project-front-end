@@ -50,15 +50,15 @@
     <app-form-choice name="fastestLapPoint" (emitSelectedValue)="onEmitValue($event, 'fastestLapPoint')" widthValue="150px"></app-form-choice>
 
     <!-- POSIZIONE MINIMA GIRO VELOCE -->
-    <app-p-with-info-box name="Posizione minima giro veloce" description="" infoBox="true"></app-p-with-info-box>
-    <div class="number-div" id="posizione-minima-giro-veloce-div">
+    <app-p-with-info-box name="Posizione minima giro veloce" description="" infoBox="true" *ngIf="isFastestLapPoint()"></app-p-with-info-box>
+    <div class="number-div" id="posizione-minima-giro-veloce-div" *ngIf="isFastestLapPoint()">
       <button (click)="subtractMinFastestLapPosition()">-</button>
       <p>{{form.get("minFastestLapPosition")?.value}}</p>
       <button (click)="addMinFastestLapPosition()">+</button>
     </div>
 
     <!-- SALVARE QUALIFICHE -->
-    <app-p-with-info-box name="Salvare le qualifiche" description="Selezionando SI, dovranno essere registrati anche i risultati delle qualifiche. Selezionando NO, non dovranno essere registrati (fatta eccezione per la pole position, nel caso in cui valga il punto addizionale)" infoBox="true" closerToTop="true"></app-p-with-info-box>
+    <app-p-with-info-box name="Salvare le qualifiche" description="Selezionando SI, dovranno essere registrati anche i risultati delle qualifiche. Selezionando NO, non dovranno essere registrati (fatta eccezione per la pole position, nel caso in cui valga il punto addizionale)" infoBox="true" [closerToTop]="isFastestLapPoint() ? 'true' : 'false'"></app-p-with-info-box>
     <app-form-choice name="saveQuali" (emitSelectedValue)="onEmitValue($event, 'saveQuali')" widthValue="150px"></app-form-choice>
 
     <!-- PUNTEGGIO PERSONALIZZATO SPRINT -->
