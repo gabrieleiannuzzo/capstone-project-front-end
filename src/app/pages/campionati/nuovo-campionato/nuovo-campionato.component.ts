@@ -15,6 +15,8 @@ export class NuovoCampionatoComponent {
   gare!:string[];
   gareUfficiali:string[] = ["Bahrain", "Arabia Saudita", "Australia", "Azerbaijan", "Miami", "Imola", "Monaco", "Spagna", "Canada", "Austria", "Gran Bretagna", "Ungheria", "Belgio", "Olanda", "Italia", "Singapore", "Giappone", "Qatar", "USA", "Messico", "Brasile", "Las Vegas", "Abu Dhabi"];
   sprints:boolean[] = [];
+  sprintPoints:number[] = [8, 7, 6, 5, 4, 3, 2, 1, 0, 0];
+  racePoints:number[] = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1];
 
   constructor(
     private fb:FormBuilder,
@@ -35,7 +37,9 @@ export class NuovoCampionatoComponent {
       minFastestLapPosition: this.fb.control(10),
       saveQuali: this.fb.control(null),
       customSprintPoints: this.fb.control(null),
+      sprintPoints: this.fb.array([8, 7, 6, 5, 4, 3, 2, 1, 0, 0]),
       customRacePoints: this.fb.control(null),
+      racePoints: this.fb.array([25, 18, 15, 12, 10, 8, 6, 4, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
       realDrivers: this.fb.control(null),
     });
   }
@@ -151,6 +155,28 @@ export class NuovoCampionatoComponent {
 
   toggleSprint(index:number):void{
     this.sprints[index] = !this.sprints[index];
+  }
+
+  isCustomSprintPoints():boolean{
+    return this.form.get("customSprintPoints")?.value;
+  }
+
+  isCustomRacePoints():boolean{
+    return this.form.get("customRacePoints")?.value;
+  }
+
+  getSprintPoints(){
+    return (this.form.get("sprintPoints") as FormArray).controls;
+  }
+
+  getRacePoints(){
+    return (this.form.get("racePoints") as FormArray).controls;
+  }
+
+  checkNumberInput(arrayName:string, maxValue:number, i:number):void{
+    const control = (this.form.get(arrayName) as FormArray).controls[i];
+    if (control.value < 0) control.setValue(0);
+    if (control.value > maxValue) control.setValue(maxValue);
   }
 
   creaCampionato():void{

@@ -23,7 +23,9 @@
   <!-- GENERA CALENDARIO -->
   <button class="create-btn" (click)="generaCalendario()">GENERA CALENDARIO</button>
 
-  <div *ngIf="calendarioGenerato">
+  <div *ngIf="!calendarioGenerato">
+    <h2>GARE</h2>
+
     <!-- LISTA GARE -->
     <app-p-with-info-box name="Lista gare" description="" infoBox="true"></app-p-with-info-box>
     <div formArrayName="gare">
@@ -65,9 +67,27 @@
     <app-p-with-info-box name="Punteggio custom sprint" description="Selezionando NO verrà utilizzato il sistema di punteggio ufficiale F1 (8, 7, 6, 5, 4, 3, 2, 1). Selezionando SI potrai decidere i punteggi per ciascuno dei 20 piloti" infoBox="true"></app-p-with-info-box>
     <app-form-choice name="customSprintPoints" (emitSelectedValue)="onEmitValue($event, 'customSprintPoints')" widthValue="150px"></app-form-choice>
 
+    <div class="outer-custom-points-div" formArrayName="sprintPoints" *ngIf="isCustomSprintPoints()">
+      <div class="inner-custom-points-div" *ngFor="let position of getSprintPoints(), let i = index">
+        <div>
+          <p>{{i + 1}}</p>
+        </div>
+        <input type="number" [formControlName]="i" (change)="checkNumberInput('sprintPoints', 25, i)">
+      </div>
+    </div>
+
     <!-- PUNTEGGIO PERSONALIZZATO GARE -->
     <app-p-with-info-box name="Punteggio custom gare" description="Selezionando NO verrà utilizzato il sistema di punteggio ufficiale F1 (25, 18, 15, 12, 10, 8, 6, 4, 2, 1). Selezionando SI potrai decidere i punteggi per ciascuno dei 20 piloti" infoBox="true"></app-p-with-info-box>
     <app-form-choice name="customRacePoints" (emitSelectedValue)="onEmitValue($event, 'customRacePoints')" widthValue="150px"></app-form-choice>
+
+    <div class="outer-custom-points-div" formArrayName="racePoints" *ngIf="isCustomRacePoints()">
+      <div class="inner-custom-points-div" *ngFor="let position of getRacePoints(), let i = index">
+        <div>
+          <p>{{i + 1}}</p>
+        </div>
+        <input type="number" [formControlName]="i" (change)="checkNumberInput('racePoints', 50, i)">
+      </div>
+    </div>
 
     <!-- TIPOLOGIA PILOTI -->
     <app-p-with-info-box name="Tipologia piloti" description="Selezionando PILOTI REALI, i partecipanti al campionato dovranno essere utenti registrati sul sito, che dovranno accettare un invito. Selezionando PILOTI CUSTOM dovrai creare dei piloti inserendo manualmente il loro nome" infoBox="true"></app-p-with-info-box>
