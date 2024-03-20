@@ -94,6 +94,18 @@
     <app-form-choice name="realDrivers" (emitSelectedValue)="onEmitValue($event, 'realDrivers')" choice1="REALI" choice2="CUSTOM" widthValue="150px"></app-form-choice>
 
     <!-- SCUDERIE -->
+    <h2>SCUDERIE</h2>
+
+    <app-p-with-info-box name="Nomi e colori scuderie" description="" infoBox="true"></app-p-with-info-box>
+    <div formArrayName="scuderie">
+      <div class="scuderia-div" *ngFor="let scuderia of getScuderie(), let i = index">
+        <div>
+          <p></p>
+        </div>
+        <input type="text" placeholder="Nome scuderia" maxlength="50" formControlName="nome">
+        <input type="color" formControlName="codiceColore">
+      </div>
+    </div>
 
     <!-- CREA CAMPIONATO -->
     <button class="create-btn" (click)="creaCampionato()">CREA CAMPIONATO</button>

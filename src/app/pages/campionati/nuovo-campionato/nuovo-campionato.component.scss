@@ -157,4 +157,25 @@ form {
       }
     }
   }
+  .scuderia-div{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin: 0 auto;
+    position: relative;
+    div{
+      position: absolute;
+      width: 20px;
+      background-color: red;
+    }
+    input{
+      &[type="text"]{
+        flex: 0 0 75%;
+      }
+      &[type="color"]{
+        flex: 0 0 20%;
+        cursor: pointer;
+      }
+    }
+  }
 }

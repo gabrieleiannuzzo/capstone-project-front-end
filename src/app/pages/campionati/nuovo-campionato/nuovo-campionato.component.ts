@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MessageService } from '../../../components/message/message.service';
 import { LoaderService } from '../../../components/loader/loader.service';
 import { CampionatiService } from '../campionati.service';
+import { IScuderiaRequest } from '../../../models/iscuderia-request';
 
 @Component({
   selector: 'app-nuovo-campionato',
@@ -41,7 +42,20 @@ export class NuovoCampionatoComponent {
       customRacePoints: this.fb.control(null),
       racePoints: this.fb.array([25, 18, 15, 12, 10, 8, 6, 4, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
       realDrivers: this.fb.control(null),
+      scuderie: this.fb.array([...this.populateScuderie()]),
     });
+  }
+
+  populateScuderie():IScuderiaRequest[]{
+    const arr:IScuderiaRequest[] = [];
+    const scuderia:IScuderiaRequest = {
+      nome: "",
+      codiceColore: "000000",
+    }
+
+    for (let i = 0; i < 10; i++) arr.push(scuderia);
+
+    return arr;
   }
 
   onEmitValue(value:any, name:string){
@@ -84,6 +98,7 @@ export class NuovoCampionatoComponent {
   }
 
   generaCalendario(){
+    console.log(this.form)
     const calendarioUfficiale = this.form.get("calendarioUfficiale")?.value;
     if (calendarioUfficiale != true && calendarioUfficiale != false) {
       this.messageService.showErrorMessage("Devi selezionare la tipologia di calendario");
@@ -177,6 +192,10 @@ export class NuovoCampionatoComponent {
     const control = (this.form.get(arrayName) as FormArray).controls[i];
     if (control.value < 0) control.setValue(0);
     if (control.value > maxValue) control.setValue(maxValue);
+  }
+
+  getScuderie(){
+    return (this.form.get("scuderie") as FormArray).controls;
   }
 
   creaCampionato():void{
