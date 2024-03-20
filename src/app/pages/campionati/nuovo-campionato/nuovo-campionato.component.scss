@@ -4,14 +4,12 @@ form {
   margin: 0 auto;
   color: white;
   padding-bottom: 50px;
-  h1 {
+  h1, h2 {
     font-size: 2rem;
     text-align: center;
   }
   h2{
-    font-size: 1.5rem;
-    text-align: center;
-    margin-top: 20px;
+    margin-top: 50px;
   }
   input {
     height: 25px;
@@ -160,13 +158,23 @@ form {
   .scuderia-div{
     display: flex;
     justify-content: space-between;
-    width: 300px;
+    width: 280px;
     margin: 0 auto;
     position: relative;
+    margin-bottom: 10px;
     div{
+      display: none;
       position: absolute;
       width: 20px;
-      background-color: red;
+      top: 50%;
+      transform: translateY(-50%);
+      left: -30px;
+      p{
+        text-align: center;
+      }
+      @media screen and (min-width: 370px){
+        display: block;
+      }
     }
     input{
       &[type="text"]{

@@ -23,7 +23,7 @@
   <!-- GENERA CALENDARIO -->
   <button class="create-btn" (click)="generaCalendario()">GENERA CALENDARIO</button>
 
-  <div *ngIf="!calendarioGenerato">
+  <div *ngIf="calendarioGenerato">
     <h2>GARE</h2>
 
     <!-- LISTA GARE -->
@@ -96,11 +96,16 @@
     <!-- SCUDERIE -->
     <h2>SCUDERIE</h2>
 
-    <app-p-with-info-box name="Nomi e colori scuderie" description="" infoBox="true"></app-p-with-info-box>
+    <!-- TIPOLOGIA SCUDERIE -->
+    <app-p-with-info-box name="Tipologia scuderie" description="" infoBox="true"></app-p-with-info-box>
+    <app-form-choice choice1="UFFICIALI" choice2="CUSTOM" widthValue="150px" (emitSelectedValue)="generaScuderie($event)"></app-form-choice>
+
+    <!-- NOMI E COLORI SCUDERIE -->
+    <app-p-with-info-box name="Nomi e colori scuderie" description="" infoBox="true" *ngIf="scuderieGenerate"></app-p-with-info-box>
     <div formArrayName="scuderie">
-      <div class="scuderia-div" *ngFor="let scuderia of getScuderie(), let i = index">
+      <div class="scuderia-div" *ngFor="let scuderia of getScuderie(), let i = index" [formGroupName]="i">
         <div>
-          <p></p>
+          <p>{{i + 1}}</p>
         </div>
         <input type="text" placeholder="Nome scuderia" maxlength="50" formControlName="nome">
         <input type="color" formControlName="codiceColore">
@@ -108,6 +113,6 @@
     </div>
 
     <!-- CREA CAMPIONATO -->
-    <button class="create-btn" (click)="creaCampionato()">CREA CAMPIONATO</button>
+    <button class="create-btn" (click)="creaCampionato()" *ngIf="scuderieGenerate">CREA CAMPIONATO</button>
   </div>
 </form>

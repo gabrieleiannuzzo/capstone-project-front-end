@@ -13,11 +13,54 @@ import { IScuderiaRequest } from '../../../models/iscuderia-request';
 export class NuovoCampionatoComponent {
   form!:FormGroup;
   calendarioGenerato:boolean = false;
+  scuderieGenerate:boolean = false;
   gare!:string[];
   gareUfficiali:string[] = ["Bahrain", "Arabia Saudita", "Australia", "Azerbaijan", "Miami", "Imola", "Monaco", "Spagna", "Canada", "Austria", "Gran Bretagna", "Ungheria", "Belgio", "Olanda", "Italia", "Singapore", "Giappone", "Qatar", "USA", "Messico", "Brasile", "Las Vegas", "Abu Dhabi"];
   sprints:boolean[] = [];
   sprintPoints:number[] = [8, 7, 6, 5, 4, 3, 2, 1, 0, 0];
   racePoints:number[] = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1];
+  scuderie:IScuderiaRequest[] = [
+    {
+      nome: "Red Bull",
+      codiceColore: "#121f45",
+    },
+    {
+      nome: "Mercedes",
+      codiceColore: "#00a19c",
+    },
+    {
+      nome: "Ferrari",
+      codiceColore: "#f70d1a",
+    },
+    {
+      nome: "McLaren",
+      codiceColore: "#ff8000",
+    },
+    {
+      nome: "Aston Martin",
+      codiceColore: "#00665e",
+    },
+    {
+      nome: "Alpine",
+      codiceColore: "#005ba9",
+    },
+    {
+      nome: "Williams",
+      codiceColore: "#00a3e0",
+    },
+    {
+      nome: "Alpha Tauri",
+      codiceColore: "#041f3d",
+    },
+    {
+      nome: "Alfa Romeo",
+      codiceColore: "#a50f2d",
+    },
+    {
+      nome: "Haas",
+      codiceColore: "#efefef",
+    },
+  ]
 
   constructor(
     private fb:FormBuilder,
@@ -42,20 +85,29 @@ export class NuovoCampionatoComponent {
       customRacePoints: this.fb.control(null),
       racePoints: this.fb.array([25, 18, 15, 12, 10, 8, 6, 4, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
       realDrivers: this.fb.control(null),
-      scuderie: this.fb.array([...this.populateScuderie()]),
+      scuderieReali: this.fb.control(null),
+      scuderie: this.fb.array([]),
     });
   }
 
-  populateScuderie():IScuderiaRequest[]{
-    const arr:IScuderiaRequest[] = [];
-    const scuderia:IScuderiaRequest = {
-      nome: "",
-      codiceColore: "000000",
+  populateScuderie(scuderieReali:boolean):void{
+    (this.form.get("scuderie") as FormArray).clear();
+    for (let scuderia of this.scuderie) {
+      let group:FormGroup = this.fb.group({});
+      if (scuderieReali) {
+        group = this.fb.group({
+          nome: scuderia.nome,
+          codiceColore: scuderia.codiceColore,
+        });
+      } else {
+        group = this.fb.group({
+          nome: "",
+          codiceColore: "",
+        });
+      }
+
+      (this.form.get("scuderie") as FormArray).push(group);
     }
-
-    for (let i = 0; i < 10; i++) arr.push(scuderia);
-
-    return arr;
   }
 
   onEmitValue(value:any, name:string){
@@ -98,7 +150,6 @@ export class NuovoCampionatoComponent {
   }
 
   generaCalendario(){
-    console.log(this.form)
     const calendarioUfficiale = this.form.get("calendarioUfficiale")?.value;
     if (calendarioUfficiale != true && calendarioUfficiale != false) {
       this.messageService.showErrorMessage("Devi selezionare la tipologia di calendario");
@@ -198,7 +249,42 @@ export class NuovoCampionatoComponent {
     return (this.form.get("scuderie") as FormArray).controls;
   }
 
+  generaScuderie(value:any):void{
+    this.scuderieGenerate = true;
+    let bool:boolean = false;
+    if (value == "true") {
+      bool = true;
+    }
+    this.populateScuderie(bool);
+  }
+
   creaCampionato():void{
-    console.log(this.form);
+    const nomiGare:string[] =  this.form.get("gare")?.getRawValue();
+    const gareArr:any[] = [];
+    for (let i = 0; i < nomiGare.length; i++) {
+      const garaObj = {
+        nome: nomiGare[i],
+        sprint: this.sprints[i]
+      }
+      gareArr.push(garaObj);
+    }
+
+    const nuovoCampionatoObj = {
+      nome: this.form.get("nome")?.value,
+      realDrivers: this.form.get("realDrivers")?.value,
+      independentSprint: this.form.get("independentSprint")?.value,
+      saveQuali: this.form.get("saveQuali")?.value,
+      polePoint: this.form.get("polePoint")?.value,
+      fastestLapPoint: this.form.get("fastestLapPoint")?.value,
+      minFastestLapPosition: this.form.get("minFastestLapPosition")?.value,
+      punteggi: {
+        sprintPoints: this.form.get("sprintPoints")?.getRawValue(),
+        racePoints: this.form.get("racePoints")?.getRawValue(),
+      },
+      scuderie: this.form.get("scuderie")?.getRawValue(),
+      gare: [...gareArr],
+    }
+
+    console.log(nuovoCampionatoObj);
   }
 }
