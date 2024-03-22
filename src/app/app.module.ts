@@ -7,11 +7,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { MessageComponent } from './components/message/message.component';
-import { PWithInfoBoxComponent } from './components/p-with-info-box/p-with-info-box.component';
+import { AuthInterceptor } from './pages/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { PWithInfoBoxComponent } from './components/p-with-info-box/p-with-info-
     HomeComponent,
     LoaderComponent,
     Page404Component,
-    MessageComponent
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +28,13 @@ import { PWithInfoBoxComponent } from './components/p-with-info-box/p-with-info-
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
