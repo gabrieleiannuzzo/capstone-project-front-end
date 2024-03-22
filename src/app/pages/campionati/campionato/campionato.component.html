@@ -1,0 +1,34 @@
+<div id="campionato-div">
+  <h1>{{campionato.nome ? campionato.nome : "Campionato"}}</h1>
+
+  <div class="img-div" [ngStyle]="{'background-image': creator.urlFotoProfilo ? 'url(' + creator.urlFotoProfilo + ')' : 'none'}">
+    <i class="fa-regular fa-user" *ngIf="!creator.urlFotoProfilo"></i>
+  </div>
+
+  <a [routerLink]="getEditCampionatoLink(campionato.id)" class="aggiorna-campionato-link">Aggiorna campionato</a>
+
+  <!-- CLASSIFICA PILOTI -->
+  <h2>CLASSIFICA PILOTI</h2>
+
+  <!-- CLASSIFICA COSTRUTTORI -->
+  <h2>CLASSIFICA COSTRUTTORI</h2>
+
+  <!-- GARE -->
+  <h2>GARE</h2>
+  <div class="gare-div">
+    <app-gare-e-campionati-component *ngFor="let gara of gare" [nome]="gara.nome" [sprint]="gara.sprint" [link]="getGaraLink(gara.id)"></app-gare-e-campionati-component>
+  </div>
+
+  <!-- CREATOR -->
+  <h2>CREATORE</h2>
+  <app-utenti [fotoUrl]="creator.urlFotoProfilo" [nome]="creator.username" [link]="getUtenteLink(creator.username)" [realUser]="true"></app-utenti>
+
+  <!-- ADMINS -->
+  <h2>ADMINS</h2>
+
+  <!-- PILOTI TITOLARI -->
+  <h2>PILOTI TITOLARI</h2>
+
+  <!-- WILD CARDS -->
+  <h2>WILD CARDS</h2>
+</div>

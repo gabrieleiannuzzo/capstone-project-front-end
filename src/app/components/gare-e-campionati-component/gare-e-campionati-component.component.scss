@@ -1,0 +1,40 @@
+.outer-div{
+  border: 2px solid #ffc500;
+  border-radius: 5px;
+  height: 60px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 108.11px;
+  .nome-gara-p{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.05rem;
+  }
+  .sprint-p, i{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .sprint-p{
+    right: 40px;
+    font-size: 0.7rem;
+    background-color: #ffc500;
+    padding: 3px 5px;
+    border-radius: 20px;
+    box-sizing: border-box;
+  }
+  i{
+    right: 20px;
+  }
+  &:hover{
+    background-color: #ffc500;
+    .sprint-p{
+      color: #181818;
+    }
+  }
+}

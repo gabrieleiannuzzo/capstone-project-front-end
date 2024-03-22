@@ -1,0 +1,14 @@
+<div class="outer-div" (click)="redirectToPage()">
+  <div class="img-div" [ngStyle]="{'background-image': fotoUrl ? 'url(' + fotoUrl + ')' : 'null'}">
+    <i class="fa-regular fa-user" *ngIf="!fotoUrl"></i>
+  </div>
+
+  <div class="colore-scuderia-div" *ngIf="nomeScuderia && coloreScuderia" [ngStyle]="{'background-color': coloreScuderia}"></div>
+
+  <div class="names-div" [ngClass]="{'farther': !(nomeScuderia && coloreScuderia)}">
+    <p class="nome">{{nome}}</p>
+    <p class="nome-scuderia" *ngIf="nomeScuderia && coloreScuderia">{{nomeScuderia}}</p>
+  </div>
+
+  <i class="fa-solid fa-chevron-right" *ngIf="realUser"></i>
+</div>

@@ -4,6 +4,8 @@ import { MessageService } from '../../../components/message/message.service';
 import { LoaderService } from '../../../components/loader/loader.service';
 import { CampionatiService } from '../campionati.service';
 import { IScuderiaRequest } from '../../../models/iscuderia-request';
+import { catchError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nuovo-campionato',
@@ -66,7 +68,8 @@ export class NuovoCampionatoComponent {
     private fb:FormBuilder,
     private campionatiService:CampionatiService,
     private messageService:MessageService,
-    private loaderService:LoaderService
+    private loaderService:LoaderService,
+    private router:Router,
   ){}
 
   ngOnInit(){
@@ -259,6 +262,7 @@ export class NuovoCampionatoComponent {
   }
 
   creaCampionato():void{
+    // pattern: /^(?=.*[a-zA-ZÀ-ÿ])[a-zA-ZÀ-ÿ0-9_.,&@*%!\?\[\]\(\)\$#\-+]{4,50}$/
     const nomiGare:string[] =  this.form.get("gare")?.getRawValue();
     const gareArr:any[] = [];
     for (let i = 0; i < nomiGare.length; i++) {
@@ -286,5 +290,33 @@ export class NuovoCampionatoComponent {
     }
 
     console.log(nuovoCampionatoObj);
+
+    this.startLoading();
+    this.campionatiService.creaCampionato(nuovoCampionatoObj)
+    .pipe(catchError(error => {
+      this.stopLoading();
+
+      const status = error.error.status;
+      const message = error.error.message;
+
+      if (status == 409) this.messageService.showErrorMessage(message);
+
+      console.log(error.error);
+      return [];
+    }))
+    .subscribe(data => {
+      this.stopLoading();
+      this.messageService.showSuccessMessage("Campionato creato con successo");
+      const redirectUrl = "/campionati/" + data.response.id;
+      this.router.navigate([redirectUrl]);
+    });
+  }
+
+  startLoading():void{
+    this.loaderService.startLoading();
+  }
+
+  stopLoading():void{
+    this.loaderService.stopLoading();
   }
 }
