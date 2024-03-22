@@ -1,0 +1,13 @@
+<div class="outer-div" id="error-message" [ngClass]="{'show': showErrorMessage}">
+  <div class="inner-div">
+    <p>{{errorMessage}}</p>
+    <i class="fa-solid fa-xmark" (click)="hideErrorMessage()"></i>
+  </div>
+</div>
+
+<div class="outer-div" id="success-message" [ngClass]="{'show': showSuccessMessage}">
+  <div class="inner-div">
+    <p>{{successMessage}}</p>
+    <i class="fa-solid fa-xmark" (click)="hideSuccessMessage()"></i>
+  </div>
+</div>

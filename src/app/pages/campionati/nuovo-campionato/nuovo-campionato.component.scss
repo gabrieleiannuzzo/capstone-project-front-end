@@ -1,0 +1,189 @@
+form {
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  color: white;
+  padding-bottom: 50px;
+  h1, h2 {
+    font-size: 2rem;
+    text-align: center;
+  }
+  h2{
+    margin-top: 50px;
+  }
+  input {
+    height: 25px;
+    background-color: white;
+    border: 0;
+    border-radius: 5px;
+    width: 280px;
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 5px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .number-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    column-gap: 5px;
+    p {
+      cursor: default;
+    }
+    button {
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      &.disabled {
+        color: grey;
+        cursor: default;
+      }
+    }
+    &#posizione-minima-giro-veloce-div{
+      margin-bottom: 0px;
+    }
+  }
+
+  .create-btn {
+    height: 40px;
+    width: 240px;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    background-color: transparent;
+    color: #ffc500;
+    border: 1px solid #ffc500;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    margin-top: 20px;
+
+    &:hover {
+      background-color: #ffc500;
+      color: white;
+      border: none;
+    }
+  }
+
+  .gara-div {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    input {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding-left: 30px;
+      width: 255px;
+      &.closer-to-left{
+        padding-left: 5px;
+      }
+    }
+    button {
+      height: 25px;
+      width: 25px;
+      border: none !important;
+      border-radius: 5px;
+      background-color: transparent;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      &.sprint-btn {
+        border: 1px solid #0000ff;
+        color: #0000ff;
+        right: 0;
+        &:hover,
+        &.active {
+          border: none;
+          background-color: #0000ff;
+          color: white;
+        }
+      }
+      &.delete-btn {
+        border: 1px solid #ff0000;
+        color: #ff0000;
+        left: 0;
+        &:hover,
+        &.active {
+          border: none;
+          background-color: #ff0000;
+          color: white;
+        }
+      }
+      &.add-race-btn{
+        top: 50%;
+        transform: translateY(-50%);
+        right: -25px;
+        color: white;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .outer-custom-points-div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-top: 20px;
+    .inner-custom-points-div{
+      display: flex;
+      justify-content: center;
+      width: 100px;
+      margin: 0 auto;
+      position: relative;
+      div{
+        position: absolute;
+        width: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        left: -30px;
+        p{
+          text-align: center;
+        }
+      }
+      input{
+        border-radius: 5px;
+        width: 100%;
+      }
+    }
+  }
+  .scuderia-div{
+    display: flex;
+    justify-content: space-between;
+    width: 280px;
+    margin: 0 auto;
+    position: relative;
+    margin-bottom: 10px;
+    div{
+      display: none;
+      position: absolute;
+      width: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      left: -30px;
+      p{
+        text-align: center;
+      }
+      @media screen and (min-width: 370px){
+        display: block;
+      }
+    }
+    input{
+      &[type="text"]{
+        flex: 0 0 75%;
+      }
+      &[type="color"]{
+        flex: 0 0 20%;
+        cursor: pointer;
+      }
+    }
+  }
+}
