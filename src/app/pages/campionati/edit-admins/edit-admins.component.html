@@ -1,1 +1,22 @@
-<p>edit-admins works!</p>
+<div class="outer-div" (click)="hideUtentiDiv()">
+  <div class="edit-admins-div">
+    <h1>{{"hfoher"}}</h1>
+
+    <h2>AGGIORNA ADMINS</h2>
+    <div class="admins-div">
+      <app-utenti *ngFor="let admin of admins"></app-utenti>
+      <div class="new-admin-div">
+        <div class="search-admin-div">
+          <input type="text" placeholder="Cerca un utente" [(ngModel)]="username">
+          <button (click)="searchUtenti()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <div class="utenti-div">
+            <div *ngFor="let utente of utenti" (click)="setUtente(utente)">{{utente}}</div>
+          </div>
+        </div>
+        <button>INVITA</button>
+      </div>
+    </div>
+  </div>
+</div>

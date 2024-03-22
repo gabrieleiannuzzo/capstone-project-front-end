@@ -30,7 +30,6 @@ export class EditCampionatoComponent {
     this.campionatiService.getCampionatoById(this.id).subscribe(data => {
       this.stopLoading();
       this.nome = data.response.nome;
-      console.log(data);
     });
   }
 

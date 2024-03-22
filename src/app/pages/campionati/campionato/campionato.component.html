@@ -5,7 +5,7 @@
     <i class="fa-regular fa-user" *ngIf="!creator.urlFotoProfilo"></i>
   </div>
 
-  <a [routerLink]="getEditCampionatoLink(campionato.id)" class="aggiorna-campionato-link">Aggiorna campionato</a>
+  <a [routerLink]="getEditCampionatoLink(campionato.id)" class="aggiorna-campionato-link" *ngIf="isMyChampionship()">Aggiorna campionato</a>
 
   <!-- CLASSIFICA PILOTI -->
   <h2>CLASSIFICA PILOTI</h2>

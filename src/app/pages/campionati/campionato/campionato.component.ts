@@ -1,7 +1,9 @@
+import { AuthService } from './../../auth/auth.service';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CampionatiService } from '../campionati.service';
 import { LoaderService } from '../../../components/loader/loader.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-campionato',
@@ -10,6 +12,7 @@ import { LoaderService } from '../../../components/loader/loader.service';
 })
 export class CampionatoComponent {
   id!:number;
+  myId:number|undefined = 0;
   creator:any = {
     id: 0,
     username: "",
@@ -28,14 +31,21 @@ export class CampionatoComponent {
 
   constructor(
     private route:ActivatedRoute,
+    private authService:AuthService,
     private campionatiService:CampionatiService,
     private loaderService:LoaderService,
   ){}
+
+  userSubscription!:Subscription;
 
   ngOnInit(){
     this.route.paramMap.subscribe(params => {
       this.id = Number(params.get("id"));
     })
+
+    this.userSubscription = this.authService.user$.subscribe(data => {
+      this.myId = data?.response.utente.id;
+    });
 
     this.startLoading();
     this.campionatiService.getCampionatoById(this.id).subscribe(data => {
@@ -43,9 +53,12 @@ export class CampionatoComponent {
       this.campionato = data.response;
       this.creator = this.campionato.creator;
       this.gare = this.campionato.gare;
-      console.log(this.campionato);
-      console.log(this.gare);
     });
+  }
+
+  isMyChampionship():boolean{
+    if (this.myId == 0) return false;
+    return this.myId == this.creator.id;
   }
 
   getEditCampionatoLink(id:number):string{

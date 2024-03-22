@@ -14,6 +14,10 @@ export class CampionatiService {
   apiUrl:string = environment.apiUrl;
   campionatiUrl:string = this.apiUrl + "campionati"
 
+  getUtentiByPartialUsername(partialUsername:string):Observable<any>{
+    return this.http.get<any>(this.apiUrl + "utenti/username/containing/" + partialUsername);
+  }
+
   creaCampionato(nuovoCampionatoObj:any):Observable<any>{
     return this.http.post<any>(this.campionatiUrl, nuovoCampionatoObj);
   }
