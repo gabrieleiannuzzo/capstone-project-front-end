@@ -34,6 +34,10 @@ export class EditCampionatoComponent {
     });
   }
 
+  getLink(page:string):string{
+    return "/campionati/" + this.id + "/" + page;
+  }
+
   startLoading():void{
     this.loaderService.startLoading();
   }
