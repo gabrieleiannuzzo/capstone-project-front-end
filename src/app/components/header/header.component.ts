@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   isLogged:boolean = true;
   user!:ILoginResponse|null;
-  inviti:IInvitoResponse[]|null[] = [null];
+  inviti:any[] = [];
   active:boolean = false;
 
   constructor(
@@ -25,14 +25,15 @@ export class HeaderComponent {
   ){}
 
   isLoggedSubscription!:Subscription;
+  invitiSubscription!:Subscription;
   userSubscription!:Subscription;
 
   ngOnInit(){
     this.isLoggedSubscription = this.authService.isLogged$.subscribe(data => this.isLogged = data);
 
-    this.userSubscription = this.authService.user$.subscribe(data => this.user = data);
+    this.invitiSubscription = this.authService.inviti$.subscribe(data => this.inviti = data);
 
-    this.getPendingNotifications();
+    this.userSubscription = this.authService.user$.subscribe(data => this.user = data);
   }
 
   auth(){
@@ -46,16 +47,5 @@ export class HeaderComponent {
 
   toggleActive():void{
     this.active = !this.active;
-  }
-
-  getPendingNotifications():void{
-    if (!this.isLogged) return;
-    const username:string|undefined = this.user?.response.utente.username;
-    const invitiUrl = environment.apiUrl + username + "/inviti";
-    this.http.get<IInvitoResponse[]>(invitiUrl).subscribe(data => this.inviti = data);
-  }
-
-  pendingNotifications():boolean{
-    return this.inviti.length > 0;
   }
 }

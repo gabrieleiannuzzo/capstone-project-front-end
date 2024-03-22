@@ -23,6 +23,10 @@ export class CampionatiService {
   }
 
   getCampionatoById(id:number):Observable<any>{
-    return this.http.get(this.campionatiUrl + "/" + id);
+    return this.http.get<any>(this.campionatiUrl + "/" + id);
+  }
+
+  invita(invitoRequest:any):Observable<any>{
+    return this.http.post<any>(this.apiUrl + "utenti/invita", invitoRequest);
   }
 }

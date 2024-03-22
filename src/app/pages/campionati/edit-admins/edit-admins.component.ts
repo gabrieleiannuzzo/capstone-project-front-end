@@ -3,6 +3,7 @@ import { LoaderService } from '../../../components/loader/loader.service';
 import { CampionatiService } from '../campionati.service';
 import { MessageService } from './../../../components/message/message.service';
 import { Component } from '@angular/core';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-edit-admins',
@@ -53,6 +54,33 @@ export class EditAdminsComponent {
     this.username = utente;
     this.showUtentiDiv = false;
     this.utenti = [];
+  }
+
+  invitaUtente():void{
+    this.startLoading();
+    const invitoRequest:any = {
+      idCampionato: this.id,
+      toUserUsername: this.username,
+      ruoloInvito: "ADMIN",
+      idScuderia: null,
+    }
+
+    this.campionatiService.invita(invitoRequest)
+    .pipe(catchError(error => {
+      this.stopLoading();
+
+      const status = error.error.status;
+      const message = error.error.message;
+
+      this.messageService.showErrorMessage(message);
+
+      return [];
+    }))
+    .subscribe(data => {
+      this.stopLoading();
+      this.username = "";
+      this.messageService.showSuccessMessage("Invito inviato con successo");
+    })
   }
 
   startLoading():void{

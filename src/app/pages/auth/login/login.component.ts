@@ -68,8 +68,6 @@ export class LoginComponent {
       password: this.form.value.password,
     };
 
-    console.log("ciao", loginObj);
-
     this.startLoading();
     this.authService.login(loginObj)
     .pipe(catchError(error => {
@@ -90,7 +88,6 @@ export class LoginComponent {
     }))
     .subscribe(data => {
       this.stopLoading();
-      console.log(data);
       this.router.navigate(["/home"]);
     });
   }
