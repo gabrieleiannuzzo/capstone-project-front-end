@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, map, tap } from 'rxjs';
 import { ILoginResponse } from '../../models/ilogin-response';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -53,9 +53,10 @@ export class AuthService {
         return [];
       }))
       .subscribe(data => {
-        this.invitiSubject.next(data)
+        this.invitiSubject.next(data.response);
         console.log(data);
       });
+
       this.autoLogout(data.response.accessToken);
     }));
   }

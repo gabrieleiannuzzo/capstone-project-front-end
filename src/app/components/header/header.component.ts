@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../pages/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { ILoginResponse } from '../../models/ilogin-response';
-import { environment } from '../../../environments/environment.development';
-import { IInvitoResponse } from '../../models/iinvito-response';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,7 +17,6 @@ export class HeaderComponent {
 
   constructor(
     private authService:AuthService,
-    private http:HttpClient,
     private router:Router,
   ){}
 
@@ -31,10 +27,14 @@ export class HeaderComponent {
   ngOnInit(){
     this.isLoggedSubscription = this.authService.isLogged$.subscribe(data => this.isLogged = data);
 
-    this.invitiSubscription = this.authService.inviti$.subscribe(data => this.inviti = data);
+    this.invitiSubscription = this.authService.inviti$.subscribe(data => {
+      this.inviti = data;
+    });
 
     this.userSubscription = this.authService.user$.subscribe(data => this.user = data);
   }
+
+  s(){console.log(this.inviti)}
 
   auth(){
     if (this.isLogged) {
