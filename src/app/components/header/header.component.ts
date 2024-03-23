@@ -14,6 +14,7 @@ export class HeaderComponent {
   user!:ILoginResponse|null;
   inviti:any[] = [];
   active:boolean = false;
+  showInviti:boolean = false;
 
   constructor(
     private authService:AuthService,
@@ -34,7 +35,9 @@ export class HeaderComponent {
     this.userSubscription = this.authService.user$.subscribe(data => this.user = data);
   }
 
-  s(){console.log(this.inviti)}
+  toggleShowInviti():void{
+    this.showInviti = !this.showInviti;
+  }
 
   auth(){
     if (this.isLogged) {

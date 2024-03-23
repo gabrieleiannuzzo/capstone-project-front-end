@@ -27,6 +27,6 @@ export class CampionatiService {
   }
 
   invita(invitoRequest:any):Observable<any>{
-    return this.http.post<any>(this.apiUrl + "utenti/invita", invitoRequest);
+    return this.http.post<any>(this.apiUrl + "inviti", invitoRequest);
   }
 }

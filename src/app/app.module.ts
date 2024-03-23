@@ -12,6 +12,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { MessageComponent } from './components/message/message.component';
 import { AuthInterceptor } from './pages/auth/auth.interceptor';
+import { InvitiComponent } from './components/inviti/inviti.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AuthInterceptor } from './pages/auth/auth.interceptor';
     LoaderComponent,
     Page404Component,
     MessageComponent,
+    InvitiComponent,
   ],
   imports: [
     BrowserModule,

@@ -87,6 +87,20 @@ export class AuthService {
     const accessData:ILoginResponse = JSON.parse(userJson);
     if (this.jwtHelper.isTokenExpired(accessData.response.accessToken)) return;
 
+    this.getInviti(accessData.response.utente.username)
+    .pipe(catchError(error => {
+      const status = error.error.status;
+      const message = error.error.message;
+
+      this.messageService.showErrorMessage(message);
+
+      return [];
+    }))
+    .subscribe(data => {
+      this.invitiSubject.next(data.response);
+      console.log(data);
+    });
+
     this.autoLogout(accessData.response.accessToken);
     this.authSubject.next(accessData);
   }

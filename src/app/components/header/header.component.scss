@@ -19,9 +19,12 @@ header{
     p{
       color: #ffc500;
       font-size: 1.5rem;
-      margin-left: 10px;
+      margin-left: 15px;
       span{
         color: #fff;
+      }
+      @media screen and (min-width: 360px){
+        margin-left: 10px;
       }
     }
   }
