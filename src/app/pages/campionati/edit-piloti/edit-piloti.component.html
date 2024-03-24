@@ -6,7 +6,7 @@
     <h2>PILOTI TITOLARI</h2>
     <div class="piloti-titolari-div">
       <app-utenti *ngFor="let pilota of pilotiTitolari"
-      [fotoUrl]="pilota.utente.urlFotoProfilo"
+      [fotoUrl]="pilota.utente ? pilota.utente.urlFotoProfilo : ''"
       [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
       [realUser]="!!pilota.utente"
       [link]="!!pilota.utente ? pilota.utente.username : ''"
@@ -18,14 +18,15 @@
       [tipologiaInvito]="'PILOTA_TITOLARE'"
       [scuderie]="scuderie"
       [pilotiTitolari]="pilotiTitolari"
-      [realDrivers]="realDrivers"></app-search-utenti>
+      [realDrivers]="realDrivers"
+      (emitValue)="updatePilotiTitolari($event)"></app-search-utenti>
     </div>
 
     <!-- WILD CARDS -->
     <h2>WILD CARDS</h2>
     <div class="wild-cards-div">
       <app-utenti *ngFor="let pilota of wildCards"
-      [fotoUrl]="pilota.utente.urlFotoProfilo"
+      [fotoUrl]="pilota.utente ? pilota.utente.urlFotoProfilo : ''"
       [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
       [realUser]="!!pilota.utente"
       [link]="!!pilota.utente ? pilota.utente.username : ''"></app-utenti>
@@ -33,14 +34,15 @@
       <app-search-utenti #searchWildCards
       [idCampionato]="id"
       [tipologiaInvito]="'WILD_CARD'"
-      [realDrivers]="realDrivers"></app-search-utenti>
+      [realDrivers]="realDrivers"
+      (emitValue)="updateWildCards($event)"></app-search-utenti>
     </div>
 
     <!-- PILOTI RITIRATI -->
     <h2>PILOTI RITIRATI</h2>
     <div class="piloti-ritirati-div">
       <app-utenti *ngFor="let pilota of pilotiRitirati"
-      [fotoUrl]="pilota.urlFotoProfilo"
+      [fotoUrl]="pilota.utente ? pilota.utente.urlFotoProfilo : ''"
       [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
       [realUser]="!!pilota.utente"
       [link]="!!pilota.utente ? pilota.utente.username : ''"></app-utenti>

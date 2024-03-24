@@ -29,6 +29,9 @@ export class CampionatoComponent {
     scuderie: [],
     gare: [],
   }
+  pilotiTitolari:any[] = [];
+  wildCards:any[] = [];
+  pilotiRitirati:any[] = [];
 
   constructor(
     private route:ActivatedRoute,
@@ -55,6 +58,9 @@ export class CampionatoComponent {
       this.creator = this.campionato.creator;
       this.gare = this.campionato.gare;
       this.admins = this.campionato.admins;
+      this.pilotiTitolari = this.campionato.pilotiTitolari;
+      this.wildCards = this.campionato.wildCards;
+      this.pilotiRitirati = this.campionato.pilotiRitirati;
     });
   }
 

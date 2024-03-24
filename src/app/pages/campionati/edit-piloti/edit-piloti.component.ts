@@ -39,6 +39,14 @@ export class EditPilotiComponent {
     })
   }
 
+  updatePilotiTitolari(data:any):void{
+    this.pilotiTitolari = data.response.pilotiTitolari;
+  }
+
+  updateWildCards(data:any):void{
+    this.wildCards = data.response.wildCards;
+  }
+
   startLoading():void{
     this.loaderService.startLoading();
   }

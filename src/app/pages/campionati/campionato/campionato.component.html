@@ -15,7 +15,7 @@
 
   <!-- GARE -->
   <h2>GARE</h2>
-  <div class="gare-div">
+  <div class="list-div">
     <app-gare-e-campionati-component *ngFor="let gara of gare" [nome]="gara.nome" [sprint]="gara.sprint" [link]="getGaraLink(gara.id)"></app-gare-e-campionati-component>
   </div>
 
@@ -24,14 +24,44 @@
   <app-utenti [fotoUrl]="creator.urlFotoProfilo" [nome]="creator.username" [link]="getUtenteLink(creator.username)" [realUser]="true"></app-utenti>
 
   <!-- ADMINS -->
-  <h2>ADMINS</h2>
-  <div class="admins-div">
-    <app-utenti *ngFor="let admin of admins" [fotoUrl]="admin.urlFotoProfilo" [nome]="admin.username" [link]="getUtenteLink(admin.username)" [realUser]="true"></app-utenti>
+  <h2 *ngIf="admins.length">ADMINS</h2>
+  <div class="list-div">
+    <app-utenti *ngFor="let admin of admins"
+    [fotoUrl]="admin.urlFotoProfilo"
+    [nome]="admin.username"
+    [link]="getUtenteLink(admin.username)"
+    [realUser]="true"></app-utenti>
   </div>
 
   <!-- PILOTI TITOLARI -->
-  <h2>PILOTI TITOLARI</h2>
+  <h2 *ngIf="pilotiTitolari.length">PILOTI TITOLARI</h2>
+  <div class="list-div">
+    <app-utenti *ngFor="let pilota of pilotiTitolari"
+    [fotoUrl]="pilota.utente ? pilota.utente.urlFotoProfilo : ''"
+    [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
+    [link]="!!pilota.utente ? pilota.utente.username : ''"
+    [realUser]="!!pilota.utente"
+    [nomeScuderia]="pilota.scuderia.nome"
+    [coloreScuderia]="pilota.scuderia.codiceColore"></app-utenti>
+  </div>
 
   <!-- WILD CARDS -->
-  <h2>WILD CARDS</h2>
+  <h2 *ngIf="wildCards.length">WILD CARDS</h2>
+  <div class="list-div">
+    <app-utenti *ngFor="let pilota of wildCards"
+    [fotoUrl]="pilota.utente ? pilota.utente.urlFotoProfilo : ''"
+    [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
+    [link]="!!pilota.utente ? pilota.utente.username : ''"
+    [realUser]="!!pilota.utente"></app-utenti>
+  </div>
+
+  <!-- PILOTI RITIRATI -->
+  <h2 *ngIf="pilotiRitirati.length">PILOTI RITIRATI</h2>
+  <div class="list-div">
+    <app-utenti *ngFor="let pilota of pilotiRitirati"
+    [fotoUrl]="pilota.utente ? pilota.utente.urlFotoProfilo : ''"
+    [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
+    [link]="!!pilota.utente ? pilota.utente.username : ''"
+    [realUser]="!!pilota.utente"></app-utenti>
+  </div>
 </div>

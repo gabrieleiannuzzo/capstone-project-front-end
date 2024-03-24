@@ -1,7 +1,7 @@
 import { catchError } from 'rxjs';
 import { CampionatiService } from '../../pages/campionati/campionati.service';
 import { LoaderService } from './../loader/loader.service';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MessageService } from '../message/message.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class SearchUtentiComponent {
   @Input() pilotiTitolari!:any[];
   @Input() scuderie!:any[];
   @Input() realDrivers!:boolean;
+  @Output() emitValue = new EventEmitter<any>();
 
   username:string = "";
   scuderia:any = "";
@@ -104,6 +105,15 @@ export class SearchUtentiComponent {
       this.stopLoading();
       this.username = "";
       this.messageService.showSuccessMessage("Pilota aggiunto con successo");
+
+      this.campionatiService.getCampionatoById(this.idCampionato)
+      .pipe(catchError(error => {
+        this.messageService.showErrorMessage(error.error.message);
+        return [];
+      }))
+      .subscribe(data => {
+        this.emitValue.emit(data);
+      });
     }
     )
   }
