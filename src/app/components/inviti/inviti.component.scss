@@ -40,28 +40,31 @@
   }
   .nessun-invito-p{
     font-size: 0.8rem;
+    margin-bottom: 10px;
   }
   .invito-div{
     border-top: 1px solid white;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 3.4px;
     cursor: default;
     position: relative;
-    p{
-      font-size: 0.8rem;
-      max-width: 100%;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      line-height: 1.05rem;
-      @media screen and (min-width: 400px){
-        max-width: calc(100% - 70px);
+    .p-div{
+      display: flex;
+      flex-direction: column;
+      row-gap: 3.4px;
+      padding: 10px 0 10px 10px;
+      p{
+        font-size: 0.8rem;
+        max-width: 100%;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-height: 1.05rem;
+        @media screen and (min-width: 400px){
+          max-width: calc(100% - 70px);
+        }
       }
     }
-    div{
+    .i-div{
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -69,13 +72,20 @@
       height: 25px;
       border-radius: 100%;
       display: none;
+      cursor: pointer;
       &.accept-div{
         background-color: #00ff00;
         right: 45px;
+        &:hover{
+          background-color: lighten(#00ff00, 10);
+        }
       }
       &.decline-div{
         background-color: red;
         right: 10px;
+        &:hover{
+          background-color: lighten(red, 10);
+        }
       }
       @media screen and (min-width: 400px) {
         display: flex;
@@ -90,6 +100,9 @@
       background-color: #ffc500;
       border-top: 1px solid #ffc500;
       color: #181818;
+      .i-div{
+        color: white;
+      }
     }
   }
 }

@@ -25,6 +25,9 @@
 
   <!-- ADMINS -->
   <h2>ADMINS</h2>
+  <div class="admins-div">
+    <app-utenti *ngFor="let admin of admins" [fotoUrl]="admin.urlFotoProfilo" [nome]="admin.username" [link]="getUtenteLink(admin.username)" [realUser]="true"></app-utenti>
+  </div>
 
   <!-- PILOTI TITOLARI -->
   <h2>PILOTI TITOLARI</h2>

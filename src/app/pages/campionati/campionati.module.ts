@@ -16,6 +16,7 @@ import { EditGaraComponent } from './edit-gara/edit-gara.component';
 import { ListaGareComponent } from './lista-gare/lista-gare.component';
 import { EditAdminsComponent } from './edit-admins/edit-admins.component';
 import { EditPilotiComponent } from './edit-piloti/edit-piloti.component';
+import { SearchUtentiComponent } from '../../components/search-utenti/search-utenti.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { EditPilotiComponent } from './edit-piloti/edit-piloti.component';
     EditGaraComponent,
     ListaGareComponent,
     EditAdminsComponent,
-    EditPilotiComponent
+    EditPilotiComponent,
+    SearchUtentiComponent
   ],
   imports: [
     CommonModule,

@@ -53,7 +53,7 @@ export class AuthService {
         return [];
       }))
       .subscribe(data => {
-        this.invitiSubject.next(data.response);
+        this.setInviti(data.response);
         console.log(data);
       });
 
@@ -97,8 +97,7 @@ export class AuthService {
       return [];
     }))
     .subscribe(data => {
-      this.invitiSubject.next(data.response);
-      console.log(data);
+      this.setInviti(data.response);
     });
 
     this.autoLogout(accessData.response.accessToken);
@@ -115,5 +114,9 @@ export class AuthService {
 
   getInviti(username:string):Observable<any>{
     return this.http.get(`${this.apiUrl}utenti/${username}/inviti-ricevuti`);
+  }
+
+  setInviti(inviti:any[]):void{
+    this.invitiSubject.next(inviti);
   }
 }

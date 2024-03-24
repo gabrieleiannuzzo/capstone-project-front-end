@@ -6,15 +6,18 @@
   <p class="nessun-invito-p" *ngIf="!inviti.length || !inviti">Nessun invito da mostrare</p>
 
   <div *ngFor="let invito of inviti" class="invito-div" (click)="redirectToPage(invito.id)">
-    <p>{{"DA: " + invito.fromUser.username}}</p>
-    <p>{{"CAMPIONATO: " + invito.campionato.nome}}</p>
-    <p>{{"RUOLO: " + invito.ruolo}}</p>
+    <div class="p-div">
+      <p>{{"DA: " + invito.fromUser.username}}</p>
+      <p>{{"CAMPIONATO: " + invito.campionato.nome}}</p>
+      <p>{{"RUOLO: " + invito.ruolo.replace("_", " ")}}</p>
+      <p *ngIf="invito.scuderia">{{"SCUDERIA: " + invito.scuderia.nome}}</p>
+    </div>
 
-    <div class="accept-div">
+    <div class="i-div accept-div" (click)="manageInvito(invito.id, true)">
       <i class="fa-solid fa-check"></i>
     </div>
 
-    <div class="decline-div">
+    <div class="i-div decline-div" (click)="manageInvito(invito.id, false)">
       <i class="fa-solid fa-xmark"></i>
     </div>
   </div>

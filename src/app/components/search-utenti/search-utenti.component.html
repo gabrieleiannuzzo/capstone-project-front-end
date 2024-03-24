@@ -1,0 +1,20 @@
+<div class="search-utenti-outer-div" [ngClass]="{'pilota-titolare': isPilotaTitolare(), 'not-real-drivers': !realDrivers}">
+  <div class="search-utenti-inner-div">
+    <input type="text" [placeholder]="realDrivers ? 'Cerca un utente' : 'Inserisci pilota'" [(ngModel)]="username">
+
+    <button (click)="searchUtente()">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+
+    <div class="utenti-div">
+      <div *ngFor="let utente of utenti" (click)="setUtente(utente)">{{utente}}</div>
+    </div>
+  </div>
+
+  <select [(ngModel)]="scuderia" *ngIf="isPilotaTitolare()">
+    <option value="">SELEZIONA UNA SCUDERIA</option>
+    <option *ngFor="let s of scuderieLibere()" [value]="s.id">{{s.nome}}</option>
+  </select>
+
+  <button (click)="handleUtente()">{{realDrivers ? "INVITA" : "AGGIUNGI"}}</button>
+</div>

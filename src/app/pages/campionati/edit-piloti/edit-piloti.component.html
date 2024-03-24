@@ -1,1 +1,49 @@
-<p>edit-piloti works!</p>
+<div class="outer-div">
+  <div class="edit-piloti-div">
+    <h1>{{nome}}</h1>
+
+    <!-- PILOTI TITOLARI -->
+    <h2>PILOTI TITOLARI</h2>
+    <div class="piloti-titolari-div">
+      <app-utenti *ngFor="let pilota of pilotiTitolari"
+      [fotoUrl]="pilota.utente.urlFotoProfilo"
+      [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
+      [realUser]="!!pilota.utente"
+      [link]="!!pilota.utente ? pilota.utente.username : ''"
+      [nomeScuderia]="pilota.scuderia.nome"
+      [coloreScuderia]="pilota.scuderia.codiceColore"></app-utenti>
+
+      <app-search-utenti #searchPilotiTitolari
+      [idCampionato]="id"
+      [tipologiaInvito]="'PILOTA_TITOLARE'"
+      [scuderie]="scuderie"
+      [pilotiTitolari]="pilotiTitolari"
+      [realDrivers]="realDrivers"></app-search-utenti>
+    </div>
+
+    <!-- WILD CARDS -->
+    <h2>WILD CARDS</h2>
+    <div class="wild-cards-div">
+      <app-utenti *ngFor="let pilota of wildCards"
+      [fotoUrl]="pilota.utente.urlFotoProfilo"
+      [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
+      [realUser]="!!pilota.utente"
+      [link]="!!pilota.utente ? pilota.utente.username : ''"></app-utenti>
+
+      <app-search-utenti #searchWildCards
+      [idCampionato]="id"
+      [tipologiaInvito]="'WILD_CARD'"
+      [realDrivers]="realDrivers"></app-search-utenti>
+    </div>
+
+    <!-- PILOTI RITIRATI -->
+    <h2>PILOTI RITIRATI</h2>
+    <div class="piloti-ritirati-div">
+      <app-utenti *ngFor="let pilota of pilotiRitirati"
+      [fotoUrl]="pilota.urlFotoProfilo"
+      [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
+      [realUser]="!!pilota.utente"
+      [link]="!!pilota.utente ? pilota.utente.username : ''"></app-utenti>
+    </div>
+  </div>
+</div>

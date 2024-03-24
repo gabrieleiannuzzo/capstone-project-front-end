@@ -28,9 +28,7 @@ export class HeaderComponent {
   ngOnInit(){
     this.isLoggedSubscription = this.authService.isLogged$.subscribe(data => this.isLogged = data);
 
-    this.invitiSubscription = this.authService.inviti$.subscribe(data => {
-      this.inviti = data;
-    });
+    this.invitiSubscription = this.authService.inviti$.subscribe(data => this.inviti = data);
 
     this.userSubscription = this.authService.user$.subscribe(data => this.user = data);
   }

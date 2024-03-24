@@ -19,6 +19,7 @@ export class CampionatoComponent {
     urlFotoProfilo: "",
   }
   gare:any[] = [];
+  admins:any[] = [];
   campionato:any = {
     id: 0,
     nome: "",
@@ -53,6 +54,7 @@ export class CampionatoComponent {
       this.campionato = data.response;
       this.creator = this.campionato.creator;
       this.gare = this.campionato.gare;
+      this.admins = this.campionato.admins;
     });
   }
 
