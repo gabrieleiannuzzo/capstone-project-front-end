@@ -21,4 +21,32 @@
       row-gap: 20px;
     }
   }
+  .partecipa-div{
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    select{
+      width: 30%;
+      height: 30px;
+      border: none;
+      border-radius: 5px;
+      &:focus{
+        outline: none;
+      }
+    }
+    button{
+      border: 2px solid #ffc500;
+      border-radius: 5px;
+      background-color: #181818;
+      color: #ffc500;
+      cursor: pointer;
+      padding: 0 10px;
+      box-sizing: border-box;
+      height: 30px;
+      &:hover{
+        background-color: #ffc500;
+        color: white;
+      }
+    }
+  }
 }

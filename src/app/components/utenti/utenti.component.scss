@@ -7,6 +7,7 @@
   align-items: center;
   box-sizing: border-box;
   cursor: pointer;
+  background-color: #181818;
   .img-div{
     width: 50px;
     height: 50px;
@@ -60,8 +61,128 @@
     transform: translateY(-50%);
     right: 20px;
   }
+  .edit-div{
+    position: absolute;
+    right: 20px;
+    top: 75%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    z-index: 2;
+    background-color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #181818;
+    &>button{
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      box-sizing: border-box;
+      cursor: pointer;
+      &:hover{
+        background-color: lighten(blue, 10);
+      }
+      &.ritiro-btn{
+        background-color: red;
+        &:hover{
+          background-color: lighten(red, 10);
+        }
+      }
+    }
+    &>.confirm-div{
+      display: flex;
+      justify-content: space-between;
+      margin-top: -5px;
+      button{
+        flex: 0 0 49%;
+        font-size: 0.7rem;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 5px 0;
+        &:first-child{
+          background-color: lighten(green, 10);
+          &:hover{
+            background-color: lighten(green, 20);
+          }
+        }
+        &:last-child{
+          background-color: red;
+          &:hover{
+            background-color: lighten(red, 10);
+          }
+        }
+      }
+    }
+    .confirm-cambio-scuderia-div{
+      margin-top: -5px;
+      select{
+        width: 100%;
+        border-radius: 5px;
+        padding: 5px 0;
+        box-sizing: border-box;
+        &:focus{
+          outline: none;
+        }
+      }
+      .confirm-div{
+        margin-top: 5px;
+        display: flex;
+        justify-content: space-between;
+        button{
+          flex: 0 0 49%;
+          font-size: 0.7rem;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          padding: 5px 0;
+          &:first-child{
+            background-color: lighten(green, 10);
+            &:hover{
+              background-color: lighten(green, 20);
+            }
+          }
+          &:last-child{
+            background-color: red;
+            &:hover{
+              background-color: lighten(red, 10);
+            }
+          }
+        }
+      }
+    }
+  }
   &:hover{
     background-color: #ffc500;
     color: #181818;
+  }
+  &.edit{
+    cursor: default;
+    &:hover{
+      background-color: #181818;
+      color: white;
+    }
+    .names-div{
+      max-width: calc(100% - 120.2px);
+    }
+    .edit-btn{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 20px;
+      display: flex;
+      column-gap: 3px;
+      cursor: pointer;
+      padding: 10px 0;
+      box-sizing: border-box;
+      i{
+        font-size: 0.4rem;
+      }
+    }
   }
 }

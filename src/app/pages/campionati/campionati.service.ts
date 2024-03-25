@@ -38,4 +38,12 @@ export class CampionatiService {
   aggiungiPilotaCustom(invitoRequest:any):Observable<any>{
     return this.http.post(`${this.campionatiUrl}/aggiungi-pilota`, invitoRequest);
   }
+
+  partecipa(invitoRequest:any):Observable<any>{
+    return this.http.post(`${this.campionatiUrl}/partecipa`, invitoRequest);
+  }
+
+  changeStatusPilota(changeStatusPilotaRequest:any):Observable<any>{
+    return this.http.put(`${this.campionatiUrl}/change-status-pilota`, changeStatusPilotaRequest);
+  }
 }
