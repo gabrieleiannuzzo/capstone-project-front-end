@@ -1,24 +1,24 @@
 import { CampionatiService } from './../campionati.service';
 import { Component } from '@angular/core';
-import { LoaderService } from '../../../components/loader/loader.service';
 import { MessageService } from '../../../components/message/message.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { LoaderService } from '../../../components/loader/loader.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-edit-campionato',
-  templateUrl: './edit-campionato.component.html',
-  styleUrl: './edit-campionato.component.scss'
+  selector: 'app-lista-gare',
+  templateUrl: './lista-gare.component.html',
+  styleUrl: './lista-gare.component.scss'
 })
-export class EditCampionatoComponent {
+export class ListaGareComponent {
   id!:number;
   nome!:string;
+  gare!:any[];
 
   constructor(
-    private loaderService:LoaderService,
     private messageService:MessageService,
+    private loaderService:LoaderService,
     private campionatiService:CampionatiService,
     private route:ActivatedRoute,
-    private router:Router,
   ){}
 
   ngOnInit(){
@@ -30,11 +30,12 @@ export class EditCampionatoComponent {
     this.campionatiService.getCampionatoById(this.id).subscribe(data => {
       this.stopLoading();
       this.nome = data.response.nome;
-    });
+      this.gare = data.response.gare;
+    })
   }
 
-  getLink(page:string):string{
-    return "/campionati/" + this.id + "/" + page;
+  getLink(id:number):string{
+    return "/campionati/edit-gara/" + id;
   }
 
   startLoading():void{

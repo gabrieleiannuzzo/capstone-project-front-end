@@ -4,6 +4,10 @@ import { NuovoCampionatoComponent } from './nuovo-campionato/nuovo-campionato.co
 import { CampionatoComponent } from './campionato/campionato.component';
 import { EditCampionatoComponent } from './edit-campionato/edit-campionato.component';
 import { GaraComponent } from './gara/gara.component';
+import { EditGaraComponent } from './edit-gara/edit-gara.component';
+import { ListaGareComponent } from './lista-gare/lista-gare.component';
+import { EditAdminsComponent } from './edit-admins/edit-admins.component';
+import { EditPilotiComponent } from './edit-piloti/edit-piloti.component';
 
 const routes: Routes = [
   {
@@ -22,10 +26,30 @@ const routes: Routes = [
     title: "Edit campionato | Racehub"
   },
   {
+    path: ":id/lista-gare",
+    component: ListaGareComponent,
+    title: "Lista gare | Racehub"
+  },
+  {
+    path: "edit-gara/:id",
+    component: EditGaraComponent,
+    title: "Edit gara | Racehub"
+  },
+  {
+    path: ":id/edit-admins",
+    component: EditAdminsComponent,
+    title: "Edit admins | Racehub"
+  },
+  {
+    path: ":id/edit-piloti",
+    component: EditPilotiComponent,
+    title: "Edit piloti | Racehub"
+  },
+  {
     path: "gare/:id",
     component: GaraComponent,
     title: "Gara | Racehub"
-  }
+  },
 ];
 
 @NgModule({

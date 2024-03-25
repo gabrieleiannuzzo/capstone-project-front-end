@@ -81,6 +81,7 @@ form {
       margin-bottom: 10px;
       padding-left: 30px;
       width: 255px;
+      background-color: lighten(lightgray, 10);
       &.closer-to-left{
         padding-left: 5px;
       }
@@ -95,13 +96,13 @@ form {
       position: absolute;
       top: 0;
       &.sprint-btn {
-        border: 1px solid #0000ff;
-        color: #0000ff;
+        border: 1px solid dodgerblue;
+        color: dodgerblue;
         right: 0;
         &:hover,
         &.active {
           border: none;
-          background-color: #0000ff;
+          background-color: dodgerblue;
           color: white;
         }
       }

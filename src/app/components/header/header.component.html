@@ -1,6 +1,6 @@
 <header>
   <a routerLink="/">
-    <img src="../../../assets/images/logo.png" alt="Logo">
+    <img src="../../../assets/images/logo-2.png" alt="Logo">
     <p>RACE<span>HUB</span></p>
   </a>
 
@@ -15,8 +15,9 @@
 
   <i class="fa-solid fa-user" id="profile" *ngIf="isLogged"></i>
 
-  <i class="fa-solid fa-bell" id="bell" *ngIf="isLogged"></i>
-  <i class="fa-solid fa-circle" id="circle" *ngIf="pendingNotifications() && isLogged"></i>
+  <i class="fa-solid fa-bell" id="bell" *ngIf="isLogged" (click)="toggleShowInviti()"></i>
+  <i class="fa-solid fa-circle" id="circle" *ngIf="inviti.length > 0 && isLogged"></i>
+  <app-inviti [isLogged]="isLogged" [inviti]="inviti" *ngIf="isLogged && showInviti"></app-inviti>
 
   <div id="header-toggler-div">
     <div id="header-toggler" (click)="toggleActive()" [ngClass]="{'active': active}">

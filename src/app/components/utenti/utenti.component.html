@@ -1,14 +1,46 @@
-<div class="outer-div" (click)="redirectToPage()">
+<div class="outer-div" (click)="redirectToPage()" [ngClass]="{'edit': edit}">
   <div class="img-div" [ngStyle]="{'background-image': fotoUrl ? 'url(' + fotoUrl + ')' : 'null'}">
     <i class="fa-regular fa-user" *ngIf="!fotoUrl"></i>
   </div>
 
-  <div class="colore-scuderia-div" *ngIf="nomeScuderia && coloreScuderia" [ngStyle]="{'background-color': coloreScuderia}"></div>
+  <div class="colore-scuderia-div" *ngIf="scuderia" [ngStyle]="{'background-color': scuderia.codiceColore}"></div>
 
-  <div class="names-div" [ngClass]="{'farther': !(nomeScuderia && coloreScuderia)}">
+  <div class="names-div" [ngClass]="{'further': !scuderia}">
     <p class="nome">{{nome}}</p>
-    <p class="nome-scuderia" *ngIf="nomeScuderia && coloreScuderia">{{nomeScuderia}}</p>
+    <p class="nome-scuderia" *ngIf="scuderia">{{scuderia.nome}}</p>
   </div>
 
-  <i class="fa-solid fa-chevron-right" *ngIf="realUser"></i>
+  <i class="fa-solid fa-chevron-right" *ngIf="realUser && !edit"></i>
+
+  <div *ngIf="edit" class="edit-btn" (click)="toggleShowEditDiv()">
+    <i class="fa-solid fa-circle"></i>
+    <i class="fa-solid fa-circle"></i>
+    <i class="fa-solid fa-circle"></i>
+  </div>
+
+  <div class="edit-div" *ngIf="showEditDiv">
+    <button (click)="toggleConfirmDiv(0)" *ngIf="!isWildCard()">SPOSTA IN WILD CARD</button>
+    <div class="confirm-div" *ngIf="showConfirmDivs[0] && !isWildCard()">
+      <button (click)="handlePilota('TO_WILD_CARD')">CONFERMA</button>
+      <button (click)="hideConfirmDiv(0)">ANNULLA</button>
+    </div>
+
+    <button (click)="toggleConfirmDiv(1)">{{isPilotaTitolare() ? "CAMBIO SCUDERIA" : "SPOSTA IN TITOLARI"}}</button>
+    <div class="confirm-cambio-scuderia-div" *ngIf="showConfirmDivs[1]">
+      <select [(ngModel)]="nuovaScuderia">
+        <option value="">NUOVA SCUDERIA</option>
+        <option *ngFor="let s of scuderieLibere()" [value]="s.id">{{s.nome}}</option>
+      </select>
+      <div class="confirm-div">
+        <button (click)="handlePilota('TO_PILOTA_TITOLARE')">CONFERMA</button>
+        <button (click)="hideConfirmDiv(1)">ANNULLA</button>
+      </div>
+    </div>
+
+    <button class="ritiro-btn" *ngIf="!isPilotaRiritato()" (click)="toggleConfirmDiv(2)">RITIRO</button>
+    <div class="confirm-div" *ngIf="showConfirmDivs[2] && !isPilotaRiritato()">
+      <button (click)="handlePilota('RITIRO')">CONFERMA</button>
+      <button (click)="hideConfirmDiv(2)">ANNULLA</button>
+    </div>
+  </div>
 </div>
