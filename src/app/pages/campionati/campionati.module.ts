@@ -13,7 +13,10 @@ import { UtentiComponent } from '../../components/utenti/utenti.component';
 import { EditCampionatoComponent } from './edit-campionato/edit-campionato.component';
 import { GaraComponent } from './gara/gara.component';
 import { EditGaraComponent } from './edit-gara/edit-gara.component';
-import { EditCampionatoUsersComponent } from './edit-campionato-users/edit-campionato-users.component';
+import { ListaGareComponent } from './lista-gare/lista-gare.component';
+import { EditAdminsComponent } from './edit-admins/edit-admins.component';
+import { EditPilotiComponent } from './edit-piloti/edit-piloti.component';
+import { SearchUtentiComponent } from '../../components/search-utenti/search-utenti.component';
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { EditCampionatoUsersComponent } from './edit-campionato-users/edit-campi
     EditCampionatoComponent,
     GaraComponent,
     EditGaraComponent,
-    EditCampionatoUsersComponent
+    ListaGareComponent,
+    EditAdminsComponent,
+    EditPilotiComponent,
+    SearchUtentiComponent
   ],
   imports: [
     CommonModule,

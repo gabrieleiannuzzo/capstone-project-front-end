@@ -1,0 +1,110 @@
+.inviti-div{
+  position: absolute;
+  top: 70px;
+  right: 50px;
+  width: calc(100% - 30px);
+  max-width: 450px;
+  height: auto;
+  max-height: 320px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  border: 2px solid #ffc500;
+  border-radius: 5px;
+  z-index: 1;
+  color: white;
+  padding-top: 10px;
+  box-sizing: border-box;
+  right: 15px;
+  background-color: #181818;
+  box-shadow: 0 0 10px #181818;
+  &::-webkit-scrollbar{
+    display: none;
+  }
+  .arrow-div, .cover-div{
+    position: absolute;
+    top: -1px;
+    transform: translateY(-50%) rotate(45deg);
+    right: 13px;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #ffc500;
+    border-left: 2px solid #ffc500;
+    right: 48px;
+  }
+  .cover-div{
+    background-color: #181818;
+  }
+  h3, .nessun-invito-p{
+    margin: 0 10px;
+  }
+  h3{
+    margin-bottom: 10px;
+  }
+  .nessun-invito-p{
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  .invito-div{
+    border-top: 1px solid white;
+    cursor: default;
+    position: relative;
+    .p-div{
+      display: flex;
+      flex-direction: column;
+      row-gap: 3.4px;
+      padding: 10px 0 10px 10px;
+      p{
+        font-size: 0.8rem;
+        max-width: 100%;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-height: 1.05rem;
+        @media screen and (min-width: 400px){
+          max-width: calc(100% - 70px);
+        }
+      }
+    }
+    .i-div{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 25px;
+      height: 25px;
+      border-radius: 100%;
+      display: none;
+      cursor: pointer;
+      &.accept-div{
+        background-color: #00ff00;
+        right: 45px;
+        &:hover{
+          background-color: lighten(#00ff00, 10);
+        }
+      }
+      &.decline-div{
+        background-color: red;
+        right: 10px;
+        &:hover{
+          background-color: lighten(red, 10);
+        }
+      }
+      @media screen and (min-width: 400px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    &:last-child{
+      border-bottom: none;
+    }
+    &:hover{
+      background-color: #ffc500;
+      border-top: 1px solid #ffc500;
+      color: #181818;
+      .i-div{
+        color: white;
+      }
+    }
+  }
+}

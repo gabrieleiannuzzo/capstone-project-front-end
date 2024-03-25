@@ -27,6 +27,7 @@ const routes: Routes = [
     component: Page404Component,
     title: "Page 404 | Racehub"
   },
+  { path: 'utenti', loadChildren: () => import('./pages/utenti/utenti.module').then(m => m.UtentiModule) },
   {
     path: "**",
     redirectTo: "/page-404"

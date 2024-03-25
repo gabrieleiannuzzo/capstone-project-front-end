@@ -1,0 +1,24 @@
+.outer-div{
+  min-height: calc(100vh - 80px);
+  padding-top: 10px;
+  box-sizing: border-box;
+  .edit-admins-div{
+    color: white;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    h1, h2{
+      font-size: 2rem;
+      text-align: center;
+    }
+    h2{
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .admins-div{
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+    }
+  }
+}

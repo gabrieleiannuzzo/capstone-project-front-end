@@ -1,0 +1,80 @@
+<div class="outer-div">
+  <div class="edit-piloti-div">
+    <h1>{{nome}}</h1>
+
+    <!-- PILOTI TITOLARI -->
+    <h2>PILOTI TITOLARI</h2>
+    <div class="piloti-titolari-div">
+      <app-utenti *ngFor="let pilota of pilotiTitolari"
+      [id]="pilota.id"
+      [fotoUrl]="pilota.utente ? pilota.utente.urlFotoProfilo : ''"
+      [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
+      [realUser]="!!pilota.utente"
+      [scuderia]="pilota.scuderia"
+      [edit]="true"
+      [scuderie]="scuderie"
+      [pilotiTitolari]="pilotiTitolari"
+      [wildCards]="wildCards"
+      [pilotiRitirati]="pilotiRitirati"
+      (emitValue)="changeStatusPiloti($event)"></app-utenti>
+
+      <app-search-utenti #searchPilotiTitolari
+      [idCampionato]="id"
+      [tipologiaInvito]="'PILOTA_TITOLARE'"
+      [scuderie]="scuderie"
+      [pilotiTitolari]="pilotiTitolari"
+      [realDrivers]="realDrivers"
+      (emitValue)="updatePilotiTitolari($event)"></app-search-utenti>
+
+      <div class="partecipa-div" *ngIf="!alreadyInChampionship()">
+        <select [(ngModel)]="scuderiaPartecipazione">
+          <option value="">SELEZIONA UNA SCUDERIA</option>
+          <option *ngFor="let s of scuderieLibere()" [value]="s.id">{{s.nome}}</option>
+        </select>
+        <button (click)="partecipa(false)">PARTECIPA COME PILOTA TITOLARE</button>
+      </div>
+    </div>
+
+    <!-- WILD CARDS -->
+    <h2>WILD CARDS</h2>
+    <div class="wild-cards-div">
+      <app-utenti *ngFor="let pilota of wildCards"
+      [fotoUrl]="pilota.utente ? pilota.utente.urlFotoProfilo : ''"
+      [id]="pilota.id"
+      [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
+      [realUser]="!!pilota.utente"
+      [edit]="true"
+      [scuderie]="scuderie"
+      [pilotiTitolari]="pilotiTitolari"
+      [wildCards]="wildCards"
+      [pilotiRitirati]="pilotiRitirati"
+      (emitValue)="changeStatusPiloti($event)"></app-utenti>
+
+      <app-search-utenti #searchWildCards
+      [idCampionato]="id"
+      [tipologiaInvito]="'WILD_CARD'"
+      [realDrivers]="realDrivers"
+      (emitValue)="updateWildCards($event)"></app-search-utenti>
+
+      <div class="partecipa-div" *ngIf="!alreadyInChampionship()">
+        <button (click)="partecipa(true)">PARTECIPA COME WILD CARD</button>
+      </div>
+    </div>
+
+    <!-- PILOTI RITIRATI -->
+    <h2>PILOTI RITIRATI</h2>
+    <div class="piloti-ritirati-div">
+      <app-utenti *ngFor="let pilota of pilotiRitirati"
+      [fotoUrl]="pilota.utente ? pilota.utente.urlFotoProfilo : ''"
+      [id]="pilota.id"
+      [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
+      [realUser]="!!pilota.utente"
+      [edit]="true"
+      [scuderie]="scuderie"
+      [pilotiTitolari]="pilotiTitolari"
+      [wildCards]="wildCards"
+      [pilotiRitirati]="pilotiRitirati"
+      (emitValue)="changeStatusPiloti($event)"></app-utenti>
+    </div>
+  </div>
+</div>

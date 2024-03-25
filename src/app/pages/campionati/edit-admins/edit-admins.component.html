@@ -1,0 +1,12 @@
+<div class="outer-div" (click)="searchAdmin.hideUtentiDiv()">
+  <div class="edit-admins-div">
+    <h1>{{nome}}</h1>
+
+    <h2>AGGIORNA ADMINS</h2>
+    <div class="admins-div">
+      <app-utenti *ngFor="let admin of admins" [fotoUrl]="admin.urlFotoProfilo" [nome]="admin.username" [realUser]="true" [link]="getUtenteLink(admin.username)"></app-utenti>
+
+      <app-search-utenti #searchAdmin [idCampionato]="id" [tipologiaInvito]="'ADMIN'"></app-search-utenti>
+    </div>
+  </div>
+</div>
