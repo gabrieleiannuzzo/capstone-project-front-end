@@ -35,7 +35,7 @@ export class ListaGareComponent {
   }
 
   getLink(id:number):string{
-    return "/campionati/edit-gara/" + id;
+    return `/campionati/${this.id}/edit-gara/${id}`;
   }
 
   startLoading():void{

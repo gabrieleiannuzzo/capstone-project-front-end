@@ -80,7 +80,8 @@ export class EditPilotiComponent {
     return bool;
   }
 
-  checkAlreadyInChampionship(arr:any[]){
+  checkAlreadyInChampionship(arr:any[]):boolean{
+    if (!this.realDrivers) return false;
     for (let el of arr) {
       if (el.utente.id == this.user.response.utente.id) return true;
     }
