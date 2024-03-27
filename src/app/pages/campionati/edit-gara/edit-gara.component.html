@@ -1,40 +1,60 @@
 <div class="edit-gara-div">
-  <h1>{{gara.nome}}</h1>
+  <h1 [ngClass]="{'blur': showConfirmDiv}">{{gara.nome}}</h1>
 
   <!-- GARA -->
-  <h2>GARA</h2>
-  <div class="driver-results-div">
-    <div class="driver-result" *ngFor="let ris of risultatiGara, let i = index">
-      <div>
-        <p>{{i + 1 + "°"}}</p>
-      </div>
-
-      <select [(ngModel)]="risultatiGara[i].idPilota" (change)="setScuderia(risultatiGara, i)">
-        <option value="">SELEZIONA PILOTA</option>
-        <optgroup label="Piloti titolari">
-          <option *ngFor="let p of freeDrivers(pilotiTitolari, risultatiGara, i)" [value]="p.id">{{getNome(p, risultatiGara, i)}}</option>
-        </optgroup>
-        <optgroup label="Wild cards">
-          <option *ngFor="let p of freeDrivers(wildCards, risultatiGara, i)" [value]="p.id">{{p.utente ? p.utente.username : p.nome}}</option>
-        </optgroup>
-      </select>
-
-      <select [(ngModel)]="risultatiGara[i].idScuderia" [disabled]="isPilotaTitolare(risultatiGara[i].idPilota) || !risultatiGara[i].idPilota">
-        <option value="">SELEZIONA SCUDERIA</option>
-        <option *ngFor="let s of scuderie" [value]="s.id">{{s.nome}}</option>
-      </select>
-
-      <button [ngClass]="{'active': ritiratiGara[i]}" (click)="toggleBoolean(ritiratiGara, i)">RITIRO</button>
-      <button [ngClass]="{'active': penalitaGara[i]}" (click)="toggleBoolean(penalitaGara, i)">PENALIT&#192;</button>
-    </div>
-  </div>
+  <h2 [ngClass]="{'blur': showConfirmDiv}">GARA</h2>
+  <app-dati-gara
+  [risultatiEvento]="risultatiGara"
+  [ritiratiEvento]="ritiratiGara"
+  [penalitaEvento]="penalitaGara"
+  [pilotiTitolari]="pilotiTitolari"
+  [wildCards]="wildCards"
+  [scuderie]="scuderie"
+  [blur]="showConfirmDiv"
+  (emitDati)="onEmitValue($event, risultatiGara, ritiratiGara, penalitaGara)"></app-dati-gara>
 
   <!-- GARA SPRINT -->
-  <h2 *ngIf="gara.sprint">GARA SPRINT</h2>
+  <h2 *ngIf="gara.sprint" [ngClass]="{'blur': showConfirmDiv}">GARA SPRINT</h2>
+  <app-dati-gara
+  [risultatiEvento]="risultatiGaraSprint"
+  [ritiratiEvento]="ritiratiSprint"
+  [penalitaEvento]="penalitaSprint"
+  [pilotiTitolari]="pilotiTitolari"
+  [wildCards]="wildCards"
+  [scuderie]="scuderie"
+  [blur]="showConfirmDiv"
+  (emitDati)="onEmitValue($event, risultatiGaraSprint, ritiratiSprint, penalitaSprint)"></app-dati-gara>
 
   <!-- QUALIFICHE -->
-  <h2 *ngIf="saveQuali || polePoint">{{saveQuali ? "QUALIFICHE" : "POLE POSITION"}}</h2>
+  <h2 *ngIf="saveQuali || polePoint" [ngClass]="{'blur': showConfirmDiv}">{{saveQuali ? "QUALIFICHE" : "POLE POSITION"}}</h2>
+  <app-dati-gara
+  [risultatiEvento]="risultatiQualifiche"
+  [pilotiTitolari]="pilotiTitolari"
+  [wildCards]="wildCards"
+  [scuderie]="scuderie"
+  [blur]="showConfirmDiv"
+  (emitDati)="onEmitValue($event, risultatiQualifiche)"></app-dati-gara>
 
   <!-- QUALIFICHE SPRINT -->
-  <h2 *ngIf="gara.sprint && campionato.options.independentSprint && saveQuali">QUALIFICHE SPRINT</h2>
+  <h2 *ngIf="gara.sprint && campionato.options.independentSprint && saveQuali" [ngClass]="{'blur': showConfirmDiv}">QUALIFICHE SPRINT</h2>
+  <app-dati-gara
+  [risultatiEvento]="risultatiQualificheSprint"
+  [pilotiTitolari]="pilotiTitolari"
+  [wildCards]="wildCards"
+  [scuderie]="scuderie"
+  [blur]="showConfirmDiv"
+  (emitDati)="onEmitValue($event, risultatiQualificheSprint)"></app-dati-gara>
+
+  <button class="salva-risultati-btn" (click)="showDiv()" [ngClass]="{'blur': showConfirmDiv}">SALVA RISULTATI</button>
+
+  <div class="cover-div" *ngIf="showConfirmDiv"></div>
+
+  <div class="confirm-div" [ngClass]="{'show': showConfirmDiv}">
+    <p>Confermi di voler salvare i risulati? Una volta fatto, non potrai annullare l'operazione o cambiare i risultati appena salvati</p>
+
+    <div>
+      <button class="confirm-btn" (click)="saveRisultati()">CONFERMA</button>
+      <button class="delete-btn" (click)="hideDiv()">ANNULLA</button>
+    </div>
+  </div>
 </div>

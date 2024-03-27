@@ -36,6 +36,8 @@ export class EditGaraComponent {
   ritiratiSprint:any[] = [];
   penalitaSprint:any[] = [];
 
+  showConfirmDiv:boolean = false;
+
   constructor(
     private route:ActivatedRoute,
     private router:Router,
@@ -113,60 +115,23 @@ export class EditGaraComponent {
     for (let i = 0; i < 20; i++) arr.push(false);
   }
 
-  toggleBoolean(arr:any[], index:number):void{
-    arr[index] = !arr[index];
-    console.log(this.ritiratiGara)
-    console.log(this.penalitaGara)
-  }
-
-  getNome(pilota:any, arr:any[], index:number):string{
-    if (arr[index].idPilota == pilota.id) {
-      return (pilota.utente ? pilota.utente.username : pilota.nome);
-    } else {
-      return ((pilota.utente ? pilota.utente.username : pilota.nome) + (pilota.wildCard ? "" : " (" + pilota.scuderia.nome + ")"));
+  onEmitValue(data:any, evento:any[], ritirati:any[] = [], penalita:any[] = []):void{
+    if (data.ritiratiEvento) {
+      ritirati = data.ritiratiEvento;
+      penalita = data.penalitaEvento;
     }
+    evento = data.risultatiEvento;
   }
 
-  setScuderia(risultatiGara:any, i:number):void{
-    if (!risultatiGara[i].idPilota) {
-      risultatiGara[i].idScuderia = "";
-      return;
-    }
-
-    if (!this.isPilotaTitolare(risultatiGara[i].idPilota)) {
-      risultatiGara[i].idScuderia = "";
-      return;
-    }
-
-    console.log(this.risultatiGara)
-    let idScuderia = "";
-    for (let p of this.pilotiTitolari) {
-      if (p.id == Number(risultatiGara[i].idPilota)) {
-        idScuderia = p.scuderia.id;
-        break;
-      }
-    }
-    risultatiGara[i].idScuderia = idScuderia;
+  showDiv():void{
+    this.showConfirmDiv = true;
   }
 
-  isPilotaTitolare(stringifiedIdPilota:string):boolean{
-    if (!stringifiedIdPilota) return false;
-    const idPilota = Number(stringifiedIdPilota);
-    return this.pilotiTitolari.some(p => p.id == idPilota);
+  hideDiv():void{
+    this.showConfirmDiv = false;
   }
 
-  freeDrivers(pilotiArr:any[], eventoArr:any[], index:number){
-    const newArr = pilotiArr.filter(p => {
-      for (let i = 0; i < eventoArr.length; i++) {
-        if (eventoArr[i] && i != index) {
-          if (p.id == eventoArr[i].idPilota) return false;
-        }
-      }
-      return true;
-    });
-
-    return newArr;
-  }
+  saveRisultati():void{}
 
   startLoading():void{
     this.loaderService.startLoading();
