@@ -10,12 +10,18 @@
   <!-- CLASSIFICA PILOTI -->
   <h2>CLASSIFICA PILOTI</h2>
   <app-classifica
+  tipologia="CLASSIFICA_PILOTI"
   [pilotiTitolari]="pilotiTitolari"
   [wildCards]="wildCards"
-  [pilotiRitirati]="pilotiRitirati"></app-classifica>
+  [pilotiRitirati]="pilotiRitirati"
+  [limit]="10"></app-classifica>
 
   <!-- CLASSIFICA COSTRUTTORI -->
   <h2>CLASSIFICA COSTRUTTORI</h2>
+  <app-classifica
+  tipologia="CLASSIFICA_COSTRUTTORI"
+  [scuderie]="scuderie"
+  [limit]="5"></app-classifica>
 
   <!-- GARE -->
   <h2>GARE</h2>

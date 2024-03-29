@@ -1,3 +1,14 @@
 <div class="classifica-div">
-  <div *ngFor="let p of pilotiTitolari">{{p.utente ? p.utente.username : p.nome}}</div>
+  <div *ngFor="let el of elementi, let i = index" [ngClass]="{'first': i == 0, 'second': i == 1, 'third': i == 2, 'even': isRowEven(i + 1), 'hidden': !expanded && i >= limit}" class="classifica-row">
+    <div class="posizione-div">
+      <p>{{i + 1}}</p>
+    </div>
+    <div class="scuderia-div" *ngIf="isPilotaTitolare(el) || tipologia == 'CLASSIFICA_COSTRUTTORI'" [ngStyle]="{'background-color': getScuderiaColor(el)}"></div>
+    <div class="names-div">
+      <p class="nome">{{getNome(el)}}</p>
+      <p class="scuderia" *ngIf="isPilotaTitolare(el)">{{el.scuderia ? el.scuderia.nome : ''}}</p>
+    </div>
+    <p class="punti">{{el.punti}}</p>
+  </div>
+  <p class="espandi-p" (click)="toggleExpanded()">{{expanded ? "Riduci" : "Espandi"}}</p>
 </div>

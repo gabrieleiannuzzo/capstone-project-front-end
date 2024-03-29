@@ -1,0 +1,74 @@
+.classifica-row{
+  background-color: rgb(197, 197, 197);
+  color: #181818;
+  position: relative;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  height: 50px;
+  .posizione-div{
+    margin-left: 10px;
+    font-size: 1.2rem;
+    width: 25px;
+    text-align: center;
+  }
+  .scuderia-div{
+    width: 15px;
+    height: 35px;
+    border-radius: 2px;
+  }
+  .names-div{
+    display: flex;
+    flex-direction: column;
+    max-width: calc(100% - 120px);
+    row-gap: 3.4px;
+    p{
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .nome{
+      line-height: 1.05rem;
+    }
+    .scuderia{
+      text-transform: uppercase;
+      font-size: 0.7rem;
+    }
+  }
+  .punti{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    font-size: 1.2rem;
+  }
+  &.even{
+    background-color: white;
+  }
+  &.first{
+    background-color: #d4af37;
+  }
+  &.second{
+    background-color: #c0c0c0;
+  }
+  &.third{
+    background-color: #cd7f32;
+  }
+  &.hidden{
+    display: none;
+  }
+}
+.espandi-p{
+  color: #ffc500;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  width: fit-content;
+  position: relative;
+  left: 100%;
+  transform: translateX(-100%);
+  &:hover{
+    text-decoration: underline;
+  }
+}
