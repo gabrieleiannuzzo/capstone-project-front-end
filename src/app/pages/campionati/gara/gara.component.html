@@ -1,1 +1,17 @@
-<p>gara works!</p>
+<div class="gara-div">
+  <h1>{{gara.nome}}</h1>
+  <p *ngIf="!isRaced()">La gara non è stata ancora disputata</p>
+
+  <!-- GARA -->
+  <h2 *ngIf="isRaced()">GARA</h2>
+  <app-classifica></app-classifica>
+
+  <!-- GARA SPRINT -->
+  <h2 *ngIf="isRaced() && gara.sprint">GARA SPRINT</h2>
+
+  <!-- QUALIFICA -->
+  <h2 *ngIf="isRaced() && (campionato.options.saveQuali || campionato.options.polePoint)">{{campionato.options.saveQuali ? "QUALIFICA" : "POLE POSITION"}}</h2>
+
+  <!-- QUALIFICA SPRINT -->
+  <h2 *ngIf="isRaced() && campionato.options.saveQuali && campionato.options.independentSprint && gara.sprint">QUALIFICA SPRINT</h2>
+</div>

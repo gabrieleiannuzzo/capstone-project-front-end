@@ -46,7 +46,7 @@ const routes: Routes = [
     title: "Edit piloti | Racehub"
   },
   {
-    path: "gare/:id",
+    path: ":idCampionato/gare/:idGara",
     component: GaraComponent,
     title: "Gara | Racehub"
   },

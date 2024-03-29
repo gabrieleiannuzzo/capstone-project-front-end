@@ -90,7 +90,7 @@ export class CampionatoComponent {
   }
 
   getGaraLink(id:number):string{
-    return "/campionati/gare/" + id;
+    return `/campionati/${this.id}/gare/${id}`;
   }
 
   getUtenteLink(username:string):string{
