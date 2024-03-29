@@ -29,9 +29,16 @@ export class ListaGareComponent {
 
     this.campionatiService.getCampionatoById(this.id).subscribe(data => {
       this.stopLoading();
+      data.response.gare.sort(this.confrontoPersonalizzato);
       this.nome = data.response.nome;
       this.gare = data.response.gare;
     })
+  }
+
+  confrontoPersonalizzato(a:any, b:any){
+    if (a.numeroGara < b.numeroGara) return -1;
+    if (a.numeroGara > b.numeroGara) return 1;
+    return 0;
   }
 
   getLink(id:number):string{

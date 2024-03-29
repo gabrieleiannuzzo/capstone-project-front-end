@@ -13,7 +13,11 @@ import { catchError } from 'rxjs';
 export class EditGaraComponent {
   idCampionato!:number;
   idGara!:number;
-  campionato!:any;
+  campionato:any = {
+    options: {
+      fastestLapPoint: false,
+    }
+  };
   gara:any = {
     nome: "",
   };
@@ -28,6 +32,7 @@ export class EditGaraComponent {
   scuderie:any[] = [];
 
   risultatiGara:any[] = [];
+  giroVeloce:any[] = [];
   risultatiQualifiche:any[] = [];
   ritiratiGara:any[] = [];
   penalitaGara:any[] = [];
@@ -79,13 +84,14 @@ export class EditGaraComponent {
         } else {
           this.messageService.showErrorMessage("Questa gara non esiste")
         }
-        console.log(data.response)
+        console.log(this.campionato)
 
         this.populateArray(this.risultatiGara);
+        if (data.response.options.fastestLapPoint) this.populateArray(this.giroVeloce, 1);
         let qualiLength:number = 20;
         if (!this.saveQuali && this.polePoint) {
           qualiLength = 1;
-        } else if (!this.polePoint) {
+        } else if (!this.saveQuali && !this.polePoint) {
           qualiLength = 0;
         }
         this.populateArray(this.risultatiQualifiche, qualiLength);
@@ -131,7 +137,112 @@ export class EditGaraComponent {
     this.showConfirmDiv = false;
   }
 
-  saveRisultati():void{}
+  isPilotaTitolare(id:number):boolean{
+    return this.pilotiTitolari.some(p => p.id == id);
+  }
+
+  setPiloti(evento:any[], wildCards:any[]):number[]{
+    return evento.map(p => {
+      if (!this.isPilotaTitolare(p.idPilota) && p.idPilota) {
+        const wildCard:any = {
+          idWildCard: p.idPilota,
+          idScuderia: p.idScuderia,
+        }
+        if (!wildCards.some((w:any) => w.idPilota == wildCard.idWildCard)) {
+          wildCards.push(wildCard);
+        } else {
+          if (wildCards.filter((w:any) => w.idPilota == wildCard.idWildCard)[0].idScuderia != wildCard.idScuderia) {
+            this.messageService.showErrorMessage("I piloti non possono cambiare scuderia durante il weekend");
+            return;
+          }
+        }
+      }
+      return p.idPilota;
+    });
+  }
+
+  handleArray(evento:any[]):any[]{
+    return evento.filter(p => p).map(p => Number(p));
+  }
+
+  saveRisultati():void{
+    const wildCards:any = [];
+    const retired:any[] = [];
+    const penalties:any[] = [];
+
+    for (let i = 0; i < 20; i++) {
+      if (this.ritiratiGara[i] && this.risultatiGara[i].idPilota) retired.push(Number(this.risultatiGara[i].idPilota));
+
+      if (this.penalitaGara[i] && this.risultatiGara[i].idPilota) penalties.push(Number(this.risultatiGara[i].idPilota));
+    }
+
+    const obj:any = {
+      idGara: this.idGara,
+      sprintQuali: [],
+      sprintRace: [],
+      sprintRetired: [],
+      sprintPenalties: [],
+      quali: [],
+      race: this.handleArray(this.setPiloti(this.risultatiGara, wildCards)),
+      retired: retired,
+      penalties: penalties,
+      idPilotaFastestLap: null,
+    }
+
+    if (this.campionato.options.fastestLapPoint) {
+      const fastestLapDriver = this.setPiloti(this.giroVeloce, wildCards);
+      obj.idPilotaFastestLap = this.handleArray(fastestLapDriver);
+    }
+
+    if (this.campionato.options.saveQuali || this.campionato.options.fastestLapDriver) {
+      const quali:number[]|null = this.setPiloti(this.risultatiQualifiche, wildCards);
+      obj.quali = this.handleArray(quali);
+    }
+
+    const matchingGara = this.gare.filter(g => g.id == this.idGara);
+    if (matchingGara[0]) {
+      if (matchingGara[0].sprint) {
+        const sprintRace:number[]|null = this.setPiloti(this.risultatiGaraSprint, wildCards);
+        obj.sprintRace = this.handleArray(sprintRace);
+
+        const sprintRetired:number[] = [];
+        const sprintPenalties:number[] = [];
+
+        for (let i = 0; i < 20; i++) {
+          if (this.ritiratiSprint[i] && this.risultatiGaraSprint[i].idPilota) sprintRetired.push(Number(this.risultatiGaraSprint[i].idPilota));
+
+          if (this.penalitaSprint[i] && this.risultatiGaraSprint[i].idPilota) sprintPenalties.push(Number(this.risultatiGaraSprint[i].idPilota));
+        }
+
+        obj.sprintRetired = sprintRetired;
+        obj.sprintPenalties = sprintPenalties;
+
+        if (this.campionato.options.saveQuali && this.campionato.options.independentSprint) {
+          const sprintQuali:number[]|null = this.setPiloti(this.risultatiQualificheSprint, wildCards);
+          obj.sprintQuali = this.handleArray(sprintQuali);
+        }
+      }
+    }
+
+    obj.idPilotaFastestLap = obj.idPilotaFastestLap ? obj.idPilotaFastestLap[0] : null;
+    obj.wildCards = wildCards;
+
+    console.log(obj)
+
+    this.startLoading();
+    this.campionatiService.aggiornaGara(obj)
+    .pipe(catchError(error => {
+      this.stopLoading();
+      const message:string = error.error.message ? error.error.message : "Si è verificato un errore";
+      this.messageService.showErrorMessage(message);
+      return [];
+    }))
+    .subscribe(data => {
+      this.stopLoading();
+      this.messageService.showSuccessMessage("Dati della gara inseriti con successo");
+      this.router.navigate([`/campionati/${this.idCampionato}`]);
+    });
+  }
 
   startLoading():void{
     this.loaderService.startLoading();

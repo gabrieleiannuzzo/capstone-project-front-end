@@ -13,6 +13,16 @@
   [blur]="showConfirmDiv"
   (emitDati)="onEmitValue($event, risultatiGara, ritiratiGara, penalitaGara)"></app-dati-gara>
 
+  <!-- GIRO VELOCE -->
+  <h2 *ngIf="campionato.options.fastestLapPoint" [ngClass]="{'blur': showConfirmDiv}" class="further">GIRO VELOCE</h2>
+  <app-dati-gara
+  [risultatiEvento]="giroVeloce"
+  [pilotiTitolari]="pilotiTitolari"
+  [wildCards]="wildCards"
+  [scuderie]="scuderie"
+  [blur]="showConfirmDiv"
+  (emitDati)="onEmitValue($event, giroVeloce)"></app-dati-gara>
+
   <!-- GARA SPRINT -->
   <h2 *ngIf="gara.sprint" [ngClass]="{'blur': showConfirmDiv}">GARA SPRINT</h2>
   <app-dati-gara
