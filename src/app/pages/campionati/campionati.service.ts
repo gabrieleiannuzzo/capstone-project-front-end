@@ -46,4 +46,8 @@ export class CampionatiService {
   changeStatusPilota(changeStatusPilotaRequest:any):Observable<any>{
     return this.http.put(`${this.campionatiUrl}/change-status-pilota`, changeStatusPilotaRequest);
   }
+
+  aggiornaGara(aggiornaGaraRequest:any):Observable<any>{
+    return this.http.post(`${this.campionatiUrl}/aggiorna-gara`, aggiornaGaraRequest);
+  }
 }

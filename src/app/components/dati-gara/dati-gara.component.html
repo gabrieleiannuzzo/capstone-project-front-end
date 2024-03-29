@@ -1,0 +1,25 @@
+<div class="driver-results-div" [ngClass]="{'blur': blur}">
+  <div class="driver-result" *ngFor="let ris of risultatiEvento, let i = index">
+    <div>
+      <p>{{i + 1 + "°"}}</p>
+    </div>
+
+    <select [(ngModel)]="risultatiEvento[i].idPilota" (change)="setScuderia(i)">
+      <option value="">SELEZIONA PILOTA</option>
+      <optgroup label="Piloti titolari">
+        <option *ngFor="let p of freeDrivers(pilotiTitolari, risultatiEvento, i)" [value]="p.id">{{getNome(p, risultatiEvento, i)}}</option>
+      </optgroup>
+      <optgroup label="Wild cards">
+        <option *ngFor="let p of freeDrivers(wildCards, risultatiEvento, i)" [value]="p.id">{{p.utente ? p.utente.username : p.nome}}</option>
+      </optgroup>
+    </select>
+
+    <select [(ngModel)]="risultatiEvento[i].idScuderia" [disabled]="isPilotaTitolare(risultatiEvento[i].idPilota) || !risultatiEvento[i].idPilota">
+      <option value="">SELEZIONA SCUDERIA</option>
+      <option *ngFor="let s of scuderie" [value]="s.id">{{s.nome}}</option>
+    </select>
+
+    <button [ngClass]="{'active': ritiratiEvento[i]}" (click)="toggleBoolean(ritiratiEvento, i)" *ngIf="ritiratiEvento && penalitaEvento">RITIRO</button>
+    <button [ngClass]="{'active': penalitaEvento[i]}" (click)="toggleBoolean(penalitaEvento, i)" *ngIf="ritiratiEvento && penalitaEvento">PENALIT&#192;</button>
+  </div>
+</div>

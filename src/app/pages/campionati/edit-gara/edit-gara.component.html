@@ -1,1 +1,70 @@
-<p>edit-gara works!</p>
+<div class="edit-gara-div">
+  <h1 [ngClass]="{'blur': showConfirmDiv}">{{gara.nome}}</h1>
+
+  <!-- GARA -->
+  <h2 [ngClass]="{'blur': showConfirmDiv}">GARA</h2>
+  <app-dati-gara
+  [risultatiEvento]="risultatiGara"
+  [ritiratiEvento]="ritiratiGara"
+  [penalitaEvento]="penalitaGara"
+  [pilotiTitolari]="pilotiTitolari"
+  [wildCards]="wildCards"
+  [scuderie]="scuderie"
+  [blur]="showConfirmDiv"
+  (emitDati)="onEmitValue($event, risultatiGara, ritiratiGara, penalitaGara)"></app-dati-gara>
+
+  <!-- GIRO VELOCE -->
+  <h2 *ngIf="campionato.options.fastestLapPoint" [ngClass]="{'blur': showConfirmDiv}" class="further">GIRO VELOCE</h2>
+  <app-dati-gara
+  [risultatiEvento]="giroVeloce"
+  [pilotiTitolari]="pilotiTitolari"
+  [wildCards]="wildCards"
+  [scuderie]="scuderie"
+  [blur]="showConfirmDiv"
+  (emitDati)="onEmitValue($event, giroVeloce)"></app-dati-gara>
+
+  <!-- GARA SPRINT -->
+  <h2 *ngIf="gara.sprint" [ngClass]="{'blur': showConfirmDiv}">GARA SPRINT</h2>
+  <app-dati-gara
+  [risultatiEvento]="risultatiGaraSprint"
+  [ritiratiEvento]="ritiratiSprint"
+  [penalitaEvento]="penalitaSprint"
+  [pilotiTitolari]="pilotiTitolari"
+  [wildCards]="wildCards"
+  [scuderie]="scuderie"
+  [blur]="showConfirmDiv"
+  (emitDati)="onEmitValue($event, risultatiGaraSprint, ritiratiSprint, penalitaSprint)"></app-dati-gara>
+
+  <!-- QUALIFICHE -->
+  <h2 *ngIf="saveQuali || polePoint" [ngClass]="{'blur': showConfirmDiv}">{{saveQuali ? "QUALIFICHE" : "POLE POSITION"}}</h2>
+  <app-dati-gara
+  [risultatiEvento]="risultatiQualifiche"
+  [pilotiTitolari]="pilotiTitolari"
+  [wildCards]="wildCards"
+  [scuderie]="scuderie"
+  [blur]="showConfirmDiv"
+  (emitDati)="onEmitValue($event, risultatiQualifiche)"></app-dati-gara>
+
+  <!-- QUALIFICHE SPRINT -->
+  <h2 *ngIf="gara.sprint && campionato.options.independentSprint && saveQuali" [ngClass]="{'blur': showConfirmDiv}">QUALIFICHE SPRINT</h2>
+  <app-dati-gara
+  [risultatiEvento]="risultatiQualificheSprint"
+  [pilotiTitolari]="pilotiTitolari"
+  [wildCards]="wildCards"
+  [scuderie]="scuderie"
+  [blur]="showConfirmDiv"
+  (emitDati)="onEmitValue($event, risultatiQualificheSprint)"></app-dati-gara>
+
+  <button class="salva-risultati-btn" (click)="showDiv()" [ngClass]="{'blur': showConfirmDiv}">SALVA RISULTATI</button>
+
+  <div class="cover-div" *ngIf="showConfirmDiv"></div>
+
+  <div class="confirm-div" [ngClass]="{'show': showConfirmDiv}">
+    <p>Confermi di voler salvare i risulati? Una volta fatto, non potrai annullare l'operazione o cambiare i risultati appena salvati</p>
+
+    <div>
+      <button class="confirm-btn" (click)="saveRisultati()">CONFERMA</button>
+      <button class="delete-btn" (click)="hideDiv()">ANNULLA</button>
+    </div>
+  </div>
+</div>
