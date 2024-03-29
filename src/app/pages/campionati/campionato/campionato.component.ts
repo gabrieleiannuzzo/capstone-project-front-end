@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CampionatiService } from '../campionati.service';
 import { LoaderService } from '../../../components/loader/loader.service';
-import { Subscription } from 'rxjs';
+import { Subscription, catchError } from 'rxjs';
+import { MessageService } from '../../../components/message/message.service';
 
 @Component({
   selector: 'app-campionato',
@@ -38,6 +39,7 @@ export class CampionatoComponent {
     private authService:AuthService,
     private campionatiService:CampionatiService,
     private loaderService:LoaderService,
+    private messageService:MessageService,
   ){}
 
   userSubscription!:Subscription;
@@ -45,23 +47,36 @@ export class CampionatoComponent {
   ngOnInit(){
     this.route.paramMap.subscribe(params => {
       this.id = Number(params.get("id"));
+
+      this.userSubscription = this.authService.user$.subscribe(data => this.myId = data?.response.utente.id);
+
+      this.startLoading();
+      this.campionatiService.getCampionatoById(this.id)
+      .pipe(catchError(error => {
+        this.stopLoading();
+        const msg = error.error.message ? error.error.message : "Si è verificato un errore";
+        this.messageService.showErrorMessage(msg);
+        return [];
+      }))
+      .subscribe(data => {
+        this.stopLoading();
+        data.response.gare.sort(this.confrontoPersonalizzato);
+        this.campionato = data.response;
+        this.creator = this.campionato.creator;
+        this.gare = this.campionato.gare;
+        this.admins = this.campionato.admins;
+        this.pilotiTitolari = this.campionato.pilotiTitolari;
+        this.wildCards = this.campionato.wildCards;
+        this.pilotiRitirati = this.campionato.pilotiRitirati;
+        console.log(this.campionato)
+      });
     })
+  }
 
-    this.userSubscription = this.authService.user$.subscribe(data => {
-      this.myId = data?.response.utente.id;
-    });
-
-    this.startLoading();
-    this.campionatiService.getCampionatoById(this.id).subscribe(data => {
-      this.stopLoading();
-      this.campionato = data.response;
-      this.creator = this.campionato.creator;
-      this.gare = this.campionato.gare;
-      this.admins = this.campionato.admins;
-      this.pilotiTitolari = this.campionato.pilotiTitolari;
-      this.wildCards = this.campionato.wildCards;
-      this.pilotiRitirati = this.campionato.pilotiRitirati;
-    });
+  confrontoPersonalizzato(a:any, b:any){
+    if (a.numeroGara < b.numeroGara) return -1;
+    if (a.numeroGara > b.numeroGara) return 1;
+    return 0;
   }
 
   isMyChampionship():boolean{

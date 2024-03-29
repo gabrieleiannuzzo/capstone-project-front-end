@@ -26,7 +26,7 @@
       [realDrivers]="realDrivers"
       (emitValue)="updatePilotiTitolari($event)"></app-search-utenti>
 
-      <div class="partecipa-div" *ngIf="!alreadyInChampionship()">
+      <div class="partecipa-div" *ngIf="!alreadyInChampionship() && realDrivers">
         <select [(ngModel)]="scuderiaPartecipazione">
           <option value="">SELEZIONA UNA SCUDERIA</option>
           <option *ngFor="let s of scuderieLibere()" [value]="s.id">{{s.nome}}</option>
@@ -56,7 +56,7 @@
       [realDrivers]="realDrivers"
       (emitValue)="updateWildCards($event)"></app-search-utenti>
 
-      <div class="partecipa-div" *ngIf="!alreadyInChampionship()">
+      <div class="partecipa-div" *ngIf="!alreadyInChampionship() && realDrivers">
         <button (click)="partecipa(true)">PARTECIPA COME WILD CARD</button>
       </div>
     </div>
