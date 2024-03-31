@@ -20,7 +20,7 @@
   .names-div{
     display: flex;
     flex-direction: column;
-    max-width: calc(100% - 120px);
+    max-width: calc(100% - 164px);
     row-gap: 3.4px;
     p{
       display: -webkit-box;
@@ -36,12 +36,20 @@
       font-size: 0.7rem;
     }
   }
-  .punti{
+  .points-div{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 10px;
-    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    .clock{
+      color: #e829f1;
+    }
+    p{
+      font-size: 1.2rem;
+    }
   }
   &.even{
     background-color: white;
@@ -57,18 +65,5 @@
   }
   &.hidden{
     display: none;
-  }
-}
-.espandi-p{
-  color: #ffc500;
-  cursor: pointer;
-  margin-top: 10px;
-  font-size: 0.8rem;
-  width: fit-content;
-  position: relative;
-  left: 100%;
-  transform: translateX(-100%);
-  &:hover{
-    text-decoration: underline;
   }
 }
