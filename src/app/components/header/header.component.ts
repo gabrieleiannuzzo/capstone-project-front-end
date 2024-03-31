@@ -49,4 +49,8 @@ export class HeaderComponent {
   toggleActive():void{
     this.active = !this.active;
   }
+
+  goToProfile():void{
+    this.router.navigate([`/utenti/${this.user?.response.utente.username}/profilo`]);
+  }
 }

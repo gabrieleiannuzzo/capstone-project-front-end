@@ -1,1 +1,7 @@
-<p>profilo works!</p>
+<div class="profilo-div">
+  <h1>{{username}}</h1>
+
+  <div class="img-div" [ngStyle]="{'background-image': fotoProfilo ? 'url(' + fotoProfilo + ')' : 'none'}">
+    <i class="fa-regular fa-user" *ngIf="!fotoProfilo"></i>
+  </div>
+</div>

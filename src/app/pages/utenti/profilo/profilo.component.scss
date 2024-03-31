@@ -1,0 +1,27 @@
+.profilo-div{
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  color: white;
+  h1{
+    margin-top: 10px;
+    font-size: 2rem;
+    text-align: center;
+  }
+  .img-div{
+    height: 100px;
+    width: 100px;
+    margin: 20px auto;
+    border-radius: 100%;
+    background-color: #ffc500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    i{
+      color: #181818;
+      font-size: 2rem;
+    }
+  }
+}

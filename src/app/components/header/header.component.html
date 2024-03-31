@@ -13,7 +13,7 @@
     </ul>
   </div>
 
-  <i class="fa-solid fa-user" id="profile" *ngIf="isLogged"></i>
+  <i class="fa-solid fa-user" id="profile" *ngIf="isLogged" (click)="goToProfile()"></i>
 
   <i class="fa-solid fa-bell" id="bell" *ngIf="isLogged" (click)="toggleShowInviti()"></i>
   <i class="fa-solid fa-circle" id="circle" *ngIf="inviti.length > 0 && isLogged"></i>
