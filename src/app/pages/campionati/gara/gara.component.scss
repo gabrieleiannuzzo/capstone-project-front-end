@@ -21,4 +21,23 @@
     margin-top: 20px;
     text-align: center;
   }
+  a{
+    background-color: #181818;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: fit-content;
+    padding: 0 10px;
+    box-sizing: border-box;
+    color: #ffc500;
+    border: 2px solid #ffc500;
+    border-radius: 5px;
+    margin: 20px auto;
+    cursor: pointer;
+    text-decoration: none;
+    &:hover{
+      background-color: #ffc500;
+      color: white;
+    }
+  }
 }

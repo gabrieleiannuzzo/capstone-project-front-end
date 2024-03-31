@@ -10,5 +10,5 @@
     </div>
     <p class="punti">{{el.punti}}</p>
   </div>
-  <p class="espandi-p" (click)="toggleExpanded()">{{expanded ? "Riduci" : "Espandi"}}</p>
+  <p class="espandi-p" (click)="toggleExpanded()" *ngIf="elementi.length">{{expanded ? "Riduci" : "Espandi"}}</p>
 </div>

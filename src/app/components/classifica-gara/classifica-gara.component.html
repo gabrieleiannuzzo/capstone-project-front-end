@@ -1,0 +1,17 @@
+<div class="classifica-div">
+  <div *ngFor="let p of piloti, let i = index" [ngClass]="{'first': i == 0, 'second': i == 1, 'third': i == 2, 'even': isRowEven(i + 1)}" class="classifica-row">
+    <div class="posizione-div">
+      <p>{{i + 1}}</p>
+    </div>
+    <div class="scuderia-div" [ngStyle]="{'background-color': getScuderiaColor(p)}"></div>
+    <div class="names-div">
+      <p class="nome">{{getNome(p)}}</p>
+      <p class="scuderia">{{p.scuderia.nome}}</p>
+    </div>
+    <div class="points-div">
+      <i class="fa-solid fa-flag flag" *ngIf="penalita?.includes(p.id)"></i>
+      <i class="fa-solid fa-clock clock" *ngIf="idPilotaGiroVeloce == p.id"></i>
+      <p class="punti" *ngIf="tipologia == 'GARA' || tipologia == 'SPRINT'">{{ritirati?.includes(p.id) ? "RIT" : getPunti(p.id, i)}}</p>
+    </div>
+  </div>
+</div>

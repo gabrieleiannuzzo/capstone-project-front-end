@@ -148,10 +148,12 @@ export class EditGaraComponent {
           idWildCard: p.idPilota,
           idScuderia: p.idScuderia,
         }
-        if (!wildCards.some((w:any) => w.idPilota == wildCard.idWildCard)) {
+        if (!wildCards.some((w:any) => w.idWildCard == wildCard.idWildCard)) {
           wildCards.push(wildCard);
+          console.log("NON CERA")
         } else {
-          if (wildCards.filter((w:any) => w.idPilota == wildCard.idWildCard)[0].idScuderia != wildCard.idScuderia) {
+          console.log("CERA")
+          if (wildCards.filter((w:any) => w.idWildCard == wildCard.idWildCard)[0].idScuderia != wildCard.idScuderia) {
             this.messageService.showErrorMessage("I piloti non possono cambiare scuderia durante il weekend");
             return;
           }
