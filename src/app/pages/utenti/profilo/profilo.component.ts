@@ -12,7 +12,10 @@ import { MessageService } from '../../../components/message/message.service';
 })
 export class ProfiloComponent {
   username:string = "";
-  profiloUtente!:any;
+  profiloUtente:any = {
+    statistiche: [],
+    statisticheSprint: [],
+  };
 
   fotoProfilo:string = "";
 
@@ -38,6 +41,7 @@ export class ProfiloComponent {
       .subscribe(data => {
         this.stopLoading();
         console.log(data.response);
+        this.profiloUtente = data.response;
         this.fotoProfilo = data.response.utente.urlFotoProfilo
       })
     })

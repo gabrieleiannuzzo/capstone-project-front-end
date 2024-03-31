@@ -4,4 +4,54 @@
   <div class="img-div" [ngStyle]="{'background-image': fotoProfilo ? 'url(' + fotoProfilo + ')' : 'none'}">
     <i class="fa-regular fa-user" *ngIf="!fotoProfilo"></i>
   </div>
+
+  <h2>STATISTICHE PILOTA</h2>
+  <div class="statistiche-div">
+    <div class="statistiche-row">
+      <p class="statistica">Gare disputate</p>
+      <p class="valore">{{profiloUtente.statistiche.numeroGareDisputate}}</p>
+    </div>
+
+    <div class="statistiche-row">
+      <p class="statistica">Posizione media gara</p>
+      <p class="valore">{{profiloUtente.statistiche.posizioneMediaGara}}</p>
+    </div>
+
+    <div class="statistiche-row">
+      <p class="statistica">Posizione media qualifica</p>
+      <p class="valore">{{profiloUtente.statistiche.posizioneMediaQualifica}}</p>
+    </div>
+
+    <div class="statistiche-row">
+      <p class="statistica">Vittorie</p>
+      <p class="valore">{{profiloUtente.statistiche.numeroVittorie}}</p>
+    </div>
+
+    <div class="statistiche-row">
+      <p class="statistica">Pole positions</p>
+      <p class="valore">{{profiloUtente.statistiche.numeroPolePositions}}</p>
+    </div>
+
+    <div class="statistiche-row">
+      <p class="statistica">Piazzamenti in top 3</p>
+      <p class="valore">{{profiloUtente.statistiche.piazzamentiTop3}}</p>
+    </div>
+
+    <div class="statistiche-row">
+      <p class="statistica">Piazzamenti in top 10</p>
+      <p class="valore">{{profiloUtente.statistiche.piazzamentiTop10}}</p>
+    </div>
+
+    <div class="statistiche-row">
+      <p class="statistica">Ritiri</p>
+      <p class="valore">{{profiloUtente.statistiche.numeroRitiri}}</p>
+    </div>
+
+    <div class="statistiche-row">
+      <p class="statistica">Penalità</p>
+      <p class="valore">{{profiloUtente.statistiche.numeroPenalita}}</p>
+    </div>
+  </div>
+
+  <h2>STATISTICHE PILOTA (SPRINT)</h2>
 </div>
