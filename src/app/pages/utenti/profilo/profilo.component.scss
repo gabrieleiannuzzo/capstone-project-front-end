@@ -3,6 +3,7 @@
   max-width: 500px;
   margin: 0 auto;
   color: white;
+  padding-bottom: 50px;
   h1, h2{
     font-size: 2rem;
     text-align: center;
@@ -28,6 +29,53 @@
     i{
       color: #181818;
       font-size: 2rem;
+    }
+  }
+  .statistiche-row{
+    height: 50px;
+    background-color: white;
+    color: #181818;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    &:nth-child(odd){
+      background-color: rgb(197, 197, 197);
+    }
+    .valore{
+      font-size: 1.2rem;
+    }
+  }
+  .campionati-div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    .campionato-div{
+      height: 60px;
+      border: 2px solid #ffc500;
+      border-radius: 5px;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+      padding-right: 50px;
+      p{
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-height: 1.05rem;
+      }
+      i{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 20px;
+      }
+      &:hover{
+        background-color: #ffc500;
+      }
     }
   }
 }

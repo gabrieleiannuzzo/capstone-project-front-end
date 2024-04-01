@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UtentiService } from '../utenti.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { LoaderService } from '../../../components/loader/loader.service';
 import { MessageService } from '../../../components/message/message.service';
@@ -13,9 +13,31 @@ import { MessageService } from '../../../components/message/message.service';
 export class ProfiloComponent {
   username:string = "";
   profiloUtente:any = {
-    statistiche: [],
-    statisticheSprint: [],
+    campionati: [],
+    campionatiCreati: [],
   };
+
+  statistiche:any = {
+    numeroGareDisputate: 0,
+    posizioneMediaGara: 0,
+    posizioneMediaQualifica: 0,
+    numeroVittorie: 0,
+    numeroPolePositions: 0,
+    posizionamentiTop3: 0,
+    posizionamentiTop10: 0,
+    numeroRitiri: 0,
+    numeroPenalita: 0,
+  }
+
+  statisticheSprint:any = {
+    numeroSprintDisputate: 0,
+    posizioneMediaGara: 0,
+    numeroVittorie: 0,
+    posizionamentiTop3: 0,
+    numeroRitiri: 0,
+    numeroPenalita: 0,
+  }
+
 
   fotoProfilo:string = "";
 
@@ -23,7 +45,8 @@ export class ProfiloComponent {
     private utentiService:UtentiService,
     private route:ActivatedRoute,
     private loaderservice:LoaderService,
-    private messageService:MessageService
+    private messageService:MessageService,
+    private router:Router
   ){}
 
   ngOnInit(){
@@ -42,9 +65,15 @@ export class ProfiloComponent {
         this.stopLoading();
         console.log(data.response);
         this.profiloUtente = data.response;
+        this.statistiche = this.profiloUtente.statistiche;
+        this.statisticheSprint = this.profiloUtente.statisticheSprint;
         this.fotoProfilo = data.response.utente.urlFotoProfilo
       })
     })
+  }
+
+  goToCampionato(id:number):void{
+    this.router.navigate([`/campionati/${id}`]);
   }
 
   startLoading():void{

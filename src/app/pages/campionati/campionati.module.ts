@@ -47,6 +47,6 @@ import { ClassificaGaraComponent } from '../../components/classifica-gara/classi
     CampionatiRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-  ]
+  ],
 })
 export class CampionatiModule { }

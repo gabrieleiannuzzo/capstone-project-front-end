@@ -9,49 +9,96 @@
   <div class="statistiche-div">
     <div class="statistiche-row">
       <p class="statistica">Gare disputate</p>
-      <p class="valore">{{profiloUtente.statistiche.numeroGareDisputate}}</p>
+      <p class="valore">{{statistiche.numeroGareDisputate}}</p>
     </div>
 
     <div class="statistiche-row">
       <p class="statistica">Posizione media gara</p>
-      <p class="valore">{{profiloUtente.statistiche.posizioneMediaGara}}</p>
+      <p class="valore">{{statistiche.posizioneMediaGara}}</p>
     </div>
 
     <div class="statistiche-row">
       <p class="statistica">Posizione media qualifica</p>
-      <p class="valore">{{profiloUtente.statistiche.posizioneMediaQualifica}}</p>
+      <p class="valore">{{statistiche.posizioneMediaQualifica}}</p>
     </div>
 
     <div class="statistiche-row">
       <p class="statistica">Vittorie</p>
-      <p class="valore">{{profiloUtente.statistiche.numeroVittorie}}</p>
+      <p class="valore">{{statistiche.numeroVittorie}}</p>
     </div>
 
     <div class="statistiche-row">
       <p class="statistica">Pole positions</p>
-      <p class="valore">{{profiloUtente.statistiche.numeroPolePositions}}</p>
+      <p class="valore">{{statistiche.numeroPolePositions}}</p>
     </div>
 
     <div class="statistiche-row">
       <p class="statistica">Piazzamenti in top 3</p>
-      <p class="valore">{{profiloUtente.statistiche.piazzamentiTop3}}</p>
+      <p class="valore">{{statistiche.posizionamentiTop3}}</p>
     </div>
 
     <div class="statistiche-row">
       <p class="statistica">Piazzamenti in top 10</p>
-      <p class="valore">{{profiloUtente.statistiche.piazzamentiTop10}}</p>
+      <p class="valore">{{statistiche.posizionamentiTop10}}</p>
     </div>
 
     <div class="statistiche-row">
       <p class="statistica">Ritiri</p>
-      <p class="valore">{{profiloUtente.statistiche.numeroRitiri}}</p>
+      <p class="valore">{{statistiche.numeroRitiri}}</p>
     </div>
 
     <div class="statistiche-row">
       <p class="statistica">Penalità</p>
-      <p class="valore">{{profiloUtente.statistiche.numeroPenalita}}</p>
+      <p class="valore">{{statistiche.numeroPenalita}}</p>
     </div>
   </div>
 
   <h2>STATISTICHE PILOTA (SPRINT)</h2>
+  <div class="statistiche-div">
+    <div class="statistiche-row">
+      <p class="statistica">Gare disputate</p>
+      <p class="valore">{{statisticheSprint.numeroSprintDisputate}}</p>
+    </div>
+
+    <div class="statistiche-row">
+      <p class="statistica">Posizione media gara</p>
+      <p class="valore">{{statisticheSprint.posizioneMediaGara}}</p>
+    </div>
+
+    <div class="statistiche-row">
+      <p class="statistica">Vittorie</p>
+      <p class="valore">{{statisticheSprint.numeroVittorie}}</p>
+    </div>
+
+    <div class="statistiche-row">
+      <p class="statistica">Piazzamenti in top 3</p>
+      <p class="valore">{{statisticheSprint.posizionamentiTop3}}</p>
+    </div>
+
+    <div class="statistiche-row">
+      <p class="statistica">Ritiri</p>
+      <p class="valore">{{statisticheSprint.numeroRitiri}}</p>
+    </div>
+
+    <div class="statistiche-row">
+      <p class="statistica">Penalità</p>
+      <p class="valore">{{statisticheSprint.numeroPenalita}}</p>
+    </div>
+  </div>
+
+  <h2>CAMPIONATI CREATI</h2>
+  <div class="campionati-div">
+    <div class="campionato-div" *ngFor="let c of profiloUtente.campionati" (click)="goToCampionato(c.id)">
+      <p>{{c.nome}}</p>
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>
+  </div>
+
+  <h2>CAMPIONATI</h2>
+  <div class="campionati-div">
+    <div class="campionato-div" *ngFor="let c of profiloUtente.campionatiCreati" (click)="goToCampionato(c.id)">
+      <p>{{c.nome}}</p>
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>
+  </div>
 </div>

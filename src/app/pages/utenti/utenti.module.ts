@@ -11,11 +11,11 @@ import { InvitoComponent } from './invito/invito.component';
   declarations: [
     UtentiComponent,
     ProfiloComponent,
-    InvitoComponent
+    InvitoComponent,
   ],
   imports: [
     CommonModule,
     UtentiRoutingModule
-  ]
+  ],
 })
 export class UtentiModule { }
