@@ -2,6 +2,8 @@ import { ActivatedRoute } from '@angular/router';
 import { LoaderService } from '../../../components/loader/loader.service';
 import { CampionatiService } from '../campionati.service';
 import { Component } from '@angular/core';
+import { catchError } from 'rxjs';
+import { MessageService } from '../../../components/message/message.service';
 
 @Component({
   selector: 'app-edit-admins',
@@ -17,18 +19,26 @@ export class EditAdminsComponent {
     private loaderService:LoaderService,
     private campionatiService:CampionatiService,
     private route:ActivatedRoute,
+    private messageService:MessageService,
   ){}
 
   ngOnInit(){
     this.startLoading();
     this.route.paramMap.subscribe(params => {
       this.id = Number(params.get("id"));
-    })
 
-    this.campionatiService.getCampionatoById(this.id).subscribe(data => {
-      this.stopLoading();
-      this.nome = data.response.nome;
-      this.admins = data.response.admins;
+      this.campionatiService.getCampionatoById(this.id)
+      .pipe(catchError(error => {
+        this.stopLoading();
+        const msg = error.error.message ? error.error.message : "Si è verificato un errore";
+        this.messageService.showErrorMessage(msg);
+        return [];
+      }))
+      .subscribe(data => {
+        this.stopLoading();
+        this.nome = data.response.nome;
+        this.admins = data.response.admins;
+      })
     })
   }
 

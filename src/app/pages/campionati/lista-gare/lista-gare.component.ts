@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MessageService } from '../../../components/message/message.service';
 import { LoaderService } from '../../../components/loader/loader.service';
 import { ActivatedRoute } from '@angular/router';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-lista-gare',
@@ -25,13 +26,20 @@ export class ListaGareComponent {
     this.startLoading();
     this.route.paramMap.subscribe(params => {
       this.id = Number(params.get("id"));
-    })
 
-    this.campionatiService.getCampionatoById(this.id).subscribe(data => {
-      this.stopLoading();
-      data.response.gare.sort(this.confrontoPersonalizzato);
-      this.nome = data.response.nome;
-      this.gare = data.response.gare;
+      this.campionatiService.getCampionatoById(this.id)
+      .pipe(catchError(error => {
+        this.stopLoading();
+        const msg = error.error.message ? error.error.message : "Si è verificato un errore";
+        this.messageService.showErrorMessage(msg);
+        return [];
+      }))
+      .subscribe(data => {
+        this.stopLoading();
+        data.response.gare.sort(this.confrontoPersonalizzato);
+        this.nome = data.response.nome;
+        this.gare = data.response.gare;
+      })
     })
   }
 

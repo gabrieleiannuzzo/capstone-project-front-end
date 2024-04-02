@@ -35,19 +35,27 @@ export class EditPilotiComponent {
   ngOnInit(){
     this.startLoading();
 
-    this.route.paramMap.subscribe(params => this.id = Number(params.get("id")));
+    this.route.paramMap.subscribe(params => {
+      this.id = Number(params.get("id"));
+
+      this.campionatiService.getCampionatoById(this.id)
+      .pipe(catchError(error => {
+        this.stopLoading();
+        const msg = error.error.message ? error.error.message : "Si è verificato un errore";
+        return [];
+      }))
+      .subscribe(data => {
+        this.stopLoading();
+        this.nome = data.response.nome;
+        this.pilotiTitolari = data.response.pilotiTitolari;
+        this.wildCards = data.response.wildCards;
+        this.pilotiRitirati = data.response.pilotiRitirati;
+        this.scuderie = data.response.scuderie;
+        this.realDrivers = data.response.options.realDrivers;
+      })
+    });
 
     this.userSubscription = this.authService.user$.subscribe(data => this.user = data);
-
-    this.campionatiService.getCampionatoById(this.id).subscribe(data => {
-      this.stopLoading();
-      this.nome = data.response.nome;
-      this.pilotiTitolari = data.response.pilotiTitolari;
-      this.wildCards = data.response.wildCards;
-      this.pilotiRitirati = data.response.pilotiRitirati;
-      this.scuderie = data.response.scuderie;
-      this.realDrivers = data.response.options.realDrivers;
-    })
   }
 
   scuderieLibere():any[]{

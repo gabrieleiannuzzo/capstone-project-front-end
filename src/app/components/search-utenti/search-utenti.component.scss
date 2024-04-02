@@ -43,7 +43,7 @@
       color: #181818;
       width: 100%;
       max-height: 134px;
-      overflow-y: scroll;
+      overflow-y: auto;
       div{
         padding: 5px;
         box-sizing: border-box;
@@ -53,6 +53,17 @@
         &:hover{
           background-color: #ffc500;
           color: #181818;
+        }
+      }
+      &::-webkit-scrollbar{
+        width: 9px;
+      }
+      &::-webkit-scrollbar-thumb{
+        background-color: #ffc500;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover{
+          background-color: lighten(#ffc500, 10);
         }
       }
     }

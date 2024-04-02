@@ -84,7 +84,6 @@ export class EditGaraComponent {
         } else {
           this.messageService.showErrorMessage("Questa gara non esiste")
         }
-        console.log(this.campionato)
 
         this.populateArray(this.risultatiGara);
         if (data.response.options.fastestLapPoint) this.populateArray(this.giroVeloce, 1);
