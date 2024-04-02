@@ -17,7 +17,7 @@
 
   <i class="fa-solid fa-bell" id="bell" *ngIf="isLogged" (click)="toggleShowInviti()"></i>
   <i class="fa-solid fa-circle" id="circle" *ngIf="inviti.length > 0 && isLogged"></i>
-  <app-inviti [isLogged]="isLogged" [inviti]="inviti" *ngIf="isLogged && showInviti"></app-inviti>
+  <app-inviti [isLogged]="isLogged" [inviti]="inviti" *ngIf="isLogged && showInviti" (emitValue)="toggleShowInviti()"></app-inviti>
 
   <div id="header-toggler-div">
     <div id="header-toggler" (click)="toggleActive()" [ngClass]="{'active': active}">

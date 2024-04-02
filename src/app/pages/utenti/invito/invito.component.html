@@ -1,1 +1,32 @@
-<p>invito works!</p>
+<div class="invito-div">
+  <h3 *ngIf="accepted">L'invito è già stato gestito</h3>
+
+  <div *ngIf="!accepted">
+    <h2>DA</h2>
+    <div class="outer-div" (click)="redirectToPage('/utenti/' + fromUser.username + '/profilo')">
+      <div class="img-div" [ngStyle]="{'background-image': fromUser.urlFotoProfilo ? 'url(' + fromUser.urlFotoProfilo + ')' : ''}">
+        <i class="fa-regular fa-user" *ngIf="!fromUser.urlFotoProfilo"></i>
+      </div>
+
+      <p class="nome">{{fromUser.username}}</p>
+
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>
+
+
+    <h2>CAMPIONATO</h2>
+    <div class="campionato-div" (click)="redirectToPage('/campionati/' + campionato.id)">
+      <p>{{campionato.nome}}</p>
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>
+
+    <h2>RUOLO: {{invito.ruolo.replace("_", " ")}}</h2>
+
+    <h2 *ngIf="invito.ruolo == 'PILOTA_TITOLARE'">SCUDERIA: {{invito.scuderia ? invito.scuderia.nome : ""}}</h2>
+
+    <div class="buttons-div">
+      <button class="accetta-btn">ACCETTA</button>
+      <button class="rifiuta-btn">RIFIUTA</button>
+    </div>
+  </div>
+</div>

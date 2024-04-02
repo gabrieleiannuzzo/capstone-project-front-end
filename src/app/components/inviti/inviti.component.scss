@@ -53,6 +53,9 @@
       flex-direction: column;
       row-gap: 3.4px;
       padding: 10px 0 10px 10px;
+      @media screen and (min-width: 400px){
+        max-width: calc(100% - 70px);
+      }
       p{
         font-size: 0.8rem;
         max-width: 100%;

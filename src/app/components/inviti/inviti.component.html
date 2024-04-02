@@ -5,8 +5,8 @@
   <h3 *ngIf="inviti.length">INVITI RICEVUTI</h3>
   <p class="nessun-invito-p" *ngIf="!inviti.length || !inviti">Nessun invito da mostrare</p>
 
-  <div *ngFor="let invito of inviti" class="invito-div" (click)="redirectToPage(invito.id)">
-    <div class="p-div">
+  <div *ngFor="let invito of inviti" class="invito-div">
+    <div class="p-div" (click)="redirectToPage(invito.id)">
       <p>{{"DA: " + invito.fromUser.username}}</p>
       <p>{{"CAMPIONATO: " + invito.campionato.nome}}</p>
       <p>{{"RUOLO: " + invito.ruolo.replace("_", " ")}}</p>

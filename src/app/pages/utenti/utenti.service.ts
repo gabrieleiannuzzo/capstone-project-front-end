@@ -16,4 +16,8 @@ export class UtentiService {
   getProfiloUtente(username:string):Observable<any>{
     return this.http.get(`${this.apiUrl}utenti/${username}/profilo`);
   }
+
+  getInvito(id:number):Observable<any>{
+    return this.http.get(`${this.apiUrl}utenti/inviti/${id}`);
+  }
 }

@@ -1,0 +1,121 @@
+.invito-div{
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  color: white;
+  h2{
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  h3{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.2rem;
+  }
+  .outer-div{
+    border: 2px solid white;
+    border-radius: 5px;
+    position: relative;
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: #181818;
+    .img-div{
+      width: 50px;
+      height: 50px;
+      background-color: white;
+      position: relative;
+      border-radius: 100%;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      i{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #181818;
+      }
+    }
+    .nome{
+      margin-left: 15px;
+      max-width: calc(100% - 105px);
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      -webkit-line-clamp: 1;
+      line-height: 1.05rem;
+    }
+    &>i{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 20px;
+    }
+    &:hover{
+      background-color: #ffc500;
+      color: #181818;
+    }
+  }
+  .campionato-div{
+    height: 60px;
+    border: 2px solid #ffc500;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 50px;
+    p{
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.05rem;
+    }
+    i{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 20px;
+    }
+    &:hover{
+      background-color: #ffc500;
+    }
+  }
+  .buttons-div{
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    button{
+      width: 140px;
+      height: 30px;
+      background-color: #181818;
+      border-radius: 5px;
+      cursor: pointer;
+      &.accetta-btn{
+        border: 2px solid #00ff00;
+        color: #00ff00;
+        &:hover{
+          background-color: #00ff00;
+          color: white;
+        }
+      }
+      &.rifiuta-btn{
+        border: 2px solid #ff0000;
+        color: #ff0000;
+        &:hover{
+          background-color: #ff0000;
+          color: white;
+        }
+      }
+    }
+  }
+}

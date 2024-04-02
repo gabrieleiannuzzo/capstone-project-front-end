@@ -86,7 +86,7 @@
     </div>
   </div>
 
-  <h2>CAMPIONATI CREATI</h2>
+  <h2 *ngIf="profiloUtente.campionati.length">CAMPIONATI CREATI</h2>
   <div class="campionati-div">
     <div class="campionato-div" *ngFor="let c of profiloUtente.campionati" (click)="goToCampionato(c.id)">
       <p>{{c.nome}}</p>
@@ -94,7 +94,7 @@
     </div>
   </div>
 
-  <h2>CAMPIONATI</h2>
+  <h2 *ngIf="profiloUtente.campionatiCreati.length">CAMPIONATI</h2>
   <div class="campionati-div">
     <div class="campionato-div" *ngFor="let c of profiloUtente.campionatiCreati" (click)="goToCampionato(c.id)">
       <p>{{c.nome}}</p>

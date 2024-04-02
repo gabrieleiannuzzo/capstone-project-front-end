@@ -1,5 +1,5 @@
 import { CampionatiService } from './../../pages/campionati/campionati.service';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { IManageInvitoRequest } from '../../models/imanage-invito-request';
 import { MessageService } from '../message/message.service';
@@ -14,6 +14,7 @@ import { AuthService } from '../../pages/auth/auth.service';
 export class InvitiComponent {
   @Input() isLogged!:boolean;
   @Input() inviti!:any[];
+  @Output() emitValue = new EventEmitter<boolean>();
 
   constructor(
     private router:Router,
@@ -26,6 +27,7 @@ export class InvitiComponent {
 
   redirectToPage(id:number):void{
     this.router.navigate(["/utenti/inviti/" + id]);
+    this.emitValue.emit(false);
   }
 
   manageInvito(id:number, accept:boolean):void{
