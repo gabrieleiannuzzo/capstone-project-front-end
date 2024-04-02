@@ -25,8 +25,8 @@
     <h2 *ngIf="invito.ruolo == 'PILOTA_TITOLARE'">SCUDERIA: {{invito.scuderia ? invito.scuderia.nome : ""}}</h2>
 
     <div class="buttons-div">
-      <button class="accetta-btn">ACCETTA</button>
-      <button class="rifiuta-btn">RIFIUTA</button>
+      <button class="accetta-btn" (click)="manageInvito(true)">ACCETTA</button>
+      <button class="rifiuta-btn" (click)="manageInvito(false)">RIFIUTA</button>
     </div>
   </div>
 </div>

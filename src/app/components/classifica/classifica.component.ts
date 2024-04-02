@@ -57,6 +57,12 @@ export class ClassificaComponent {
     return el.utente ? el.utente.username : el.nome;
   }
 
+  showEspandiP():boolean{
+    if (!this.elementi.length) return false;
+    if (this.elementi.length <= this.limit) return false;
+    return true;
+  }
+
   toggleExpanded():void{
     this.expanded = !this.expanded;
   }

@@ -6,7 +6,10 @@
     <div class="admins-div">
       <app-utenti *ngFor="let admin of admins" [fotoUrl]="admin.urlFotoProfilo" [nome]="admin.username" [realUser]="true" [link]="getUtenteLink(admin.username)"></app-utenti>
 
-      <app-search-utenti #searchAdmin [idCampionato]="id" [tipologiaInvito]="'ADMIN'"></app-search-utenti>
+      <app-search-utenti #searchAdmin
+      [idCampionato]="id"
+      [tipologiaInvito]="'ADMIN'"
+      [realDrivers]="true"></app-search-utenti>
     </div>
   </div>
 </div>
