@@ -40,12 +40,14 @@
       background-color: #181818;
       color: #ffc500;
       cursor: pointer;
-      padding: 0 10px;
-      box-sizing: border-box;
       height: 30px;
       &:hover{
         background-color: #ffc500;
         color: white;
+      }
+      @media screen and (min-width: 344px) {
+        padding: 0 10px;
+        box-sizing: border-box;
       }
     }
   }

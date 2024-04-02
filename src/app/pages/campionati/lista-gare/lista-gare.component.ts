@@ -49,6 +49,10 @@ export class ListaGareComponent {
     return 0;
   }
 
+  getGare():any[]{
+    return this.gare.filter(g => !g.race.length);
+  }
+
   getLink(id:number):string{
     return `/campionati/${this.id}/edit-gara/${id}`;
   }

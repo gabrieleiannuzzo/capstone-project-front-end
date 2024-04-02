@@ -46,7 +46,14 @@ export class SearchUtentiComponent {
 
   searchUtente(){
     this.startLoading();
-    this.campionatiService.getUtentiByPartialUsername(this.username).subscribe(data => {
+    this.campionatiService.getUtentiByPartialUsername(this.username)
+    .pipe(catchError(error => {
+      this.stopLoading();
+      const msg = error.error.message ? error.error.message : "Si è verificato un errore";
+      this.messageService.showErrorMessage(msg);
+      return [];
+    }))
+    .subscribe(data => {
       this.stopLoading();
       this.showUtentiDiv = true;
       this.utenti = data.response.map((u:any) => u.username);
@@ -90,6 +97,7 @@ export class SearchUtentiComponent {
     .subscribe(data => {
       this.stopLoading();
       this.username = "";
+      this.scuderia = "";
       this.messageService.showSuccessMessage("Invito inviato con successo");
     })
   }
@@ -104,6 +112,7 @@ export class SearchUtentiComponent {
     .subscribe(data => {
       this.stopLoading();
       this.username = "";
+      this.scuderia = "";
       this.messageService.showSuccessMessage("Pilota aggiunto con successo");
 
       this.campionatiService.getCampionatoById(this.idCampionato)
