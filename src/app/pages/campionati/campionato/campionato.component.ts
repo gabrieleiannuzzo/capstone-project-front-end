@@ -95,7 +95,7 @@ export class CampionatoComponent {
   }
 
   getUtenteLink(username:string):string{
-    return "/utenti/" + username;
+    return `/utenti/${username}/profilo`;
   }
 
   startLoading(){

@@ -49,7 +49,7 @@
     <app-utenti *ngFor="let pilota of pilotiTitolari"
     [fotoUrl]="pilota.utente ? pilota.utente.urlFotoProfilo : ''"
     [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
-    [link]="!!pilota.utente ? pilota.utente.username : ''"
+    [link]="!!pilota.utente ? getUtenteLink(pilota.utente.username) : ''"
     [realUser]="!!pilota.utente"
     [scuderia]="pilota.scuderia"></app-utenti>
   </div>
@@ -60,7 +60,7 @@
     <app-utenti *ngFor="let pilota of wildCards"
     [fotoUrl]="pilota.utente ? pilota.utente.urlFotoProfilo : ''"
     [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
-    [link]="!!pilota.utente ? pilota.utente.username : ''"
+    [link]="!!pilota.utente ? getUtenteLink(pilota.utente.username) : ''"
     [realUser]="!!pilota.utente"></app-utenti>
   </div>
 
@@ -70,7 +70,7 @@
     <app-utenti *ngFor="let pilota of pilotiRitirati"
     [fotoUrl]="pilota.utente ? pilota.utente.urlFotoProfilo : ''"
     [nome]="!!pilota.utente ? pilota.utente.username : pilota.nome"
-    [link]="!!pilota.utente ? pilota.utente.username : ''"
+    [link]="!!pilota.utente ? getUtenteLink(pilota.utente.username) : ''"
     [realUser]="!!pilota.utente"></app-utenti>
   </div>
 </div>

@@ -13,6 +13,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { MessageComponent } from './components/message/message.component';
 import { AuthInterceptor } from './pages/auth/auth.interceptor';
 import { InvitiComponent } from './components/inviti/inviti.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { InvitiComponent } from './components/inviti/inviti.component';
     Page404Component,
     MessageComponent,
     InvitiComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

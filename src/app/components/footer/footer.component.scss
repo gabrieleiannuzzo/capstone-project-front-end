@@ -1,0 +1,58 @@
+footer{
+  padding: 50px 5%;
+  color: white;
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+  .socials-div{
+    margin-bottom: 50px;
+    ul{
+      display: flex;
+      column-gap: 20px;
+      i{
+        font-size: 1.5rem;
+        color: white;
+      }
+    }
+  }
+  .lists-div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    font-size: 0.9rem;
+    margin-bottom: 50px;
+    ul{
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+      li{
+        a{
+          color: white;
+          text-decoration: none;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    @media screen and (min-width: 976px){
+      flex-direction: row;
+      column-gap: 50px;
+    }
+  }
+  .copyright, .policies{
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  .policies{
+    margin-top: 10px;
+    font-size: 0.6rem;
+    a{
+      text-decoration: none;
+      color: #ffc500;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+}

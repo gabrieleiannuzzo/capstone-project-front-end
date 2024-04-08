@@ -235,6 +235,7 @@ export class EditGaraComponent {
     .pipe(catchError(error => {
       this.stopLoading();
       const message:string = error.error.message ? error.error.message : "Si è verificato un errore";
+      console.log(error.error)
       this.messageService.showErrorMessage(message);
       return [];
     }))
