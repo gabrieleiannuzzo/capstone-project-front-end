@@ -29,6 +29,7 @@ export class CampionatoComponent {
     punteggi: {},
     scuderie: [],
     gare: [],
+    admins: [],
   }
   pilotiTitolari:any[] = [];
   wildCards:any[] = [];
@@ -82,7 +83,7 @@ export class CampionatoComponent {
 
   isMyChampionship():boolean{
     if (this.myId == 0) return false;
-    return this.myId == this.creator.id;
+    return this.myId == this.creator.id || this.campionato.admins.map((a:any) => a.id).includes(this.myId);
   }
 
   getEditCampionatoLink(id:number):string{
@@ -94,7 +95,7 @@ export class CampionatoComponent {
   }
 
   getUtenteLink(username:string):string{
-    return "/utenti/" + username;
+    return `/utenti/${username}/profilo`;
   }
 
   startLoading(){

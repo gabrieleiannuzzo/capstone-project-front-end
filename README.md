@@ -1,27 +1,29 @@
-# Sito
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
+# Racehub
 
-## Development server
+Racehub è un gestionale di competizioni di simulatori motoristici online (F1, Assetto Corsa...) e permette di avere una gestione completa di queste competizioni, potendo gestire campionati, gare, classifiche, admins e piloti
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Authors
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- [@gabrieleiannuzzo](https://github.com/gabrieleiannuzzo)
 
-## Build
+## Color Reference
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Background color | ![#181818](https://via.placeholder.com/10/181818?text=+) #181818 |
+| Main color | ![#ffc500](https://via.placeholder.com/10/ffc500?text=+) #ffc500 |
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🚀 About Me
+Sono uno sviluppatore web full-stack e ho frequentato il corso full-time di Epicode. Sono specializzato in Angular per quanto riguarda lo sviluppo front-end e Java Spring Boot per quanto riguarda lo sviluppo back-end
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 🔗 Links
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/gabriele-iannuzzo-web-developer)
+[![Back-end](https://img.shields.io/badge/repository_backend-1DA1F2?style=for-the-badge&logo=github&logoColor=white)](https://github.com/gabrieleiannuzzo/capstone-project-back-end)
 
-## Further help
+Di seguito il logo del sito, creato tramite intelligenza artificiale (sia in fase di creazione, sia in fase di modifica dei colori per inserire il main color del sito al posto del colore inserito dall'IA)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![Logo](https://res.cloudinary.com/dtftjcyxr/image/upload/v1712562267/logo_tr5piq.png)

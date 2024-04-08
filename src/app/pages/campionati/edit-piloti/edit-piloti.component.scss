@@ -1,6 +1,7 @@
 .outer-div{
   min-height: calc(100vh - 80px);
   padding-top: 10px;
+  padding-bottom: 50px;
   box-sizing: border-box;
   .edit-piloti-div{
     color: white;
@@ -40,12 +41,14 @@
       background-color: #181818;
       color: #ffc500;
       cursor: pointer;
-      padding: 0 10px;
-      box-sizing: border-box;
       height: 30px;
       &:hover{
         background-color: #ffc500;
         color: white;
+      }
+      @media screen and (min-width: 344px) {
+        padding: 0 10px;
+        box-sizing: border-box;
       }
     }
   }

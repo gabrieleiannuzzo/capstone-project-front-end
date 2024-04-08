@@ -3,6 +3,6 @@
 
   <h2>LISTA GARE</h2>
   <div>
-    <app-gare-e-campionati-component *ngFor="let gara of gare" [nome]="gara.nome" [sprint]="gara.sprint" [link]="getLink(gara.id)"></app-gare-e-campionati-component>
+    <app-gare-e-campionati-component *ngFor="let gara of getGare()" [nome]="gara.nome" [sprint]="gara.sprint" [link]="getLink(gara.id)"></app-gare-e-campionati-component>
   </div>
 </div>

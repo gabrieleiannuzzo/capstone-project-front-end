@@ -4,11 +4,11 @@
       <p>{{i + 1}}</p>
     </div>
     <div class="scuderia-div" *ngIf="isPilotaTitolare(el) || tipologia == 'CLASSIFICA_COSTRUTTORI'" [ngStyle]="{'background-color': getScuderiaColor(el)}"></div>
-    <div class="names-div">
+    <div class="names-div" [ngClass]="{'further': !isPilotaTitolare(el)}">
       <p class="nome">{{getNome(el)}}</p>
       <p class="scuderia" *ngIf="isPilotaTitolare(el)">{{el.scuderia ? el.scuderia.nome : ''}}</p>
     </div>
     <p class="punti">{{el.punti}}</p>
   </div>
-  <p class="espandi-p" (click)="toggleExpanded()" *ngIf="elementi.length">{{expanded ? "Riduci" : "Espandi"}}</p>
+  <p class="espandi-p" (click)="toggleExpanded()" *ngIf="showEspandiP()">{{expanded ? "Riduci" : "Espandi"}}</p>
 </div>

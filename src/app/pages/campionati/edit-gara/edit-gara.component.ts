@@ -84,7 +84,6 @@ export class EditGaraComponent {
         } else {
           this.messageService.showErrorMessage("Questa gara non esiste")
         }
-        console.log(this.campionato)
 
         this.populateArray(this.risultatiGara);
         if (data.response.options.fastestLapPoint) this.populateArray(this.giroVeloce, 1);
@@ -236,6 +235,7 @@ export class EditGaraComponent {
     .pipe(catchError(error => {
       this.stopLoading();
       const message:string = error.error.message ? error.error.message : "Si è verificato un errore";
+      console.log(error.error)
       this.messageService.showErrorMessage(message);
       return [];
     }))
