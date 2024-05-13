@@ -35,8 +35,8 @@
     <div class="newsletter-div">
       <h2>Iscriviti alla newsletter</h2>
       <form>
-        <input type="text" placeholder="Indirizzo email">
-        <button>ISCRIVITI</button>
+        <input type="email" placeholder="Indirizzo email" [(ngModel)]="emailNewsletter" name="emailNewsletter">
+        <button (click)="iscrivitiAllaNewsletter()">ISCRIVITI</button>
       </form>
     </div>
   </section>
@@ -47,8 +47,8 @@
       <h2>Collabora con noi</h2>
       <p>Vuoi aiutarci a sviluppare il sito nella miglior maniera possibile? Lasciaci la tua mail per richiedere un banner pubblicitario sul nostro sito</p>
       <form>
-        <input type="text" placeholder="Nome">
-        <input type="text" placeholder="Indirizzo email">
+        <input type="text" placeholder="Nome" [(ngModel)]="nome" name="nome">
+        <input type="text" placeholder="Indirizzo email" [(ngModel)]="email" name="email">
         <button>INVIA RICHIESTA</button>
       </form>
     </div>
@@ -56,8 +56,8 @@
 
   <div class="carousel">
     <div class="slider">
-      <img src="../../../assets/images/f1-car.png">
-      <img src="../../../assets/images/handshake.png">
+      <img src="../../../assets/images/YOUR.png">
+      <img src="../../../assets/images/YOUR.png">
       <img src="../../../assets/images/YOUR.png">
       <img src="../../../assets/images/YOUR.png">
       <img src="../../../assets/images/YOUR.png">
@@ -68,8 +68,8 @@
       <img src="../../../assets/images/YOUR.png">
     </div>
     <div class="slider">
-      <img src="../../../assets/images/f1-car.png">
-      <img src="../../../assets/images/handshake.png">
+      <img src="../../../assets/images/YOUR.png">
+      <img src="../../../assets/images/YOUR.png">
       <img src="../../../assets/images/YOUR.png">
       <img src="../../../assets/images/YOUR.png">
       <img src="../../../assets/images/YOUR.png">

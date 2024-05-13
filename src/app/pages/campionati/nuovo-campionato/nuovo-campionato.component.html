@@ -1,19 +1,24 @@
 <form [formGroup]="form">
   <h1>NUOVO CAMPIONATO</h1>
   <!-- NOME CAMPIONATO -->
-  <app-p-with-info-box name="Nome del campionato" description="" infoBox="true"></app-p-with-info-box>
+  <app-p-with-info-box name="Nome del campionato"
+  description="Inserisci il nome del campionato, che deve contenere almeno una lettera, deve contenere tra 4 e 50 caratteri e può contenere i simboli _.,&@*%!?()[]%#+-"
+  infoBox="true"
+  right="-10px"></app-p-with-info-box>
   <input type="text" formControlName="nome" name="nome" id="nome" maxlength="50">
 
   <!-- TIPOLOGIA CAMPIONATO -->
   <app-p-with-info-box name="Tipologia calendario"
     description="Scegli se utilizzare un calendario personalizzato oppure il calendario ufficiale F1. Se scegli di utilizzare il secondo, potrai comunque cambiare il numero di gare, il nome e le sprint race"
-    infoBox="true"></app-p-with-info-box>
+    infoBox="true"
+    right="-20px"></app-p-with-info-box>
   <app-form-choice name="calendarioUfficiale" choice1="UFFICIALE F1 2023" choice2="PERSONALIZZATO" widthValue="200px" stack="true"
     (emitSelectedValue)="onEmitValue($event, 'calendarioUfficiale')"></app-form-choice>
 
   <!-- NUMERO DI GARE -->
   <app-p-with-info-box name="Numero di gare" description="Il numero di gare deve essere compreso tra 2 e 24"
-    infoBox="true"></app-p-with-info-box>
+    infoBox="true"
+    right="-40px"></app-p-with-info-box>
   <div class="number-div" id="numero-di-gare-div">
     <button (click)="subtractRaceNumber()" [ngClass]="{'disabled': isCampionatoUfficiale()}">-</button>
     <p>{{form.get("numeroGare")?.value}}</p>
@@ -27,7 +32,11 @@
     <h2>GARE</h2>
 
     <!-- LISTA GARE -->
-    <app-p-with-info-box name="Lista gare" description="" infoBox="true"></app-p-with-info-box>
+    <app-p-with-info-box
+    name="Lista gare"
+    description="Inserisci i nomi delle gare. Devono contenere tra 4 e 50 caratteri di cui almeno una lettera. Clicca sulla S se vuoi che una gara sia sprint"
+    infoBox="true"
+    right="-60px"></app-p-with-info-box>
     <div formArrayName="gare">
       <div class="gara-div" *ngFor="let gara of gare, let i = index">
         <input type="text" class="gara-input" [placeholder]="'Gara ' + (i + 1)" [formControlName]="i" maxlength="50" [ngClass]="{'closer-to-left': !moreThan2Races()}">
@@ -40,7 +49,8 @@
     </div>
 
     <!-- QUALIFICHE SPRINT -->
-    <app-p-with-info-box name="Qualifiche sprint" description="Scegliendo SI, il formato del weekend sprint sarà quello utilizzato ufficialmente in F1 (qualifiche sprint, gara sprint, qualifiche, gara). Selezionando NO, il formato del weekend sprint sarà quello vecchio (qualifiche, gara sprint, gara)" infoBox="true"></app-p-with-info-box>
+    <app-p-with-info-box name="Qualifiche sprint" description="Scegliendo SI, il formato del weekend sprint sarà quello utilizzato ufficialmente in F1 (qualifiche sprint, gara sprint, qualifiche, gara). Selezionando NO, il formato del weekend sprint sarà quello vecchio (qualifiche, gara sprint, gara)" infoBox="true"
+    right="-40px"></app-p-with-info-box>
     <app-form-choice name="independentSprint" widthValue="150px" (emitSelectedValue)="onEmitValue($event, 'independentSprint')"></app-form-choice>
 
     <!-- PUNTO POLE POSITION -->
@@ -64,7 +74,8 @@
     <app-form-choice name="saveQuali" (emitSelectedValue)="onEmitValue($event, 'saveQuali')" widthValue="150px"></app-form-choice>
 
     <!-- PUNTEGGIO PERSONALIZZATO SPRINT -->
-    <app-p-with-info-box name="Punteggio custom sprint" description="Selezionando NO verrà utilizzato il sistema di punteggio ufficiale F1 (8, 7, 6, 5, 4, 3, 2, 1). Selezionando SI potrai decidere i punteggi per ciascuno dei 20 piloti" infoBox="true"></app-p-with-info-box>
+    <app-p-with-info-box name="Punteggio custom sprint" description="Selezionando NO verrà utilizzato il sistema di punteggio ufficiale F1 (8, 7, 6, 5, 4, 3, 2, 1). Selezionando SI potrai decidere i punteggi per ciascuno dei 20 piloti" infoBox="true"
+    right="0px"></app-p-with-info-box>
     <app-form-choice name="customSprintPoints" (emitSelectedValue)="onEmitValue($event, 'customSprintPoints')" widthValue="150px"></app-form-choice>
 
     <div class="outer-custom-points-div" formArrayName="sprintPoints" *ngIf="isCustomSprintPoints()">
@@ -90,18 +101,27 @@
     </div>
 
     <!-- TIPOLOGIA PILOTI -->
-    <app-p-with-info-box name="Tipologia piloti" description="Selezionando PILOTI REALI, i partecipanti al campionato dovranno essere utenti registrati sul sito, che dovranno accettare un invito. Selezionando PILOTI CUSTOM dovrai creare dei piloti inserendo manualmente il loro nome" infoBox="true"></app-p-with-info-box>
+    <app-p-with-info-box name="Tipologia piloti" description="Selezionando PILOTI REALI, i partecipanti al campionato dovranno essere utenti registrati sul sito, che dovranno accettare un invito. Selezionando PILOTI CUSTOM dovrai creare dei piloti inserendo manualmente il loro nome" infoBox="true"
+    right="-40px"></app-p-with-info-box>
     <app-form-choice name="realDrivers" (emitSelectedValue)="onEmitValue($event, 'realDrivers')" choice1="REALI" choice2="CUSTOM" widthValue="150px"></app-form-choice>
 
     <!-- SCUDERIE -->
     <h2>SCUDERIE</h2>
 
     <!-- TIPOLOGIA SCUDERIE -->
-    <app-p-with-info-box name="Tipologia scuderie" description="" infoBox="true"></app-p-with-info-box>
+    <app-p-with-info-box
+    name="Tipologia scuderie"
+    description="Scegli se utilizzare le scuderie ufficiali di F1 oppure crearne di nuove. Potrai modificare la scelta in ogni caso"
+    infoBox="true"
+    right="-30px"></app-p-with-info-box>
     <app-form-choice choice1="UFFICIALI" choice2="CUSTOM" widthValue="150px" (emitSelectedValue)="generaScuderie($event)"></app-form-choice>
 
     <!-- NOMI E COLORI SCUDERIE -->
-    <app-p-with-info-box name="Nomi e colori scuderie" description="" infoBox="true" *ngIf="scuderieGenerate"></app-p-with-info-box>
+    <app-p-with-info-box
+    name="Nomi e colori scuderie"
+    description="Inserisci i nomi delle scuderie e i rispettivi colori. Il nome delle scuderie deve contenere tra 4 e 50 caratteri di cui almeno una lettera"
+    infoBox="true"
+    *ngIf="scuderieGenerate"></app-p-with-info-box>
     <div formArrayName="scuderie">
       <div class="scuderia-div" *ngFor="let scuderia of getScuderie(), let i = index" [formGroupName]="i">
         <div>

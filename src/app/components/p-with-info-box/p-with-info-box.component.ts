@@ -10,6 +10,7 @@ export class PWithInfoBoxComponent {
   @Input() description!:string;
   @Input() infoBox!:string;
   @Input() closerToTop!:string;
+  @Input() right!:string;
   showInfoBox:boolean = false;
 
   isInfoBox():boolean{

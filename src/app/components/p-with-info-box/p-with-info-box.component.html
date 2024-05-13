@@ -3,5 +3,5 @@
   <div class="info-box-div" *ngIf="isInfoBox()" (click)="toggleShowInfoBox()" [ngClass]="{'active': showInfoBox}">
     <p>?</p>
   </div>
-  <div class="info-box" *ngIf="showInfoBox">{{description}}</div>
+  <div class="info-box" *ngIf="showInfoBox" [ngStyle]="{'right': right}">{{description}}</div>
 </div>
