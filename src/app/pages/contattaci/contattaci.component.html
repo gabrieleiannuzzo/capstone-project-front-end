@@ -1,0 +1,10 @@
+<div class="outer-div">
+  <h1>Contattaci</h1>
+
+  <form>
+    <input type="text" placeholder="Inserisci il tuo nome" [(ngModel)]="nome" name="nome">
+    <input type="email" placeholder="Inserisci la tua email" [(ngModel)]="email" name="email">
+    <textarea placeholder="Descrivi il problema" cols="30" rows="10" [(ngModel)]="testo" name="testo"></textarea>
+    <button type="button" (click)="send()">Invia</button>
+  </form>
+</div>

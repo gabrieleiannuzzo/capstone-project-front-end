@@ -27,6 +27,10 @@ export class CampionatiService {
     return this.http.get<any>(`${this.campionatiUrl}/${id}`);
   }
 
+  getByPartialNome(partialNome:string):Observable<any>{
+    return this.http.get<any>(`${this.campionatiUrl}/partialNome/${partialNome}`);
+  }
+
   invita(invitoRequest:any):Observable<any>{
     return this.http.post<any>(`${this.apiUrl}inviti`, invitoRequest);
   }

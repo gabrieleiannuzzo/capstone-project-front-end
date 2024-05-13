@@ -1,0 +1,28 @@
+<div class="outer-div">
+  <h1>{{username}}</h1>
+
+  <div class="edit-div">
+    <p>Username</p>
+    <input type="text" placeholder="Username" [(ngModel)]="obj.username" name="username">
+    <button (click)="updateUsername()">CAMBIA USERNAME</button>
+  </div>
+
+  <div class="edit-div">
+    <p>Email</p>
+    <input type="text" placeholder="Email" [(ngModel)]="obj.email" name="email">
+    <button (click)="updateEmail()">CAMBIA EMAIL</button>
+  </div>
+
+  <div class="edit-div">
+    <p>Password</p>
+    <div>
+      <input [type]="showPasswords[0] ? 'text' : 'password'" placeholder="Vecchia password" [(ngModel)]="obj.oldPassword" name="oldPassword">
+      <i class="fa-solid" [ngClass]="getPasswordClass(0)" (click)="toggleShowPassword(0)"></i>
+    </div>
+    <div>
+      <input [type]="showPasswords[1] ? 'text' : 'password'" placeholder="Nuova password" [(ngModel)]="obj.newPassword" name="newPassword">
+      <i class="fa-solid" [ngClass]="getPasswordClass(1)" (click)="toggleShowPassword(1)"></i>
+    </div>
+    <button (click)="updatePassword()">CAMBIA PASSWORD</button>
+  </div>
+</div>

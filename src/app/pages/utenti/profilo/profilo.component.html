@@ -5,6 +5,8 @@
     <i class="fa-regular fa-user" *ngIf="!fotoProfilo"></i>
   </div>
 
+  <a class="edit-p" [routerLink]="'/utenti/' + username + '/edit'">Modifica profilo</a>
+
   <h2>STATISTICHE PILOTA</h2>
   <div class="statistiche-div">
     <div class="statistiche-row">

@@ -1,0 +1,48 @@
+.outer-div{
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  color: white;
+  min-height: calc(100vh - 80px);
+  h1{
+    margin-top: 10px;
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+  }
+  form{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    input, textarea{
+      border: none;
+      border-radius: 5px;
+      box-sizing: border-box;
+      &:focus, &:active{
+        outline: none;
+      }
+    }
+    input{
+      height: 30px;
+      padding: 0 10px;
+      font-family: "Montserrat", sans-serif;
+    }
+    textarea{
+      padding: 5px 10px;
+      font-family: "Montserrat", sans-serif;
+    }
+    button{
+      background-color: transparent;
+      border: 2px solid #ffc500;
+      border-radius: 5px;
+      color: #ffc500;
+      padding: 5px;
+      cursor: pointer;
+      &:hover{
+        background-color: #ffc500;
+        color: white;
+      }
+    }
+  }
+}

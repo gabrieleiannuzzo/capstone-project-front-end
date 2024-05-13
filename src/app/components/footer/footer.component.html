@@ -1,15 +1,15 @@
 <footer>
   <div class="socials-div">
     <ul>
-      <li><a routerLink="https://www.instagram.com/gabriele.iannuzzo"><i class="fa-brands fa-instagram"></i></a></li>
+      <li><a href="https://www.instagram.com/gabriele.iannuzzo" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
 
-      <li><a routerLink="https://www.facebook.com/profile.php?id=61557666003846"><i class="fa-brands fa-facebook"></i></a></li>
+      <li><a href="https://www.facebook.com/profile.php?id=61557666003846" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
 
-      <li><a routerLink=""><i class="fa-brands fa-x-twitter"></i></a></li>
+      <li><a href="" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
 
-      <li><a routerLink=""><i class="fa-brands fa-youtube"></i></a></li>
+      <li><a href="" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
 
-      <li><a routerLink="https://github.com/gabrieleiannuzzo/capstone-project-front-end"><i class="fa-brands fa-github"></i></a></li>
+      <li><a href="https://github.com/gabrieleiannuzzo/capstone-project-front-end" target="_blank"><i class="fa-brands fa-github"></i></a></li>
     </ul>
   </div>
 
@@ -24,14 +24,24 @@
 
     <div class="footer-div">
       <ul>
-        <li><a routerLink="">Contattaci</a></li>
-        <li><a routerLink="">Segnala un problema</a></li>
+        <li><a routerLink="/contattaci">Contattaci</a></li>
+        <li><a routerLink="/contattaci">Segnala un problema</a></li>
       </ul>
     </div>
 
     <div class="footer-div">
       <ul>
         <li><a routerLink="">Collabora con noi</a></li>
+        <li><a (click)="toggleShowRingraziamentiDiv()">Ringraziamenti</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-div">
+      <ul>
+        <li><a href="https://paypal.me/gabrieleiannuzzo?country.x=IT&locale.x=it_IT" target="_blank" class="paypal-btn">
+          <i class="fa-brands fa-paypal"></i>
+          Supportaci
+        </a></li>
       </ul>
     </div>
   </div>
@@ -39,3 +49,7 @@
   <p class="copyright">Racehub 2024&copy; All Rights Reserved</p>
   <p class="policies"><a routerLink="">Privacy policy</a> | <a routerLink="">Cookie policy</a></p>
 </footer>
+<div class="ringraziamenti" *ngIf="show">
+  <i class="fa-solid fa-xmark" (click)="toggleShowRingraziamentiDiv()"></i>
+  <p>Ringrazio la mia meravigliosa mamma per il supporto e la fiducia che mi ha dato da quando ho iniziato questo percorso. Ringrazio la mia famiglia per essermi sempre stata accanto, e un ringraziamento speciale va a Elisabetta, meravigliosa donna e la migliore compagna di vita che potessi mai desiderare. Mi ha seguito e supportato durante il progetto e lo fa costantemente nella vita privata, dimostrando un grande coraggio e una proverbiale pazienza</p>
+</div>

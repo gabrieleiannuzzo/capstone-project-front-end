@@ -1,0 +1,59 @@
+.outer-div{
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  color: white;
+  padding-bottom: 50px;
+  h1{
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .edit-div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 300px;
+    margin: 0 auto;
+    div{
+      position: relative;
+      input{
+        width: 100%;
+      }
+      i{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 5px;
+        color: #181818;
+        cursor: pointer;
+      }
+    }
+    input{
+      height: 25px;
+      padding: 0 5px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      &:hover, &:active{
+        outline: none;
+      }
+    }
+    button{
+      background-color: #181818;
+      color: #ffc500;
+      cursor: pointer;
+      height: 25px;
+      border: 2px solid #ffc500;
+      border-radius: 5px;
+      &:hover{
+        background-color: #ffc500;
+        color: white;
+      }
+    }
+  }
+}

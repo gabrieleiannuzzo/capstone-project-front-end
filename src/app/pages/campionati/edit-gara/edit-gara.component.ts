@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CampionatiService } from '../campionati.service';
 import { LoaderService } from '../../../components/loader/loader.service';
 import { MessageService } from '../../../components/message/message.service';
 import { catchError } from 'rxjs';
+import { FullPageAdComponent } from '../../../components/full-page-ad/full-page-ad.component';
 
 @Component({
   selector: 'app-edit-gara',
@@ -42,6 +43,8 @@ export class EditGaraComponent {
   penalitaSprint:any[] = [];
 
   showConfirmDiv:boolean = false;
+
+  @ViewChild("fullPageAd", {static: true}) fullPageAd!:FullPageAdComponent;
 
   constructor(
     private route:ActivatedRoute,
@@ -242,6 +245,7 @@ export class EditGaraComponent {
     .subscribe(data => {
       this.stopLoading();
       this.messageService.showSuccessMessage("Dati della gara inseriti con successo");
+      this.fullPageAd.show();
       this.router.navigate([`/campionati/${this.idCampionato}`]);
     });
   }

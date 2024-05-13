@@ -61,6 +61,12 @@ export class AuthService {
     }));
   }
 
+  loginFromResponse(loginResponse:ILoginResponse):void{
+    this.authSubject.next(loginResponse);
+    localStorage.setItem("accessData", JSON.stringify(loginResponse));
+    this.autoLogout(loginResponse.response.accessToken);
+  }
+
   register(registerObj:IRegisterRequest):Observable<IUserResponse>{
     return this.http.post<IUserResponse>(this.registerUrl, registerObj);
   }

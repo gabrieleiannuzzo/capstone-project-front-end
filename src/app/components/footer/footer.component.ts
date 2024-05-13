@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
+  show:boolean = false;
 
+  toggleShowRingraziamentiDiv(){
+    this.show = !this.show;
+  }
 }

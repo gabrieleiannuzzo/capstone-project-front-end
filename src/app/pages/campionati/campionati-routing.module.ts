@@ -8,12 +8,20 @@ import { EditGaraComponent } from './edit-gara/edit-gara.component';
 import { ListaGareComponent } from './lista-gare/lista-gare.component';
 import { EditAdminsComponent } from './edit-admins/edit-admins.component';
 import { EditPilotiComponent } from './edit-piloti/edit-piloti.component';
+import { AuthGuard } from '../auth/auth.guard';
+import { CampionatiComponent } from './campionati.component';
 
 const routes: Routes = [
   {
+    path: "",
+    component: CampionatiComponent,
+    title: "Campionati | Racehub"
+  },
+  {
     path: "nuovo-campionato",
     component: NuovoCampionatoComponent,
-    title: "Nuovo campionato | Racehub"
+    title: "Nuovo campionato | Racehub",
+    canActivate: [AuthGuard],
   },
   {
     path: ":id",
@@ -23,27 +31,32 @@ const routes: Routes = [
   {
     path: ":id/edit",
     component: EditCampionatoComponent,
-    title: "Edit campionato | Racehub"
+    title: "Edit campionato | Racehub",
+    canActivate: [AuthGuard],
   },
   {
     path: ":id/lista-gare",
     component: ListaGareComponent,
-    title: "Lista gare | Racehub"
+    title: "Lista gare | Racehub",
+    canActivate: [AuthGuard],
   },
   {
     path: ":idCampionato/edit-gara/:id",
     component: EditGaraComponent,
-    title: "Edit gara | Racehub"
+    title: "Edit gara | Racehub",
+    canActivate: [AuthGuard],
   },
   {
     path: ":id/edit-admins",
     component: EditAdminsComponent,
-    title: "Edit admins | Racehub"
+    title: "Edit admins | Racehub",
+    canActivate: [AuthGuard],
   },
   {
     path: ":id/edit-piloti",
     component: EditPilotiComponent,
-    title: "Edit piloti | Racehub"
+    title: "Edit piloti | Racehub",
+    canActivate: [AuthGuard],
   },
   {
     path: ":idCampionato/gare/:idGara",

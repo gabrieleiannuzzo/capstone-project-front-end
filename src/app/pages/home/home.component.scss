@@ -39,6 +39,34 @@ main{
         }
       }
     }
+    form{
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+      margin-top: 20px;
+      input{
+        height: 30px;
+        border: none;
+        border-radius: 5px;
+        padding: 0 10px;
+        box-sizing: border-box;
+        &:focus, &:active{
+          outline: none;
+        }
+      }
+      button{
+        height: 30px;
+        border: none;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: #ffc500;
+        color: white;
+        cursor: pointer;
+        &:hover{
+          background-color: lighten(#ffc500, 10);
+        }
+      }
+    }
     &.title-section{
       width: 100%;
       .title-div{
@@ -65,7 +93,9 @@ main{
         margin-top: 0;
       }
       img{
+        display: block;
         width: 50%;
+        max-width: 200px;
         margin: 20px auto;
       }
     }
@@ -79,7 +109,11 @@ main{
           margin-top: 0;
         }
       }
-      @media screen and (min-width: 967px){
+      img{
+        display: block;
+        margin: 0 auto;
+      }
+      @media screen and (min-width: 976px){
         .campionati-div{
           display: flex;
           justify-content: center;
@@ -103,33 +137,21 @@ main{
         h2{
           margin-top: 0;
         }
-        form{
-          display: flex;
-          flex-direction: column;
-          row-gap: 10px;
+      }
+    }
+    &.collabora-con-noi-section{
+      background-color: #181818;
+      padding: 50px 0;
+      img{
+        max-width: 220px;
+      }
+      .collabora-con-noi-div{
+        width: 90%;
+        max-width: 400px;
+        margin: 0 auto;
+        p{
+          font-size: 1rem;
           margin-top: 20px;
-          input{
-            height: 30px;
-            border: none;
-            border-radius: 5px;
-            padding: 0 10px;
-            box-sizing: border-box;
-            &:focus, &:active{
-              outline: none;
-            }
-          }
-          button{
-            height: 30px;
-            border: none;
-            border-radius: 5px;
-            box-sizing: border-box;
-            background-color: #ffc500;
-            color: white;
-            cursor: pointer;
-            &:hover{
-              background-color: lighten(#ffc500, 10);
-            }
-          }
         }
       }
     }
@@ -172,6 +194,30 @@ main{
           }
         }
       }
+    }
+  }
+  .carousel{
+    padding: 50px 0;
+    overflow: hidden;
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    .slider{
+      display: flex;
+      flex-wrap: nowrap;
+      animation: slide 5s linear infinite;
+      img{
+        height: 100px;
+        margin: 0 20px;
+      }
+    }
+  }
+  @keyframes slide {
+    from{
+      transform: translateX(0);
+    }
+    to{
+      transform: translateX(-100%);
     }
   }
 }

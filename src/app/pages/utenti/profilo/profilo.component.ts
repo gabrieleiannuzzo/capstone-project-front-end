@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { UtentiService } from '../utenti.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError } from 'rxjs';
+import { Subscription, catchError } from 'rxjs';
 import { LoaderService } from '../../../components/loader/loader.service';
 import { MessageService } from '../../../components/message/message.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-profilo',
@@ -37,6 +38,11 @@ export class ProfiloComponent {
     numeroRitiri: 0,
     numeroPenalita: 0,
   }
+  user:any = {
+    utente: {
+      username: "",
+    }
+  };
 
 
   fotoProfilo:string = "";
@@ -46,10 +52,15 @@ export class ProfiloComponent {
     private route:ActivatedRoute,
     private loaderservice:LoaderService,
     private messageService:MessageService,
-    private router:Router
+    private router:Router,
+    private authService:AuthService,
   ){}
 
+  userSubscription!:Subscription;
+
   ngOnInit(){
+    this.userSubscription = this.authService.user$.subscribe(data => this.user = data?.response);
+
     this.route.paramMap.subscribe(params => {
       this.username = String(params.get("username"));
 
@@ -70,6 +81,10 @@ export class ProfiloComponent {
         this.fotoProfilo = data.response.utente.urlFotoProfilo
       })
     })
+  }
+
+  isMyProfile():boolean{
+    return this.user.utente.username == this.username;
   }
 
   goToCampionato(id:number):void{

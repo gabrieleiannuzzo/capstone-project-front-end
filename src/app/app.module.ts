@@ -14,6 +14,8 @@ import { MessageComponent } from './components/message/message.component';
 import { AuthInterceptor } from './pages/auth/auth.interceptor';
 import { InvitiComponent } from './components/inviti/inviti.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ContattaciComponent } from './pages/contattaci/contattaci.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { FooterComponent } from './components/footer/footer.component';
     MessageComponent,
     InvitiComponent,
     FooterComponent,
+    ContattaciComponent,
+    PrivacyPolicyComponent,
   ],
   imports: [
     BrowserModule,

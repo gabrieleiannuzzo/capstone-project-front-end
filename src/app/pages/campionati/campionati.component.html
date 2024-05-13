@@ -1,1 +1,20 @@
-<p>campionati works!</p>
+<div class="outer-div">
+  <h1>CAMPIONATI</h1>
+
+  <button class="a-btn first-btn" routerLink="/campionati/nuovo-campionato">CREA UN CAMPIONATO</button>
+
+  <button class="a-btn second-btn" [routerLink]="isLogged ? '/utenti/' + user.utente.username + '/profilo' : '/auth/login'">I MIEI CAMPIONATI</button>
+
+  <form>
+    <input type="text" placeholder="Cerca un campionato" [(ngModel)]="partialNome" name="partialNome">
+    <button (click)="search()">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </form>
+
+  <div class="campionati-div">
+    <app-gare-e-campionati-component *ngFor="let c of campionati"
+    [nome]="c.nome"
+    [link]="'/campionati/' + c.id"></app-gare-e-campionati-component>
+  </div>
+</div>

@@ -20,4 +20,16 @@ export class UtentiService {
   getInvito(id:number):Observable<any>{
     return this.http.get(`${this.apiUrl}utenti/inviti/${id}`);
   }
+
+  updateUsername(username:string, obj:any):Observable<any>{
+    return this.http.put(`${this.apiUrl}auth/${username}/update-username`, obj);
+  }
+
+  updateEmail(username:string, obj:any):Observable<any>{
+    return this.http.put(`${this.apiUrl}auth/${username}/update-email`, obj);
+  }
+
+  updatePassword(username:string, obj:any):Observable<any>{
+    return this.http.put(`${this.apiUrl}auth/${username}/update-password`, obj);
+  }
 }

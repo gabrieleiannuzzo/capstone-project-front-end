@@ -32,6 +32,25 @@ footer{
           &:hover{
             text-decoration: underline;
           }
+          &:active, &:focus{
+            text-decoration: none;
+          }
+          &.paypal-btn{
+            background-color: #00457c;
+            padding: 10px 15px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            column-gap: 10px;
+            i{
+              font-size: 1.1rem
+            }
+            &:hover{
+              text-decoration: none;
+              background-color: #0079c1;
+            }
+          }
         }
       }
     }
@@ -54,5 +73,34 @@ footer{
         text-decoration: underline;
       }
     }
+  }
+}
+.footer-div{
+  ul{
+    li{
+      a{
+        cursor: pointer;
+      }
+    }
+  }
+}
+.ringraziamenti{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffc500;
+  box-shadow: 0 0 10px #181818;
+  color: white;
+  width: 90%;
+  max-width: 450px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  i{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.2rem;
   }
 }

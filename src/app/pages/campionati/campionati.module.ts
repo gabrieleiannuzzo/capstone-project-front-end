@@ -20,6 +20,7 @@ import { SearchUtentiComponent } from '../../components/search-utenti/search-ute
 import { DatiGaraComponent } from '../../components/dati-gara/dati-gara.component';
 import { ClassificaComponent } from '../../components/classifica/classifica.component';
 import { ClassificaGaraComponent } from '../../components/classifica-gara/classifica-gara.component';
+import { FullPageAdComponent } from '../../components/full-page-ad/full-page-ad.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ClassificaGaraComponent } from '../../components/classifica-gara/classi
     SearchUtentiComponent,
     DatiGaraComponent,
     ClassificaComponent,
-    ClassificaGaraComponent
+    ClassificaGaraComponent,
+    FullPageAdComponent
   ],
   imports: [
     CommonModule,
